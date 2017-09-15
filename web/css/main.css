@@ -23,6 +23,7 @@ main {
 .titre{
     font-size: 100px !important;
 }
+
 .waves-effect.waves-bluealfa .waves-ripple {
     background-color: #2e51ef;
 }
@@ -217,11 +218,26 @@ h1{
 }
 
 
+header, main, footer {
+    padding-left: 300px;
+
+}
+.fixed-action-btn{
+    display: none;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+    .fixed-action-btn{
+        display: block;
+    }
+}
+
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
-
-    /* Datatables */
 
 
     /* Admin des Observations  */
@@ -275,7 +291,6 @@ h1{
     }
 
 }
-
 
 
 
