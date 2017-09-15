@@ -1,29 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    <div class="carousel carousel-slider" data-indicators="true" >
 
-    <div class="coverimage">
-        <div class="main-wrapper center">
-            <video id="video-oiseaux" preload="auto" autoplay loop>
-                <source src="{{ asset('videos/luttevideo.mp4') }}" type="video/mp4">
-                Votre navigateur ne prend pas en charge cette vidéo.
-            </video>
-
-            <img src="{{ asset('images/logo.png') }}" alt="logo alfa" class="image_petit_ecran">
+        <a class="carousel-item" href="#one!"><img src="{{ asset('images/caroussel/lutte.jpg') }}"></a>
 
 
-            <a href="#" class="center text-video waves-effect waves-light btn indigo darken-4 z-depth-5">Je
-                participe</a>
-
-
-            <a href="#ancre_scroll"><img
-                        src="{{ asset('images/ic_keyboard_arrow_down_black_48px.svg') }}" alt="chevron"
-                        class="chevron-down"></a>
-
-
+        <div class="carousel-fixed-item center">
+            <h1 class="titre white-text">alfa</h1>
+            <p class="sous-titre white-text">Lutte, Fitness, Musculation, Grappling Fight</p>
+            <a class="btn waves-effect indigo white-text-text darken-4">s'inscrire</a>
         </div>
-    </div>
 
+
+        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/grappling.jpg') }}"></a>
+        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/fitness.jpg') }}"></a>
+        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/musculation.jpg') }}"></a>
+
+    </div>
 
     {#////////////////////////////////////////////////////////////////#}
 

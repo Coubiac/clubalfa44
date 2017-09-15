@@ -19,6 +19,10 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+.titre{
+    font-size: 100px !important;
+}
 .waves-effect.waves-bluealfa .waves-ripple {
     background-color: #2e51ef;
 }
