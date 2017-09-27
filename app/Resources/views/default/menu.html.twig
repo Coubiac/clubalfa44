@@ -1,6 +1,6 @@
 <ul id="slide-out" class="side-nav alfa-electrique fixed">
     <li class="logo">
-        <div><a id="logo-container" href="#" class="brand-logo center">
+        <div><a id="logo-container" href="{{ path("homepage") }}" class="brand-logo center">
                 <img id="front-page-logo" src="{{ asset('images/logoalfacarre.png') }}"></a></div>
     </li>
 
@@ -55,6 +55,13 @@
                         <li><a href="#">Nous Contacter</a></li>
                         <li><a href="#">Devenir bénévole</a></li>
                         <li><a href="#">Règlement intérieur</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Admin</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{{ path('listcontenu') }}">Contenu statique</a></li>
                     </ul>
                 </div>
             </li>

@@ -4,16 +4,40 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+
 
 class IndexController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $contenu = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:ContenuStatic')
+            ->findOneBy(array('emplacement' => 'index'));
 
+        return $this->render('default/index.html.twig', array(
+        'contenu' => $contenu,
+    ));
     }
+
+    /**
+     * @Route("/lutte/presentation", name="lutte-presentation")
+     */
+    public function luttePresentationAction()
+    {
+        $contenu = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:ContenuStatic')
+            ->findOneBy(array('emplacement' => 'lutte-presentation'));
+
+        return $this->render('default/lutte-presentation.html.twig', array(
+            'contenu' => $contenu,
+        ));
+    }
+
 }

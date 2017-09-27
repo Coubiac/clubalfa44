@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-html5-1.4.2/r-2.2.0/datatables.min.css"/>
+{% endblock %}
+{% block main %}
+    <div class="container">
+    <h1>Gestion du contenu statique</h1>
+
+
+    <table id="datatable">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Emplacement</th>
+            <th></th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for contenu in listContenu %}
+            <tr>
+                <td>{{ contenu.titre }}</td>
+                <td>{{ contenu.emplacement }}</td>
+                <td> <a href="{{ path('modifContenu', {'id': contenu.id}) }}" data-tooltip="modifier" class="tooltipped btn-floating lime darken-2 right-align"
+                        role="button"> <i class="material-icons blue-grey-text text-lighten-5">edit</i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+    </table>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-html5-1.4.2/r-2.2.0/datatables.min.js"></script>
+    <script src="{{ asset('js/admintables.js') }}"></script>
+{% endblock %}

@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+      - 'assets/materialize_form_theme.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -60,6 +62,12 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+# Stof\DoctrineExtensionsBundle configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
@@ -67,3 +75,44 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fm_elfinder:
+    assets_path: elfinder # Le dossier configuré dans composer.json
+    instances:
+        ckeditor:
+            locale:           "%locale%"
+            editor:           "ckeditor"
+            fullscreen:       false
+            include_assets:   true
+            connector:
+                debug:        false
+                roots:
+                    uploads:
+                        driver:           "LocalFileSystem"
+                        path:             "uploads/images"
+                        upload_allow:     ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'application/zip', 'audio/mpeg', 'text/csv', 'video/mp4', 'video/webm', 'application/pdf']
+                        upload_deny:      ['all']
+                        upload_max_size:  "8M"
+ivory_ck_editor:
+    default_config: my_custom_config    # Utiliser par defaut la configuration my_custom_config
+    configs:
+        my_custom_config:
+            language: "%locale%"
+            toolbar: "standard"          # Charger la toolbar tollbar_1 (voir plus bas)
+            filebrowserBrowseRoute: "elfinder"
+            filebrowserBrowseRouteParameters:
+                instance: "ckeditor"
+            stylesSet: "my_styles"         # Chargement des styles personnalisables my_styles (voir plus bas)
+            uiColor: "#FCFCFC"           # Couleur de fond de l'interface
+            height: "600px"             # Hauteur par défaut
+            contentsCss: ['bundles/ivoryckeditor/contents.css'] # Charge les styles dans l'éditeur (permet de voir en temps réel le résultat)
+
+
+
+    styles:         # Configuration des styles personnalisables
+        my_styles:
+            - { name: "Alert Success", element: "div",  attributes: { class: "alert alert-success", role: "alert" }}
+            - { name: "Alert Info", element: "div",  attributes: { class: "alert alert-info", role: "alert" }}
+            - { name: "Alert Warning", element: "div",  attributes: { class: "alert alert-warning", role: "alert" }}
+            - { name: "Alert Danger", element: "div",  attributes: { class: "alert alert-danger", role: "alert" }}
+            - { name: "Badge", element: "span",  attributes: { class: "badge" }}
