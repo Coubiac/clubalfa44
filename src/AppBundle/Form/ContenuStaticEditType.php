@@ -17,7 +17,9 @@ class ContenuStaticEditType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('contenu')
+            ->add('contenu',CKEditorType::class, array(
+                'config_name' => 'my_config',
+            ))
             ->add('enregistrer', SubmitType::class);
     }
 

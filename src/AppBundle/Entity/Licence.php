@@ -108,7 +108,7 @@ class Licence
      *
      * @return Licence
      */
-    public function setIsActive($isActive)
+    public function setActive($isActive)
     {
         $this->isActive = $isActive;
 
@@ -120,7 +120,7 @@ class Licence
      *
      * @return bool
      */
-    public function getIsActive()
+    public function isActive()
     {
         return $this->isActive;
     }
