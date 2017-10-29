@@ -2,8 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use AppBundle\Entity\User as User;
 
 /**
  * Evenement
@@ -23,60 +24,57 @@ class Evenement
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
-     */
-    private $category;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
-     */
-    private $slug;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text")
-     */
-    private $content;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateOfPublish", type="datetime")
-     */
-    private $dateOfPublish;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="enableSuscribe", type="boolean")
-     */
-    private $enableSuscribe;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="level", type="string", length=255, nullable=true)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $level;
+    private $titre;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updateAt", type="datetime")
+     */
+    private $updateAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="evenement")
+     */
+    private $photos;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsEvenements")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $inscrits;
+
+    public function __construct()
+    {
+        $this->inscrits = new ArrayCollection();
+
+    }
 
     /**
      * Get id
@@ -86,126 +84,6 @@ class Evenement
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return Evenement
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Evenement
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return Evenement
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set dateOfPublish
-     *
-     * @param \DateTime $dateOfPublish
-     *
-     * @return Evenement
-     */
-    public function setDateOfPublish($dateOfPublish)
-    {
-        $this->dateOfPublish = $dateOfPublish;
-
-        return $this;
-    }
-
-    /**
-     * Get dateOfPublish
-     *
-     * @return \DateTime
-     */
-    public function getDateOfPublish()
-    {
-        return $this->dateOfPublish;
-    }
-
-    /**
-     * Set enableSuscribe
-     *
-     * @param boolean $enableSuscribe
-     *
-     * @return Evenement
-     */
-    public function setEnableSuscribe($enableSuscribe)
-    {
-        $this->enableSuscribe = $enableSuscribe;
-
-        return $this;
-    }
-
-    /**
-     * Get enableSuscribe
-     *
-     * @return bool
-     */
-    public function getEnableSuscribe()
-    {
-        return $this->enableSuscribe;
     }
 
     /**
@@ -233,27 +111,132 @@ class Evenement
     }
 
     /**
-     * Set level
+     * Set titre
      *
-     * @param string $level
+     * @param string $titre
      *
      * @return Evenement
      */
-    public function setLevel($level)
+    public function setTitre($titre)
     {
-        $this->level = $level;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get level
+     * Get titre
      *
      * @return string
      */
-    public function getLevel()
+    public function getTitre()
     {
-        return $this->level;
+        return $this->titre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Evenement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Evenement
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return Evenement
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * Add inscrit
+     *
+     * @param User $inscrit
+     *
+     * @return Evenement
+     */
+    public function addInscrit(User $inscrit)
+    {
+        $this->inscrits[] = $inscrit;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscrit
+     *
+     * @param User $inscrit
+     */
+    public function removeInscrit(User $inscrit)
+    {
+        $this->inscrits->removeElement($inscrit);
+    }
+
+    /**
+     * Get inscrits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
     }
 }
-

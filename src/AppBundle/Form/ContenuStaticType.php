@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Pepsit36\SummernoteBundle\Form\Type\SummernoteType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,13 +18,8 @@ class ContenuStaticType extends AbstractType
     {
         $builder->add('emplacement')
             ->add('titre')
-            ->add('contenu', CKEditorType::class, array (
-                'label'             => 'Contenu',
-                'config_name'       => 'my_custom_config',
-                'config' => array(
-                    'language'    => 'fr'
-                ),
-            ))
+            ->add('contenu',SummernoteType::class)
+
             ->add('enregistrer', SubmitType::class);
     }
     

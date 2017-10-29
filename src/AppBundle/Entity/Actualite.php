@@ -2,17 +2,15 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\User as User;
 
 /**
- * Evenement
+ * Actualite
  *
- * @ORM\Table(name="evenement")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
+ * @ORM\Table(name="actualite")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActualiteRepository")
  */
-class Evenement
+class Actualite
 {
     /**
      * @var int
@@ -24,11 +22,10 @@ class Evenement
     private $id;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\ManyToOne(targetEntity="AppBundle\User", inversedBy="actualites")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $date;
+    private $author;
 
     /**
      * @var string
@@ -40,9 +37,16 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="contenu", type="text")
      */
-    private $description;
+    private $contenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
 
     /**
      * @var \DateTime
@@ -54,29 +58,15 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateAt", type="datetime")
+     * @ORM\Column(name="dateDerniereModif", type="datetime")
      */
-    private $updateAt;
+    private $dateDerniereModif;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="actualite")
      */
     private $photos;
 
-
-    /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsEvenements")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $inscrits;
-
-    public function __construct()
-    {
-        $this->inscrits = new ArrayCollection();
-        $this->photos = new ArrayCollection();
-
-
-    }
 
     /**
      * Get id
@@ -89,35 +79,11 @@ class Evenement
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Evenement
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set titre
      *
      * @param string $titre
      *
-     * @return Evenement
+     * @return Actualite
      */
     public function setTitre($titre)
     {
@@ -137,27 +103,51 @@ class Evenement
     }
 
     /**
-     * Set description
+     * Set contenu
      *
-     * @param string $description
+     * @param string $contenu
      *
-     * @return Evenement
+     * @return Actualite
      */
-    public function setDescription($description)
+    public function setContenu($contenu)
     {
-        $this->description = $description;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get contenu
      *
      * @return string
      */
-    public function getDescription()
+    public function getContenu()
     {
-        return $this->description;
+        return $this->contenu;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Actualite
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -165,7 +155,7 @@ class Evenement
      *
      * @param \DateTime $dateCreation
      *
-     * @return Evenement
+     * @return Actualite
      */
     public function setDateCreation($dateCreation)
     {
@@ -185,61 +175,58 @@ class Evenement
     }
 
     /**
-     * Set updateAt
+     * Set dateDerniereModif
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $dateDerniereModif
      *
-     * @return Evenement
+     * @return Actualite
      */
-    public function setUpdateAt($updateAt)
+    public function setDateDerniereModif($dateDerniereModif)
     {
-        $this->updateAt = $updateAt;
+        $this->dateDerniereModif = $dateDerniereModif;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get dateDerniereModif
      *
      * @return \DateTime
      */
-    public function getUpdateAt()
+    public function getDateDerniereModif()
     {
-        return $this->updateAt;
+        return $this->dateDerniereModif;
     }
 
     /**
-     * Add inscrit
+     * Set author
      *
-     * @param User $inscrit
+     * @param \AppBundle\User $author
      *
-     * @return Evenement
+     * @return Actualite
      */
-    public function addInscrit(User $inscrit)
+    public function setAuthor(\AppBundle\User $author)
     {
-        $this->inscrits[] = $inscrit;
+        $this->author = $author;
 
         return $this;
     }
 
     /**
-     * Remove inscrit
+     * Get author
      *
-     * @param User $inscrit
+     * @return \AppBundle\User
      */
-    public function removeInscrit(User $inscrit)
+    public function getAuthor()
     {
-        $this->inscrits->removeElement($inscrit);
+        return $this->author;
     }
-
     /**
-     * Get inscrits
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * Constructor
      */
-    public function getInscrits()
+    public function __construct()
     {
-        return $this->inscrits;
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -247,7 +234,7 @@ class Evenement
      *
      * @param \AppBundle\Entity\Photo $photo
      *
-     * @return Evenement
+     * @return Actualite
      */
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {

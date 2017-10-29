@@ -7,12 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User as User;
 
 /**
- * Evenement
+ * Competition
  *
- * @ORM\Table(name="evenement")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
+ * @ORM\Table(name="competition")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CompetitionRepository")
  */
-class Evenement
+class Competition
 {
     /**
      * @var int
@@ -33,6 +33,13 @@ class Evenement
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
@@ -40,43 +47,34 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="resultat", type="text", nullable=true)
      */
-    private $description;
+    private $resultat;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateCreation", type="datetime")
-     */
-    private $dateCreation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updateAt", type="datetime")
-     */
-    private $updateAt;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition")
      */
     private $photos;
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsEvenements")
+     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsCompetitions")
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;
 
-    public function __construct()
-    {
-        $this->inscrits = new ArrayCollection();
-        $this->photos = new ArrayCollection();
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Categorie", inversedBy="competitions")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\activite", inversedBy="competitions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $activite;
 
-    }
 
     /**
      * Get id
@@ -93,7 +91,7 @@ class Evenement
      *
      * @param \DateTime $date
      *
-     * @return Evenement
+     * @return Competition
      */
     public function setDate($date)
     {
@@ -113,35 +111,11 @@ class Evenement
     }
 
     /**
-     * Set titre
-     *
-     * @param string $titre
-     *
-     * @return Evenement
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
      *
-     * @return Evenement
+     * @return Competition
      */
     public function setDescription($description)
     {
@@ -161,51 +135,60 @@ class Evenement
     }
 
     /**
-     * Set dateCreation
+     * Set titre
      *
-     * @param \DateTime $dateCreation
+     * @param string $titre
      *
-     * @return Evenement
+     * @return Competition
      */
-    public function setDateCreation($dateCreation)
+    public function setTitre($titre)
     {
-        $this->dateCreation = $dateCreation;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get dateCreation
+     * Get titre
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDateCreation()
+    public function getTitre()
     {
-        return $this->dateCreation;
+        return $this->titre;
     }
 
     /**
-     * Set updateAt
+     * Set resultat
      *
-     * @param \DateTime $updateAt
+     * @param string $resultat
      *
-     * @return Evenement
+     * @return Competition
      */
-    public function setUpdateAt($updateAt)
+    public function setResultat($resultat)
     {
-        $this->updateAt = $updateAt;
+        $this->resultat = $resultat;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get resultat
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getUpdateAt()
+    public function getResultat()
     {
-        return $this->updateAt;
+        return $this->resultat;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->inscrits = new ArrayCollection();
+        $this->photos = new ArrayCollection();
+
     }
 
     /**
@@ -213,7 +196,7 @@ class Evenement
      *
      * @param User $inscrit
      *
-     * @return Evenement
+     * @return Competition
      */
     public function addInscrit(User $inscrit)
     {
@@ -247,7 +230,7 @@ class Evenement
      *
      * @param \AppBundle\Entity\Photo $photo
      *
-     * @return Evenement
+     * @return Competition
      */
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
@@ -274,5 +257,29 @@ class Evenement
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Set activite
+     *
+     * @param \AppBundle\activite $activite
+     *
+     * @return Competition
+     */
+    public function setActivite(\AppBundle\activite $activite)
+    {
+        $this->activite = $activite;
+
+        return $this;
+    }
+
+    /**
+     * Get activite
+     *
+     * @return \AppBundle\activite
+     */
+    public function getActivite()
+    {
+        return $this->activite;
     }
 }
