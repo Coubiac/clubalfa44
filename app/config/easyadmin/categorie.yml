@@ -1,0 +1,6 @@
+easy_admin:
+    entities:
+        Categorie:
+            class: AppBundle\Entity\Categorie
+            list:
+                title: 'Liste des Categories'

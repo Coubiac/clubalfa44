@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User as User;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Competition
@@ -58,22 +59,27 @@ class Competition
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsCompetitions")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="competitions")
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Categorie", inversedBy="competitions")
+     * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="competitions")
      * @ORM\JoinColumn(nullable=true)
      */
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\activite", inversedBy="competitions")
+     * @ORM\ManyToOne(targetEntity="Activite", inversedBy="competitions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $activite;
+
+    public function __toString()
+    {
+        return $this->getTitre();
+    }
 
 
     /**
@@ -264,11 +270,11 @@ class Competition
     /**
      * Set activite
      *
-     * @param \AppBundle\activite $activite
+     * @param \AppBundle\Entity\activite $activite
      *
      * @return Competition
      */
-    public function setActivite(\AppBundle\activite $activite)
+    public function setActivite(\AppBundle\Entity\activite $activite)
     {
         $this->activite = $activite;
 
@@ -278,7 +284,7 @@ class Competition
     /**
      * Get activite
      *
-     * @return \AppBundle\activite
+     * @return \AppBundle\Entity\activite
      */
     public function getActivite()
     {
@@ -288,11 +294,11 @@ class Competition
     /**
      * Add category
      *
-     * @param \AppBundle\Categorie $category
+     * @param \AppBundle\Entity\Categorie $category
      *
      * @return Competition
      */
-    public function addCategory(\AppBundle\Categorie $category)
+    public function addCategory(\AppBundle\Entity\Categorie $category)
     {
         $this->categories[] = $category;
 
@@ -302,9 +308,9 @@ class Competition
     /**
      * Remove category
      *
-     * @param \AppBundle\Categorie $category
+     * @param \AppBundle\Entity\Categorie $category
      */
-    public function removeCategory(\AppBundle\Categorie $category)
+    public function removeCategory(\AppBundle\Entity\Categorie $category)
     {
         $this->categories->removeElement($category);
     }

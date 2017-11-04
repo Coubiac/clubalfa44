@@ -1,0 +1,12 @@
+easy_admin:
+    entities:
+        ContenuStatic:
+            class: AppBundle\Entity\ContenuStatic
+            list:
+                title: 'Liste des contenus statiques'
+            form:
+                fields:
+                    - 'emplacement'
+                    - 'titre'
+                    - 'description'
+                    - 'contenu'

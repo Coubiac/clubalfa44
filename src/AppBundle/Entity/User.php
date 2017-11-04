@@ -9,14 +9,18 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
+    const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -30,12 +34,23 @@ class User implements UserInterface, \Serializable
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    private $prenom;
+
+    /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
+     *
      */
     private $email;
 
@@ -64,36 +79,55 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var string
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Actualite", mappedBy="author")
+     * @var array
+     */
+    private $roles;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Actualite", mappedBy="author")
      */
     private $actualites;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="proprietaire")
+     * @ORM\OneToMany(targetEntity="Licence", mappedBy="proprietaire", cascade={"persist", "remove"})
      */
     private $licences;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Evenement", inversedBy="inscrits")
+     * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="inscrits", cascade={"persist"})
+     * @JoinTable(name="users_evenements")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $inscriptionsEvenements;
+    private $evenements;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Competition", inversedBy="inscrits")
+     * @ORM\ManyToMany(targetEntity="Competition", inversedBy="inscrits", cascade={"persist"})
+     * @JoinTable(name="users_competitions")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $inscriptionsCompetitions;
+    private $competitions;
 
     public function __construct()
     {
         $this->isActive = true;
+        $this->roles = array();
         $this->inscriptionsEvenements = new ArrayCollection();
         $this->inscriptionsCompetitions = new ArrayCollection();
 
 
+    }
+
+    public function __toString()
+    {
+        return (string)$this->username;
     }
 
     public function getUsername()
@@ -108,6 +142,15 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
 
     public function getPassword()
     {
@@ -116,8 +159,78 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+        $roles[] = static::ROLE_DEFAULT;
+        return array_unique($roles);
+
     }
+
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
+    }
+
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if ($role === static::ROLE_DEFAULT) {
+            return $this;
+        }
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+        return $this;
+    }
+
+
+
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
+    }
+
+    public function setSuperAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
+        }
+        return $this;
+    }
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+        return $this;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+    public function isEnabled()
+    {
+        return $this->isActive();
+    }
+    public function setEnabled($boolean)
+    {
+        $this->isActive = (bool) $boolean;
+        return $this;
+    }
+
 
     public function eraseCredentials()
     {
@@ -160,13 +273,12 @@ class User implements UserInterface, \Serializable
     /**
      * Set username
      *
-     * @param string $username
      *
      * @return User
      */
-    public function setUsername($username)
+    public function setUsername()
     {
-        $this->username = $username;
+        $this->username = strtolower($this->nom . $this->prenom);
 
         return $this;
     }
@@ -397,71 +509,146 @@ class User implements UserInterface, \Serializable
         return $this->licences;
     }
 
+
+
     /**
-     * Add inscriptionsEvenement
+     * Set isActive
      *
-     * @param \AppBundle\Evenement $inscriptionsEvenement
+     * @param boolean $isActive
      *
      * @return User
      */
-    public function addInscriptionsEvenement(\AppBundle\Evenement $inscriptionsEvenement)
+    public function setIsActive($isActive)
     {
-        $this->inscriptionsEvenements[] = $inscriptionsEvenement;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Remove inscriptionsEvenement
+     * Get isActive
      *
-     * @param \AppBundle\Evenement $inscriptionsEvenement
+     * @return boolean
      */
-    public function removeInscriptionsEvenement(\AppBundle\Evenement $inscriptionsEvenement)
+    public function getIsActive()
     {
-        $this->inscriptionsEvenements->removeElement($inscriptionsEvenement);
+        return $this->isActive;
     }
 
     /**
-     * Get inscriptionsEvenements
+     * Add evenement
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInscriptionsEvenements()
-    {
-        return $this->inscriptionsEvenements;
-    }
-
-    /**
-     * Add inscriptionsCompetition
-     *
-     * @param \AppBundle\Competition $inscriptionsCompetition
+     * @param \AppBundle\Entity\Evenement $evenement
      *
      * @return User
      */
-    public function addInscriptionsCompetition(\AppBundle\Competition $inscriptionsCompetition)
+    public function addEvenement(\AppBundle\Entity\Evenement $evenement)
     {
-        $this->inscriptionsCompetitions[] = $inscriptionsCompetition;
+        $this->evenements[] = $evenement;
 
         return $this;
     }
 
     /**
-     * Remove inscriptionsCompetition
+     * Remove evenement
      *
-     * @param \AppBundle\Competition $inscriptionsCompetition
+     * @param \AppBundle\Entity\Evenement $evenement
      */
-    public function removeInscriptionsCompetition(\AppBundle\Competition $inscriptionsCompetition)
+    public function removeEvenement(\AppBundle\Entity\Evenement $evenement)
     {
-        $this->inscriptionsCompetitions->removeElement($inscriptionsCompetition);
+        $this->evenements->removeElement($evenement);
     }
 
     /**
-     * Get inscriptionsCompetitions
+     * Get evenements
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInscriptionsCompetitions()
+    public function getEvenements()
     {
-        return $this->inscriptionsCompetitions;
+        return $this->evenements;
     }
+
+    /**
+     * Add competition
+     *
+     * @param \AppBundle\Entity\Competition $competition
+     *
+     * @return User
+     */
+    public function addCompetition(\AppBundle\Entity\Competition $competition)
+    {
+        $this->competitions[] = $competition;
+
+        return $this;
+    }
+
+    /**
+     * Remove competition
+     *
+     * @param \AppBundle\Entity\Competition $competition
+     */
+    public function removeCompetition(\AppBundle\Entity\Competition $competition)
+    {
+        $this->competitions->removeElement($competition);
+    }
+
+    /**
+     * Get competitions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitions()
+    {
+        return $this->competitions;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
 }

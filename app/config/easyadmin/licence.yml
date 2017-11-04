@@ -1,0 +1,6 @@
+easy_admin:
+    entities:
+        Licence:
+            class: AppBundle\Entity\Licence
+            list:
+                title: 'Liste des Licences'

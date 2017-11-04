@@ -33,3 +33,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    my.listener:
+        class: AppBundle\EventListener\EntityListener
+        arguments:
+            - "@security.token_storage"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

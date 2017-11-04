@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Licence
  *
@@ -43,25 +44,25 @@ class Licence
     private $dateInscription;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\User", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="licences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $proprietaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Saison", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="Saison", inversedBy="licences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $saison;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\activite", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="Activite", inversedBy="licences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $activite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Categorie", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="licences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
@@ -152,11 +153,11 @@ class Licence
     /**
      * Set proprietaire
      *
-     * @param \AppBundle\User $proprietaire
+     * @param \User $proprietaire
      *
      * @return Licence
      */
-    public function setProprietaire(\AppBundle\User $proprietaire)
+    public function setProprietaire(\User $proprietaire)
     {
         $this->proprietaire = $proprietaire;
 
@@ -166,7 +167,7 @@ class Licence
     /**
      * Get proprietaire
      *
-     * @return \AppBundle\User
+     * @return \User
      */
     public function getProprietaire()
     {
@@ -176,11 +177,11 @@ class Licence
     /**
      * Set saison
      *
-     * @param \AppBundle\Saison $saison
+     * @param \Saison $saison
      *
      * @return Licence
      */
-    public function setSaison(\AppBundle\Saison $saison)
+    public function setSaison(\Saison $saison)
     {
         $this->saison = $saison;
 
@@ -190,7 +191,7 @@ class Licence
     /**
      * Get saison
      *
-     * @return \AppBundle\Saison
+     * @return \Saison
      */
     public function getSaison()
     {

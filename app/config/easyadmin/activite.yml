@@ -1,0 +1,11 @@
+easy_admin:
+    entities:
+        Activite:
+            class: AppBundle\Entity\Activite
+            list:
+                title: 'Activites du club'
+                fields:
+                    - 'nom'
+                    - 'prix'
+                    - 'isActive'
+                    - { property: 'image', type: 'image', base_path: '%app.path.activite_images%' }

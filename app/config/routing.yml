@@ -4,3 +4,10 @@ app:
 
 logout:
     path: /logout
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

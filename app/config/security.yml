@@ -5,8 +5,14 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
+    access_control:
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_USER }
 
-    # ...
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         mysql:
@@ -29,3 +35,4 @@ security:
             logout:
                 path: /logout
                 target: /
+

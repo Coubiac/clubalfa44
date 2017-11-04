@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
+{%  block title %}{{ contenu.titre }}{% endblock %}
+{% block description %}{{ contenu.description }}{% endblock %}
 
 {% block main %}
     <div class="carousel carousel-slider" data-indicators="true" >

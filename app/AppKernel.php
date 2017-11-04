@@ -18,6 +18,9 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new AppBundle\AppBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new FM\ElfinderBundle\FMElfinderBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
 
         ];
 

@@ -1,0 +1,21 @@
+easy_admin:
+    site_name: 'Club Alfa 44'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+        number: '%d'
+    list:
+        actions:
+            - { name: 'show', icon: 'search', label: '' }
+            - { name: 'edit', icon: 'pencil', label: '' }
+            - { name: 'delete', icon: 'trash', label: '' }
+            - { name: 'new', icon: '', label: 'Ajouter' }
+            - { name: 'search', icon: 'search', label: 'rechercher' }
+    show:
+        actions:
+            - { name: 'edit', icon: 'pencil', label: 'Modifier' }
+            - { name: 'delete', icon: 'trash', label: 'Supprimer' }
+            - { name: 'list', label: 'Liste' }
+    search:
+        title: 'Résultat de la recherche'

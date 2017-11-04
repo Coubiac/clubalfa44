@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Activite
  *
  * @ORM\Table(name="activite")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ActiviteRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
 class Activite
 {
@@ -55,10 +61,58 @@ class Activite
     private $licences;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="activite_image", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Competition", mappedBy="activite")
      */
     private $competitions;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
 
     /**
@@ -144,35 +198,13 @@ class Activite
     }
 
     /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     *
-     * @return Activite
-     */
-    public function setActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return bool
-     */
-    public function isActive()
-    {
-        return $this->isActive;
-    }
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->licences = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->competitions = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $this->licences = new ArrayCollection();
+        $this->competitions = new ArrayCollection();
 
     }
 
@@ -242,5 +274,53 @@ class Activite
     public function getCompetitions()
     {
         return $this->competitions;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Activite
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Activite
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

@@ -2,13 +2,21 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * Photo
  *
  * @ORM\Table(name="photo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
 class Photo
 {
@@ -24,27 +32,78 @@ class Photo
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateUpload", type="datetime")
+     * @ORM\Column(name="date_upload", type="datetime")
+     * @Assert\NotBlank(message = "Veuillez indiquer la date de mise en ligne")
      */
     private $dateUpload;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Evenement", inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="Evenement", inversedBy="photos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $evenement;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Competition", inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="Competition", inversedBy="photos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $competition;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Actualite", inversedBy="photos")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private $actualite;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="photo_image", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    public function __toString()
+    {
+       return (string)$this->image;
+    }
+
+    public function __construct()
+    {
+        $this->dateUpload = new \DateTime();
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
 
 
 
@@ -63,7 +122,7 @@ class Photo
     /**
      * Set dateUpload
      *
-     * @param \DateTime $dateUpload
+     * @param $dateUpload
      *
      * @return Photo
      */
@@ -87,11 +146,11 @@ class Photo
     /**
      * Set evenement
      *
-     * @param \AppBundle\Evenement $evenement
+     * @param \AppBundle\Entity\Evenement $evenement
      *
      * @return Photo
      */
-    public function setEvenement(\AppBundle\Evenement $evenement = null)
+    public function setEvenement($evenement)
     {
         $this->evenement = $evenement;
 
@@ -101,7 +160,7 @@ class Photo
     /**
      * Get evenement
      *
-     * @return \AppBundle\Evenement
+     * @return \AppBundle\Entity\Evenement
      */
     public function getEvenement()
     {
@@ -111,11 +170,11 @@ class Photo
     /**
      * Set competition
      *
-     * @param \AppBundle\Competition $competition
+     * @param \AppBundle\Entity\Competition $competition
      *
      * @return Photo
      */
-    public function setCompetition(\AppBundle\Competition $competition = null)
+    public function setCompetition($competition)
     {
         $this->competition = $competition;
 
@@ -125,7 +184,7 @@ class Photo
     /**
      * Get competition
      *
-     * @return \AppBundle\Competition
+     * @return \AppBundle\Entity\Competition
      */
     public function getCompetition()
     {
@@ -135,11 +194,11 @@ class Photo
     /**
      * Set actualite
      *
-     * @param \AppBundle\Actualite $actualite
+     * @param \AppBundle\Entity\Actualite $actualite
      *
      * @return Photo
      */
-    public function setActualite(\AppBundle\Actualite $actualite = null)
+    public function setActualite($actualite)
     {
         $this->actualite = $actualite;
 
@@ -149,10 +208,34 @@ class Photo
     /**
      * Get actualite
      *
-     * @return \AppBundle\Actualite
+     * @return \AppBundle\Entity\Actualite
      */
     public function getActualite()
     {
         return $this->actualite;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Photo
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

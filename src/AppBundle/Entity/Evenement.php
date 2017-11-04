@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User as User;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Evenement
@@ -59,13 +60,13 @@ class Evenement
     private $updateAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="evenement", cascade={"persist"})
      */
     private $photos;
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\User", inversedBy="inscriptionsEvenements")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="evenements", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;
@@ -76,6 +77,10 @@ class Evenement
         $this->photos = new ArrayCollection();
 
 
+    }
+    public function __toString()
+    {
+        return $this->getTitre();
     }
 
     /**
@@ -242,16 +247,19 @@ class Evenement
         return $this->inscrits;
     }
 
+
     /**
-     * Add photo
+     * Add posts
      *
      * @param \AppBundle\Entity\Photo $photo
-     *
      * @return Evenement
      */
-    public function addPhoto(\AppBundle\Entity\Photo $photo)
+    public function addPhoto($photo)
     {
-        $this->photos[] = $photo;
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setEvenement($this);
+        }
 
         return $this;
     }
@@ -264,6 +272,7 @@ class Evenement
     public function removePhoto(\AppBundle\Entity\Photo $photo)
     {
         $this->photos->removeElement($photo);
+        $photo->setEvenement(null);
     }
 
     /**

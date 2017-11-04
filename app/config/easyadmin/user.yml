@@ -1,0 +1,29 @@
+easy_admin:
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            list:
+                title: 'liste des utilisateurs'
+                fields:
+                    - 'username'
+                    - 'email'
+                    - 'codePostal'
+                    - 'ville'
+                    - 'roles'
+                    - { property: 'birthdate', format: 'd/m/Y', label: 'date de naissance' }
+            form:
+                title: 'Ajouter/Editer un utilisateur'
+                fields:
+                    - 'username'
+                    - 'email'
+                    - 'adresse'
+                    - 'codePostal'
+                    - 'ville'
+                    - { property: 'birthdate', format: 'd/m/Y', label: 'date de naissance' }
+                    - 'plainPassword'
+            show:
+                title: 'Visualiser un utilisateur'
+            new:
+                title: 'Ajouter un utilisateur'
+            edit:
+                title: 'Modifier un utilisateur'

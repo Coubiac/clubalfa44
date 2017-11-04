@@ -1,0 +1,24 @@
+easy_admin:
+    entities:
+        Photo:
+            class: AppBundle\Entity\Photo
+            list:
+                title: 'Liste des Photos'
+                fields:
+                    - 'id'
+                    - 'dateUpload'
+                    - { property: 'image', type: 'image', base_path: '%app.path.photo_images%' }
+                    - 'evenement'
+                    - 'competition'
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'evenement', label: 'Evenement', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Evenement', by_reference: true } }
+            show:
+                title: 'Propriété de la Photo'
+                fields:
+                    - 'id'
+                    - { property: 'dateUpload', label: 'Date de téléchargement'}
+                    - { property: 'image', type: 'image', base_path: '%app.path.photo_images%' }
+                    - 'evenement'
+                    - 'competition'

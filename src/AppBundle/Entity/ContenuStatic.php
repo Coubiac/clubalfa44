@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToOne;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ContenuStatic
@@ -24,6 +24,7 @@ class ContenuStatic
      */
     private $id;
 
+
     /**
      *
      * @ORM\Column(name="emplacement", type="string", length=255, unique=true)
@@ -33,9 +34,22 @@ class ContenuStatic
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=70)
+     * @Assert\NotBlank(message = "Veuillez indiquer un titre")
+     * @Assert\Length(max=70, maxMessage="Votre titre ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(min=5, minMessage="Votre titre doit comporter au moins {{ limit }} caractères.")
      */
     private $titre;
+
+    /**
+     * @var string
+     * @ORM\Column(name="description", type="string", length=150)
+     * @Assert\NotBlank(message = "Veuillez indiquer une description")
+     * @Assert\Length(max=150, maxMessage="Votre description ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(min=10, minMessage="Votre description doit comporter au moins {{ limit }} caractères.")
+     */
+    private $description;
+
 
     /**
      * @Gedmo\Slug(fields={"titre"})
@@ -47,6 +61,7 @@ class ContenuStatic
      * @var string
      *
      * @ORM\Column(name="contenu", type="text")
+     *
      */
     private $contenu;
 
@@ -155,5 +170,29 @@ class ContenuStatic
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return ContenuStatic
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

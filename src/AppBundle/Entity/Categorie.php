@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Competition as Competition;
 
 /**
  * Categorie
@@ -28,18 +29,22 @@ class Categorie
      */
     private $nom;
 
+
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="categorie")
      */
     private $licences;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Competition", inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity="Competition", mappedBy="categories")
      * @ORM\JoinColumn(nullable=true)
      */
     private $competitions;
 
-
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
     /**
      * Get id
@@ -151,4 +156,5 @@ class Categorie
     {
         return $this->competitions;
     }
+
 }
