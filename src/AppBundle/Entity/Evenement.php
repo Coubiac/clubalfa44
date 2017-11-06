@@ -55,7 +55,7 @@ class Evenement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateAt", type="datetime")
+     * @ORM\Column(name="update_at", type="datetime")
      */
     private $updateAt;
 
@@ -73,6 +73,7 @@ class Evenement
 
     public function __construct()
     {
+        $this->dateCreation = new \DateTime();
         $this->inscrits = new ArrayCollection();
         $this->photos = new ArrayCollection();
 

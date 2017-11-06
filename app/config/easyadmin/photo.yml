@@ -14,6 +14,8 @@ easy_admin:
                 fields:
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'evenement', label: 'Evenement', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Evenement', by_reference: true } }
+                    - { property: 'competition', label: 'Competition', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Competition', by_reference: true } }
+
             show:
                 title: 'Propriété de la Photo'
                 fields:

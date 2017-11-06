@@ -11,13 +11,14 @@ easy_admin:
                     - inscrits
                     - photos
             show:
-                title: 'Détail de l\''évènement'
+                title: "Détail de l'évènement"
                 fields:
                     - date
                     - titre
                     - description
                     - inscrits
-                    - photos
+                    - { property: 'photos', template: 'easy_admin/Evenements/show_evenement.html.twig' }
+
 
             form:
                 fields:

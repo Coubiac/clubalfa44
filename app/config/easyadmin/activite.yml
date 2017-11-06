@@ -9,3 +9,10 @@ easy_admin:
                     - 'prix'
                     - 'isActive'
                     - { property: 'image', type: 'image', base_path: '%app.path.activite_images%' }
+            form:
+                title: "Ajout/Modification d'une activité"
+                fields:
+                    - 'nom'
+                    - 'prix'
+                    - 'placesDisponibles'
+                    - { property: 'imageFile', type: 'vich_image' }

@@ -1,0 +1,31 @@
+easy_admin:
+    entities:
+        Competition:
+            class: AppBundle\Entity\Competition
+            list:
+                title: 'Liste des competitions'
+                fields:
+                    - date
+                    - titre
+                    - description
+                    - inscrits
+                    - photos
+            show:
+                title: "Détail de l'évènement"
+                fields:
+                    - date
+                    - titre
+                    - description
+                    - inscrits
+                    - { property: 'photos', template: 'easy_admin/Evenements/show_evenement.html.twig' }
+
+
+            form:
+                fields:
+                    - date
+                    - titre
+                    - description
+                    - categories
+                    - activite
+                    - { property: 'inscrits', label: 'Inscrits', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\User', by_reference: true } }
+                    - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

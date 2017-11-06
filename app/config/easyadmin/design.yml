@@ -6,6 +6,7 @@ easy_admin:
             - { entity: 'Actualite', label: 'Actualités' }
             - { entity: 'Photo', label: 'Photos' }
             - { entity: 'Evenement', label: 'Evenements'}
+            - { entity: 'Competition', label: 'Competitions'}
             - { entity: 'User', label: 'Utilisateurs' }
             - { entity: 'ContenuStatic', label: 'Contenus Statiques'}
             - { entity: 'Activite', label: 'Activites'}

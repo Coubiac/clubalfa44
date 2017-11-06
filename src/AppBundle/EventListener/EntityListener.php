@@ -27,8 +27,8 @@ class EntityListener
             $user = $this->tokenStorage->getToken()->getUser();
             $entity->setAuthor($user);
         }
-        if (method_exists($entity, 'setUpdatedAt')) {
-            $entity->setUpdatedAt(new DateTime());
+        if (method_exists($entity, 'setUpdateAt')) {
+            $entity->setUpdateAt(new DateTime());
         }
 
         if (method_exists($entity, 'getPlainPassword')){

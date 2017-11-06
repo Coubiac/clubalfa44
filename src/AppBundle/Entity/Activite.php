@@ -49,13 +49,6 @@ class Activite
     private $prix;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="isActive", type="boolean")
-     */
-    private $isActive;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="activite")
      */
     private $licences;
@@ -73,10 +66,11 @@ class Activite
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
      * @var \DateTime
+     *
+     * @ORM\Column(name="update_at", type="datetime")
      */
-    private $updatedAt;
+    private $updateAt;
 
 
 
@@ -277,50 +271,26 @@ class Activite
     }
 
     /**
-     * Set isActive
+     * Set updateAt
      *
-     * @param boolean $isActive
+     * @param \DateTime $updateAt
      *
      * @return Activite
      */
-    public function setActive($isActive)
+    public function setUpdateAt($updateAt)
     {
-        $this->isActive = $isActive;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
 
     /**
-     * Get isActive
-     *
-     * @return boolean
-     */
-    public function isActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Activite
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
+     * Get updateAt
      *
      * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdateAt()
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 }
