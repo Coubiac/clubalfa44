@@ -5,6 +5,7 @@
  * Date: 27/10/2017
  * Time: 14:51
  */
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements AdvancedUserInterface, \Serializable
 {
     const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     /**
      * @ORM\Column(type="integer")
@@ -75,9 +77,24 @@ class User implements AdvancedUserInterface, \Serializable
     private $birthdate;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(type="integer", nullable=true)
+     */git
+    private $telephonePortable;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $isActive;
+    private $telephoneFixe;
+
+    /**
+     * @ORM\Column(name="is_enabled", type="boolean")
+     */
+    private $isEnabled;
+
+    /**
+     * @ORM\Column(name="authorisation_photo", type="boolean")
+     */
+    private $authorisationPhoto;
 
     /**
      * @var string
@@ -87,6 +104,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @var array
+     * @ORM\Column(name="roles", type="array")
      */
     private $roles;
 
@@ -115,10 +133,12 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $competitions;
 
+
     public function __construct()
     {
-        $this->isActive = true;
-        $this->roles = array();
+        $this->isEnabled = true;
+        $this->authorisationPhoto = true;
+        $this->roles = [];
         $this->inscriptionsEvenements = new ArrayCollection();
         $this->inscriptionsCompetitions = new ArrayCollection();
 
@@ -128,18 +148,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function __toString()
     {
         return (string)$this->username;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function getSalt()
-    {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
     }
 
     public function getPlainPassword()
@@ -152,9 +160,14 @@ class User implements AdvancedUserInterface, \Serializable
         $this->plainPassword = $password;
     }
 
-    public function getPassword()
+    public function isSuperAdmin()
     {
-        return $this->password;
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
+    }
+
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
     }
 
     public function getRoles()
@@ -165,45 +178,28 @@ class User implements AdvancedUserInterface, \Serializable
 
     }
 
-    public function hasRole($role)
+    public function getSalt()
     {
-        return in_array(strtoupper($role), $this->getRoles(), true);
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
     }
 
-    public function addRole($role)
+    public function getUsername()
     {
-        $role = strtoupper($role);
-        if ($role === static::ROLE_DEFAULT) {
-            return $this;
-        }
-        if (!in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
-        }
-        return $this;
+        return $this->username;
     }
 
-
-
-    public function isSuperAdmin()
+    /**
+     * Set username
+     *
+     *
+     * @return User
+     */
+    public function setUsername()
     {
-        return $this->hasRole(static::ROLE_SUPER_ADMIN);
-    }
+        $this->username = strtolower($this->nom . $this->prenom);
 
-    public function setSuperAdmin($boolean)
-    {
-        if (true === $boolean) {
-            $this->addRole(static::ROLE_SUPER_ADMIN);
-        } else {
-            $this->removeRole(static::ROLE_SUPER_ADMIN);
-        }
-        return $this;
-    }
-    public function removeRole($role)
-    {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
-        }
         return $this;
     }
 
@@ -221,19 +217,89 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return true;
     }
+
     public function isEnabled()
     {
-        return $this->isActive();
+        return $this->isEnabled;
     }
-    public function setEnabled($boolean)
+
+    public function isAdmin()
     {
-        $this->isActive = (bool) $boolean;
+        return $this->hasRole(static::ROLE_ADMIN);
+    }
+
+    public function setAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_ADMIN);
+        }
         return $this;
     }
 
+    public function addRole($role)
+    {
+        if ($this->roles === null) {
+            $this->roles = [];
+            $this->roles[] = static::ROLE_DEFAULT;
+        }
+        $role = strtoupper($role);
+        if ($role === static::ROLE_DEFAULT) {
+            return $this;
+        }
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+        return $this;
+    }
+
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+        return $this;
+    }
+
+    public function setSuperAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
+        }
+        return $this;
+    }
+
+    public function setEnabled($boolean)
+    {
+        $this->isEnabled = (bool)$boolean;
+        return $this;
+    }
 
     public function eraseCredentials()
     {
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
     }
 
     /** @see \Serializable::serialize() */
@@ -271,43 +337,66 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set username
+     * Get telephonePortable
      *
+     * @return integer
+     */
+    public function getTelephonePortable()
+    {
+        return $this->telephonePortable;
+    }
+
+    /**
+     * Set telephonePortable
+     *
+     * @param string $number
      *
      * @return User
      */
-    public function setUsername()
+    public function setTelephonePortable($number)
     {
-        $this->username = strtolower($this->nom . $this->prenom);
+        $this->telephonePortable = $number;
 
         return $this;
     }
 
     /**
-     * Set password
+     * Get telephoneFixe
      *
-     * @param string $password
+     * @return integer
+     */
+    public function getTelephoneFixe()
+    {
+        return $this->telephoneFixe;
+    }
+
+    /**
+     * Set telephoneFixe
+     *
+     * @param string $number
      *
      * @return User
      */
-    public function setPassword($password)
+    public function setTelephoneFixe($number)
     {
-        $this->password = $password;
+        $this->telephoneFixe = $number;
 
         return $this;
     }
 
     /**
-     * Set email
+     * Get authorisationPhoto
      *
-     * @param string $email
-     *
-     * @return User
+     * @return boolean
      */
-    public function setEmail($email)
+    public function getAuthorisationPhoto()
     {
-        $this->email = $email;
+        return $this->authorisationPhoto;
+    }
 
+    public function setAuthorisationPhoto($boolean)
+    {
+        $this->authorisationPhoto = (bool)$boolean;
         return $this;
     }
 
@@ -322,27 +411,27 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set isActive
+     * Set email
      *
-     * @param boolean $isActive
+     * @param string $email
      *
      * @return User
      */
-    public function setActive($isActive)
+    public function setEmail($email)
     {
-        $this->isActive = $isActive;
+        $this->email = strtolower($email);
 
         return $this;
     }
 
     /**
-     * Get isActive
+     * Get codePostal
      *
-     * @return boolean
+     * @return integer
      */
-    public function isActive()
+    public function getCodePostal()
     {
-        return $this->isActive;
+        return $this->codePostal;
     }
 
     /**
@@ -360,13 +449,13 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get codePostal
+     * Get adresse
      *
-     * @return integer
+     * @return string
      */
-    public function getCodePostal()
+    public function getAdresse()
     {
-        return $this->codePostal;
+        return $this->adresse;
     }
 
     /**
@@ -378,31 +467,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function setAdresse($adresse)
     {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set ville
-     *
-     * @param string $ville
-     *
-     * @return User
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
+        $this->adresse = ucwords(strtolower($adresse));
 
         return $this;
     }
@@ -418,15 +483,15 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set birthdate
+     * Set ville
      *
-     * @param \DateTime $birthdate
+     * @param string $ville
      *
      * @return User
      */
-    public function setBirthdate($birthdate)
+    public function setVille($ville)
     {
-        $this->birthdate = $birthdate;
+        $this->ville = ucwords(strtolower($ville));
 
         return $this;
     }
@@ -439,6 +504,20 @@ class User implements AdvancedUserInterface, \Serializable
     public function getBirthdate()
     {
         return $this->birthdate;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return User
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
     }
 
     /**
@@ -510,31 +589,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
 
-
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     *
-     * @return User
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
     /**
      * Add evenement
      *
@@ -604,20 +658,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return User
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
      * Get nom
      *
      * @return string
@@ -628,15 +668,15 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set prenom
+     * Set nom
      *
-     * @param string $prenom
+     * @param string $nom
      *
      * @return User
      */
-    public function setPrenom($prenom)
+    public function setNom($nom)
     {
-        $this->prenom = $prenom;
+        $this->nom = ucfirst(strtolower($nom));
 
         return $this;
     }
@@ -649,6 +689,20 @@ class User implements AdvancedUserInterface, \Serializable
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = ucfirst(strtolower($prenom));
+
+        return $this;
     }
 
 }

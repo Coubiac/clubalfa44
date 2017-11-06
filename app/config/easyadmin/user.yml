@@ -1,20 +1,24 @@
 easy_admin:
     entities:
         User:
+            controller: AppBundle\Controller\SecurityController
             class: AppBundle\Entity\User
             list:
                 title: 'liste des utilisateurs'
                 fields:
-                    - 'username'
+                    - { property: 'enabled', type: 'toggle', label: 'Actif'}
+                    - 'nom'
+                    - 'prenom'
                     - 'email'
                     - 'codePostal'
                     - 'ville'
-                    - 'roles'
                     - { property: 'birthdate', format: 'd/m/Y', label: 'date de naissance' }
+                    - { property: 'admin', type: 'toggle'}
             form:
                 title: 'Ajouter/Editer un utilisateur'
                 fields:
-                    - 'username'
+                    - 'nom'
+                    - 'prenom'
                     - 'email'
                     - 'adresse'
                     - 'codePostal'
@@ -23,7 +27,20 @@ easy_admin:
                     - 'plainPassword'
             show:
                 title: 'Visualiser un utilisateur'
+                fields:
+                    - { property: 'enabled', type: 'toggle', label: 'Actif'}
+                    - 'nom'
+                    - 'prenom'
+                    - 'email'
+                    - 'adresse'
+                    - 'codePostal'
+                    - 'ville'
+                    - { property: 'birthdate', format: 'd/m/Y', label: 'date de naissance'}
+                    - { property: 'admin', type: 'toggle'}
+
             new:
                 title: 'Ajouter un utilisateur'
+
             edit:
                 title: 'Modifier un utilisateur'
+

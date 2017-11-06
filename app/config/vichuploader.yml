@@ -1,0 +1,32 @@
+parameters:
+    app.path.actualite_images: /uploads/images/actualites
+    app.path.photo_images: /uploads/images/photos
+    app.path.activite_images: /uploads/images/activites
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        actualite_image:
+            uri_prefix: '%app.path.actualite_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/actualites'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
+        photo_image:
+            uri_prefix: '%app.path.photo_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/photos'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
+        activite_image:
+            uri_prefix: '%app.path.photo_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/activites'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid

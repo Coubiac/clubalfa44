@@ -283,7 +283,7 @@ class Activite
      *
      * @return Activite
      */
-    public function setIsActive($isActive)
+    public function setActive($isActive)
     {
         $this->isActive = $isActive;
 
@@ -295,7 +295,7 @@ class Activite
      *
      * @return boolean
      */
-    public function getIsActive()
+    public function isActive()
     {
         return $this->isActive;
     }

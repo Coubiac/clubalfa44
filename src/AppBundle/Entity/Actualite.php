@@ -135,6 +135,11 @@ class Actualite
         $this->updatedAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return (string)$this->getTitre();
+    }
+
 
     /**
      * Get id

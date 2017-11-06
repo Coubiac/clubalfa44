@@ -1,5 +1,7 @@
 easy_admin:
     design:
+        brand_color: '#000000'
+        color_scheme: 'light'
         menu:
             - { entity: 'Actualite', label: 'Actualités' }
             - { entity: 'Photo', label: 'Photos' }

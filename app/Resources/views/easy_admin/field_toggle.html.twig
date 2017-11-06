@@ -1,0 +1,12 @@
+{% if view == 'show' or ('edit' in backend_config.disabled_actions) %}
+    {% if value == true %}
+        <span class="label label-success">OUI</span>
+    {% else %}
+        <span class="label label-danger">NON</span>
+    {% endif %}
+{% else %}
+    <input type="checkbox" {{ value == true ? 'checked' : '' }}
+       data-toggle="toggle" data-size="mini"
+       data-onstyle="success" data-offstyle="danger"
+       data-on="OUI" data-off="NON">
+{% endif %}

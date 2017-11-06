@@ -1,5 +1,5 @@
 easy_admin:
-    site_name: 'Club Alfa 44'
+    site_name: '<img src="/images/logo-banner.jpg" />'
     formats:
         date:     'd/m/Y'
         time:     'H:i'
