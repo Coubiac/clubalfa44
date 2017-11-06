@@ -78,7 +78,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     */git
+     */
     private $telephonePortable;
 
     /**

@@ -22,8 +22,9 @@ class EntityListener
     public function prePersist(LifeCycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        $user = $this->tokenStorage->getToken()->getUser();
+
         if (method_exists($entity, 'setAuthor')) {
+            $user = $this->tokenStorage->getToken()->getUser();
             $entity->setAuthor($user);
         }
         if (method_exists($entity, 'setUpdatedAt')) {
