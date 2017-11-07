@@ -4,25 +4,41 @@
         <div class="section"></div>
 
 
-        <h5 class="alfa-fonce-text" style="text-align: center">Merci de vous connecter à votre compte</h5>
+        <h5 class="alfa-fonce-text" style="text-align: center">Bienvenue ! Créez votre compte !</h5>
         <div class="section"></div>
 
-        <div class="container" style="display: flex;">
-            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
-
+        <div class="container" style="display: block;">
+            <div class="z-depth-1 grey lighten-4 row"
+                 style="display: block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
                 {{ form_start(form) }}
-
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect alfa-fonce'>Connexion</button>
-                        </div>
-                    </center>
-                {{ form_end(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.password.first) }}
+                {{ form_row(form.password.second) }}
 
             </div>
+            <div class="z-depth-1 grey lighten-4 row"
+                 style="display: block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.adresse) }}
+                {{ form_row(form.codePostal) }}
+                {{ form_row(form.ville) }}
+                {{ form_row(form.birthdate, {'attr': {'class': 'multiple birthdate'}}) }}
+            </div>
+
+            <br/>
+            <center>
+                <div class='row'>
+                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect alfa-fonce'>
+                        Connexion
+                    </button>
+                </div>
+            </center>
+            {{ form_end(form) }}
+
         </div>
-        <a style="display:block;text-align:center;" href="{{ path("user_registration") }}">Créer un compte</a>
+
+        <a style="display:block;text-align:center;" href="{{ path("login") }}">Vous avez déja un compte ?</a>
 
 
 

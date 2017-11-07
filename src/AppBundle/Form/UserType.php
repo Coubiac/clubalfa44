@@ -27,10 +27,12 @@ class UserType extends AbstractType
             ->add('adresse')
             ->add('codePostal')
             ->add('ville')
-            ->add('birthdate', BirthdayType::class)
+            ->add('birthdate', BirthdayType::class, array(
+                'label_attr' => ['class' => 'active'],
+            ))
         ;
     }
-
+git
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

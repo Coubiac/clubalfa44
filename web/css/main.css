@@ -61,6 +61,11 @@ body {
     font-size: 15px;
     text-align: center;
 }
+/**/
+#user_birthdate {
+    font-size: 1.0em;
+    display: flex;
+}
 
 
 /* bloc presentation accueil*/
