@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
+
 /**
  * Licence
  *
@@ -153,11 +154,11 @@ class Licence
     /**
      * Set proprietaire
      *
-     * @param \User $proprietaire
+     * @param \AppBundle\Entity\User $proprietaire
      *
      * @return Licence
      */
-    public function setProprietaire(\User $proprietaire)
+    public function setProprietaire(User $proprietaire)
     {
         $this->proprietaire = $proprietaire;
 
@@ -167,7 +168,7 @@ class Licence
     /**
      * Get proprietaire
      *
-     * @return \User
+     * @return \AppBundle\Entity\User
      */
     public function getProprietaire()
     {
@@ -177,11 +178,11 @@ class Licence
     /**
      * Set saison
      *
-     * @param \Saison $saison
+     * @param \AppBundle\Entity\Saison $saison
      *
      * @return Licence
      */
-    public function setSaison(\Saison $saison)
+    public function setSaison(Saison $saison)
     {
         $this->saison = $saison;
 
@@ -191,7 +192,7 @@ class Licence
     /**
      * Get saison
      *
-     * @return \Saison
+     * @return \AppBundle\Entity\Saison
      */
     public function getSaison()
     {
@@ -201,11 +202,11 @@ class Licence
     /**
      * Set activite
      *
-     * @param \AppBundle\activite $activite
+     * @param \AppBundle\Entity\Activite $activite
      *
      * @return Licence
      */
-    public function setActivite(\AppBundle\activite $activite)
+    public function setActivite(Activite $activite)
     {
         $this->activite = $activite;
 
@@ -215,7 +216,7 @@ class Licence
     /**
      * Get activite
      *
-     * @return \AppBundle\activite
+     * @return \AppBundle\Entity\Activite
      */
     public function getActivite()
     {
@@ -225,11 +226,11 @@ class Licence
     /**
      * Set categorie
      *
-     * @param \AppBundle\Categorie $categorie
+     * @param \AppBundle\Entity\Categorie $categorie
      *
      * @return Licence
      */
-    public function setCategorie(\AppBundle\Categorie $categorie)
+    public function setCategorie(Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -239,7 +240,7 @@ class Licence
     /**
      * Get categorie
      *
-     * @return \AppBundle\Categorie
+     * @return \AppBundle\Entity\Categorie
      */
     public function getCategorie()
     {

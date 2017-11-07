@@ -7,6 +7,15 @@
 .alfa-electrique{
     background-color: #042dfb;
 }
+.alfa-fonce-text{
+    color: #0a1456;
+}
+.alfa-tres-fonce-text{
+    color: #050c3f !important;
+}
+.alfa-electrique-text{
+    color: #042dfb;
+}
 html{
     font-family: 'Quicksand', sans-serif;
 }
@@ -19,6 +28,19 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+body {
+    background: #fff;
+}
+.input-field input:focus + label {
+    color: #042dfb !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+    border-bottom: 1px solid #042dfb !important;
+    box-shadow: 0 1px 0 0 #042dfb !important
+}
+
 
 .titre{
     font-size: 100px !important;

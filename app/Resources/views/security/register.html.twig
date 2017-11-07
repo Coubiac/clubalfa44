@@ -1,10 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block main %}
+    {% block main %}
+        <div class="section"></div>
 
-    {{ form_start(form) }}
 
-    <button type="submit">Enregistrer !</button>
-    {{ form_end(form) }}
+        <h5 class="alfa-fonce-text" style="text-align: center">Merci de vous connecter à votre compte</h5>
+        <div class="section"></div>
 
-{% endblock %}
+        <div class="container" style="display: flex;">
+            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
+
+                {{ form_start(form) }}
+
+                    <br />
+                    <center>
+                        <div class='row'>
+                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect alfa-fonce'>Connexion</button>
+                        </div>
+                    </center>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+        <a style="display:block;text-align:center;" href="{{ path("user_registration") }}">Créer un compte</a>
+
+
+
+    {% endblock %}
