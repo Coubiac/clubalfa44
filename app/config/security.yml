@@ -1,6 +1,3 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
-
 security:
     encoders:
         AppBundle\Entity\User:
@@ -19,8 +16,6 @@ security:
             entity:
                 class: AppBundle:User
                 property: username
-                # if you're using multiple entity managers
-                # manager_name: customer
 
     firewalls:
         main:
