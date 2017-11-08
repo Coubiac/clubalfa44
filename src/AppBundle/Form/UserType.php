@@ -2,8 +2,10 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -28,11 +30,18 @@ class UserType extends AbstractType
             ->add('codePostal')
             ->add('ville')
             ->add('birthdate', BirthdayType::class, array(
+                'label' => 'Date de Naissance',
                 'label_attr' => ['class' => 'active'],
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
             ))
+            ->add('telephonePortable')
+            ->add('telephoneFixe')
+            ->add('authorisationPhoto', CheckboxType::class, array(
+                'label'    => 'J\'accepte d\'apparaitre sur des photos du club',
+                'required' => false,
+            ));
         ;
     }
 
