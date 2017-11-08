@@ -126,11 +126,11 @@ class Categorie
     /**
      * Add competition
      *
-     * @param \AppBundle\Competition $competition
+     * @param \AppBundle\Entity\Competition $competition
      *
      * @return Categorie
      */
-    public function addCompetition(\AppBundle\Competition $competition)
+    public function addCompetition(Competition $competition)
     {
         $this->competitions[] = $competition;
 
@@ -140,9 +140,9 @@ class Categorie
     /**
      * Remove competition
      *
-     * @param \AppBundle\Competition $competition
+     * @param \AppBundle\Entity\Competition $competition
      */
-    public function removeCompetition(\AppBundle\Competition $competition)
+    public function removeCompetition(Competition $competition)
     {
         $this->competitions->removeElement($competition);
     }
