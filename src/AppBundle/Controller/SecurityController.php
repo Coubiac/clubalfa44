@@ -48,6 +48,7 @@ class SecurityController extends BaseAdminController
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+            dump($user);
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();

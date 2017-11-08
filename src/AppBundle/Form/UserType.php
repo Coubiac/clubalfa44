@@ -29,10 +29,13 @@ class UserType extends AbstractType
             ->add('ville')
             ->add('birthdate', BirthdayType::class, array(
                 'label_attr' => ['class' => 'active'],
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
             ))
         ;
     }
-git
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
