@@ -28,7 +28,7 @@ class Actualite
     /**
      * Nombre de Mots pour le résumé
      */
-    const NUM_WORDS = 40;
+    const NUM_WORDS = 30;
 
 
 
