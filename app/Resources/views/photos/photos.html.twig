@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{%  block title %}Les Actualités du club{% endblock %}
+{% block description %}Toutes les actualités du Club Alfa 44 {% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+
+    {% for photo in photos %}
+            <div class="col s12 m4">
+                <img class="materialboxed" width="250" src="{{ vich_uploader_asset(photo, 'imageFile') }}">
+            </div>
+    {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
