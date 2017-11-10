@@ -23,4 +23,5 @@
 /web/uploads/images/photos/*
 !/web/uploads/images/activites
 /web/uploads/images/activites/*
+/web/media/cache/*
 /node_modules
