@@ -15,5 +15,12 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/web/uploads/
+!/web/uploads
+/web/uploads/*
+!/web/uploads/images/actualites
+/web/uploads/images/actualites/*
+!/web/uploads/images/photos
+/web/uploads/images/photos/*
+!/web/uploads/images/activites
+/web/uploads/images/activites/*
 /node_modules
