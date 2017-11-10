@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
+     * @Method("GET")
      * @Route("/", name="homepage")
      */
     public function indexAction()
@@ -25,6 +27,7 @@ class IndexController extends Controller
     }
 
     /**
+     * @Method("GET")
      * @Route("/lutte/presentation", name="lutte-presentation")
      */
     public function luttePresentationAction()
