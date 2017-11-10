@@ -1,15 +1,12 @@
 
 {% block javascripts %}
 
-    <!-- Compiled and minified JavaScript jQuery -->
-    <script type="text/javascript" src="{{ asset("js/jquery-3.2.1.min.js") }}"></script>
-
     <!-- Compiled and minified JavaScript Materialize -->
-    <script type="text/javascript" src="{{ asset("js/materialize.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("build/materializejs.js") }}"></script>
 
     <!-- Personnalisations JS -->
     <script type="text/javascript" src="{{ asset("js/jquery.fittext.js") }}"></script>
 
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
 
 {% endblock %}
