@@ -5,7 +5,22 @@
 //}
 
 // Google Color Palette defined: http://www.google.com/design/spec/style/color.html
-
+$alfa: (
+        "50": #e2e3eb,
+        "100": #b6b9cc,
+        "200": #858aab,
+        "300": #545b89,
+        "400": #2f376f,
+        "500": #0a1456,
+        "600": #09124f,
+        "700": #070e45,
+        "800": #050b3c,
+        "900": #03062b,
+        "A100": #656bff,
+        "A200": #323aff,
+        "A400": #042dfb,
+        "A700": #0009e5,
+);
 
 $materialize-red: (
   "base":       #e51c23,
@@ -338,6 +353,7 @@ $shades: (
 );
 
 $colors: (
+  "alfa": $alfa,
   "materialize-red": $materialize-red,
   "red": $red,
   "pink": $pink,

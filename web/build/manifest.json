@@ -11,6 +11,5 @@
   "build/fonts/Roboto-Thin.woff": "/build/fonts/Roboto-Thin.44b78f14.woff",
   "build/fonts/Roboto-Thin.woff2": "/build/fonts/Roboto-Thin.1f35e6a1.woff2",
   "build/global.css": "/build/global.css",
-  "build/materialize.css": "/build/materialize.css",
-  "build/materializejs.js": "/build/materializejs.js"
+  "build/materialize.css": "/build/materialize.css"
 }

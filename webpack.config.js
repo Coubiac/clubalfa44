@@ -12,7 +12,6 @@ Encore
 
     // will output as web/build/app.js
     .addEntry('app', './assets/js/main.js')
-    .addEntry('materializejs', './assets/materialize-src/js/bin/materialize.min.js')
 
 
     // will output as web/build/global.css
