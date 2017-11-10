@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminContr
 class SecurityController extends BaseAdminController
 {
     /**
+     * @Method({"GET", "POST"})
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
@@ -33,6 +34,7 @@ class SecurityController extends BaseAdminController
     }
 
     /**
+     * @Method({"GET", "POST"})
      * @Route("/register", name="user_registration")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)

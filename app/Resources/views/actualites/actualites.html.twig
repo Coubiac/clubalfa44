@@ -12,18 +12,19 @@
 
 
         <div class="container">
+            <div class="row">
             {% for actualite in actualites %}
 
-                    <div class="col s12 offset-m1 m4">
+                <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image activator">
-                                <img class="activator" src="{{ vich_uploader_asset(actualite, 'imageFile') }}">
+                                <img width="305" height="229" class="activator" src="{{ vich_uploader_asset(actualite, 'imageFile') }}">
 
                                 <a class="btn-floating btn-large activator halfway-fab waves-effect waves-light alfa-electrique"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
-                                <span class="card-title"><h3>{{ actualite.titre }}</h3></span>
-                                <p class="flow-text">{{ actualite.contenu | resume(constant('NUM_WORDS', actualite)) }}...</p></div>
+                                <span class="card-title">{{ actualite.titre }}</span>
+                                <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite)) }}</p></div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">{{ actualite.titre }}<i class="material-icons right">close</i></span>
                                 <p>{{ actualite.contenu|raw }}</p>
@@ -31,6 +32,7 @@
                         </div>
                     </div>
             {% endfor %}
+            </div>
         </div>
 
 
