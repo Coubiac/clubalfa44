@@ -255,7 +255,7 @@ class Evenement
      * @param \AppBundle\Entity\Photo $photo
      * @return Evenement
      */
-    public function addPhoto($photo)
+    public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
         if (!$this->photos->contains($photo)) {
             $this->photos[] = $photo;
