@@ -3,7 +3,7 @@
 {% block description %}{{ contenu.description }}{% endblock %}
 
 {% block main %}
-    <div class="carousel carousel-slider" data-indicators="true" >
+    <div class="carousel carousel-slider hide-on-med-and-down" data-indicators="true" >
 
         <a class="carousel-item" href="#one!"><img src="{{ asset('images/caroussel/lutte.jpg') }}"></a>
 
@@ -20,36 +20,39 @@
         <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/musculation.jpg') }}"></a>
 
     </div>
+    <div class="logo-small black hide-on-large-only">
+        <img class="center-block" src="{{ asset("images/logo-banner.jpg") }}" alt="club alfa 44">
+    </div>
 
     {#////////////////////////////////////////////////////////////////#}
 
 
-    <div class="container container_accueil z-depth-2">
+    <div class="center-block container_accueil z-depth-2">
 
-        <div class="row activites ">
-            <div class="col s10 m5 l3 ">
+        <div class="row activites">
+            <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
                         <img src="{{ asset('images/lutte.png') }}">
                     </div>
                     <div class="card-action">
-                        <a href="#" class="flow-text indigo-text text-darken-4">Lutte</a>
+                        <a href="#" class="indigo-text text-darken-4">Lutte</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col s10 m5 l3 offset-m1">
+            <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
                         <img src="{{ asset('images/fitness.png') }}">
                     </div>
                     <div class="card-action">
-                        <a href="#" class="flow-text indigo-text text-darken-4">Fitness</a>
+                        <a href="#" class="center-align indigo-text text-darken-4">Fitness</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col s10 m5 l3 ">
+            <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
                         <img src="{{ asset('images/musculation.png') }}">
@@ -60,13 +63,13 @@
                 </div>
             </div>
 
-            <div class="col s10 m5 l3 offset-m1 ">
+            <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
                         <img src="{{ asset('images/grappling.png') }}">
                     </div>
                     <div class="card-action">
-                        <a href="#" class="flow-text indigo-text text-darken-4">Grappling-Fight</a>
+                        <a href="#" class="indigo-text text-darken-4">Grappling-Fight</a>
                     </div>
                 </div>
             </div>
