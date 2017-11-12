@@ -18,7 +18,11 @@
                 <div class="col s12 m6">
                         <div class="card">
                             <div class="card-image activator">
-                                <img class="activator" src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('actualites') }}">
+                                <img class="activator" src="
+{% if vich_uploader_asset(actualite, 'imageFile') %}
+{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('actualites') }}
+{% else %}{{ asset("images/default-placeholder-300x200.png") }}
+{% endif %}">
 
                                 <a class="btn-floating btn-large activator halfway-fab waves-effect waves-light alfa-electrique"><i class="material-icons">add</i></a>
                             </div>
