@@ -9,7 +9,7 @@
 
     {% for photo in photos %}
             <div class="col s12 m4">
-                <img class="materialboxed" width="250" src="{{ vich_uploader_asset(photo, 'imageFile') }}">
+                <img class="materialboxed responsive-img" src="{{ vich_uploader_asset(photo, 'imageFile')|imagine_filter('photos') }}">
             </div>
     {% endfor %}
 
