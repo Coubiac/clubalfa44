@@ -1,4 +1,6 @@
 clubalfa44
 ==========
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c1dbda12-92fe-47a1-b43c-88c4fcb3025d/mini.png)](https://insight.sensiolabs.com/projects/c1dbda12-92fe-47a1-b43c-88c4fcb3025d)
 
-A Symfony project created on September 9, 2017, 1:00 pm.
+
+Site web du club Alfa 44.
