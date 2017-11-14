@@ -9,4 +9,4 @@ easy_admin:
                     - 'emplacement'
                     - 'titre'
                     - 'description'
-                    - 'contenu'
+                    - { property: 'contenu', type: 'ckeditor' }
