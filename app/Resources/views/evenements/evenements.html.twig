@@ -6,11 +6,26 @@
 {% block main %}
     <div class="container">
         <div class="row">
-            {% for evenement in evenements %}
 
+            {% for evenement in evenements %}
+                <div class="card horizontal alfa-fonce">
+                    <div class="card-image hide-on-med-and-down">
+                        <img height="200" width="200" src="{{ asset('images/logoalfacarre.png') }}">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ evenement.titre }}</span>
+                            {{ evenement.date|date('d/m/Y') }}
+                            <p>{{ evenement.description }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Plus d'infos</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
+
+
         </div>
     </div>
-
-
 {% endblock %}
