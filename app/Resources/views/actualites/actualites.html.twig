@@ -1,16 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Les Actualités du club{% endblock %}
 {% block description %}Toutes les actualités du Club Alfa 44 {% endblock %}
+{% block titre %}Les actualités{% endblock %}
 
 {% block main %}
-
-
-    <h1 class="center-align">Les actualités du club</h1>
-    <div class="container actusepar">
-        <hr>
-    </div>
-
-
     <div class="container">
         <div class="row">
             {% for actualite in actualites %}

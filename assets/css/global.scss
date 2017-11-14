@@ -36,6 +36,13 @@ header, main, footer {
   padding-left: 300px;
 
 }
+
+nav .brand-logo{
+  position: relative !important;
+}
+.nav-content{
+  margin-bottom: 20px;
+}
 @media only screen and (max-width : 992px) {
   header, main, footer {
     padding-left: 0;

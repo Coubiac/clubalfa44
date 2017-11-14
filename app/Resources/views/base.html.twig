@@ -12,7 +12,13 @@
 </head>
 <body>
 <header>
+    <nav class="nav-extended">
     {% include 'default/menu.html.twig' %}
+    <div class="nav-content alfa-fonce">
+        <div class="container"><span class="nav-title">{% block titre %}{% endblock %}</span></div>
+
+    </div>
+    </nav>
 </header>
 <main>
     {% block main %}{% endblock %}

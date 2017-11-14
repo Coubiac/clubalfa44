@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Les évenements du club{% endblock %}
+{% block description %}Tous les évenements du Club Alfa 44 {% endblock %}
+{% block titre %}Les évenements{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            {% for evenement in evenements %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
