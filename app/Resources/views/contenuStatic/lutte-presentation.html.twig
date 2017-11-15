@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ contenu.titre }}{% endblock %}
+{% block description %}{{ contenu.description }}{% endblock %}
+{% block titre %}{{ contenu.titre }}{% endblock %}
+
+{% block main %}
+<div class="container">
+    {{ contenu.contenu }}
+
+</div>
+
+
+
+
+{% endblock %}

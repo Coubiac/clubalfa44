@@ -1,0 +1,9 @@
+easy_admin:
+    entities:
+        ContenuStaticEmplacement:
+            class: AppBundle\Entity\ContenuStaticEmplacement
+            list:
+                title: 'Liste des emplacements'
+            form:
+                fields:
+                    - 'name'

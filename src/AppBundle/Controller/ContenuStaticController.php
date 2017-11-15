@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
-class IndexController extends Controller
+class ContenuStaticController extends Controller
 {
     /**
      * @Method("GET")
@@ -21,7 +21,7 @@ class IndexController extends Controller
             ->getRepository('AppBundle:ContenuStatic')
             ->findOneBy(array('emplacement' => 'index'));
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('contenuStatic/index.html.twig', array(
         'contenu' => $contenu,
     ));
     }
@@ -32,13 +32,18 @@ class IndexController extends Controller
      */
     public function luttePresentationAction()
     {
+        $emplacement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:ContenuStaticEmplacement')
+            ->findOneBy(array('name' => 'lutte-presentation'));
         $contenu = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:ContenuStatic')
-            ->findOneBy(array('emplacement' => 'lutte-presentation'));
+            ->findOneBy(array('emplacement' => $emplacement));
 
-        return $this->render('default/lutte-presentation.html.twig', array(
+        return $this->render('contenuStatic/lutte-presentation.html.twig', array(
             'contenu' => $contenu,
         ));
     }

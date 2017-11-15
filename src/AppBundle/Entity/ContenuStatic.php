@@ -26,8 +26,7 @@ class ContenuStatic
 
 
     /**
-     *
-     * @ORM\Column(name="emplacement", type="string", length=255, unique=true)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStaticEmplacement", cascade={"persist"})
      */
     private $emplacement;
 
@@ -69,35 +68,11 @@ class ContenuStatic
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set emplacement
-     *
-     * @param string $emplacement
-     *
-     * @return ContenuStatic
-     */
-    public function setEmplacement($emplacement)
-    {
-        $this->emplacement = $emplacement;
-
-        return $this;
-    }
-
-    /**
-     * Get emplacement
-     *
-     * @return string
-     */
-    public function getEmplacement()
-    {
-        return $this->emplacement;
     }
 
     /**
@@ -125,27 +100,27 @@ class ContenuStatic
     }
 
     /**
-     * Set contenu
+     * Set description
      *
-     * @param string $contenu
+     * @param string $description
      *
      * @return ContenuStatic
      */
-    public function setContenu($contenu)
+    public function setDescription($description)
     {
-        $this->contenu = $contenu;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get contenu
+     * Get description
      *
      * @return string
      */
-    public function getContenu()
+    public function getDescription()
     {
-        return $this->contenu;
+        return $this->description;
     }
 
     /**
@@ -173,26 +148,50 @@ class ContenuStatic
     }
 
     /**
-     * Set description
+     * Set contenu
      *
-     * @param string $description
+     * @param string $contenu
      *
      * @return ContenuStatic
      */
-    public function setDescription($description)
+    public function setContenu($contenu)
     {
-        $this->description = $description;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get contenu
      *
      * @return string
      */
-    public function getDescription()
+    public function getContenu()
     {
-        return $this->description;
+        return $this->contenu;
+    }
+
+    /**
+     * Set emplacement
+     *
+     * @param \AppBundle\Entity\ContenuStaticEmplacement $emplacement
+     *
+     * @return ContenuStatic
+     */
+    public function setEmplacement(\AppBundle\Entity\ContenuStaticEmplacement $emplacement = null)
+    {
+        $this->emplacement = $emplacement;
+
+        return $this;
+    }
+
+    /**
+     * Get emplacement
+     *
+     * @return \AppBundle\Entity\ContenuStaticEmplacement
+     */
+    public function getEmplacement()
+    {
+        return $this->emplacement;
     }
 }
