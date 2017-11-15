@@ -28,6 +28,12 @@ class ContenuStaticEmplacement
      */
     private $name;
 
+    /**
+     * @var string
+     * @ORM\Column(name="url", type="string", length=255, unique=false)
+     */
+    private $url;
+
     public function __toString()
     {
         return (string)$this->getName();
@@ -67,5 +73,28 @@ class ContenuStaticEmplacement
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return ContenuStaticEmplacement
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+}

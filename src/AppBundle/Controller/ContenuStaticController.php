@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ContenuStaticEmplacement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class ContenuStaticController extends Controller
@@ -15,11 +17,18 @@ class ContenuStaticController extends Controller
      */
     public function indexAction()
     {
+        $emplacement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:ContenuStaticEmplacement')
+            ->findOneBy(array('name' => 'index'));
+
         $contenu = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:ContenuStatic')
-            ->findOneBy(array('emplacement' => 'index'));
+            ->findOneBy(array('emplacement' => $emplacement));
+        dump($contenu);
 
         return $this->render('contenuStatic/index.html.twig', array(
         'contenu' => $contenu,
@@ -28,24 +37,33 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/lutte/presentation", name="lutte-presentation")
+     * @Route("/{parent}/{enfant}", name="page-statique")
      */
-    public function luttePresentationAction()
+    public function pageStatiqueAction($parent, $enfant)
     {
+        $url = '/' . $parent . '/' . $enfant;
+        if(
         $emplacement = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:ContenuStaticEmplacement')
-            ->findOneBy(array('name' => 'lutte-presentation'));
-        $contenu = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:ContenuStatic')
-            ->findOneBy(array('emplacement' => $emplacement));
+            ->findOneBy(array('url' => $url)))
+        {
+            $contenu = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('AppBundle:ContenuStatic')
+                ->findOneBy(array('emplacement' => $emplacement));
 
-        return $this->render('contenuStatic/lutte-presentation.html.twig', array(
-            'contenu' => $contenu,
-        ));
+            return $this->render('contenuStatic/page-statique.html.twig', array(
+                'contenu' => $contenu,
+            ));
+    }
+    else{
+        return $this->redirectToRoute('homepage');
+    }
+
+
     }
 
 }
