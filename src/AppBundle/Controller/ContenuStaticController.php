@@ -28,7 +28,6 @@ class ContenuStaticController extends Controller
             ->getManager()
             ->getRepository('AppBundle:ContenuStatic')
             ->findOneBy(array('emplacement' => $emplacement));
-        dump($contenu);
 
         return $this->render('contenuStatic/index.html.twig', array(
         'contenu' => $contenu,
