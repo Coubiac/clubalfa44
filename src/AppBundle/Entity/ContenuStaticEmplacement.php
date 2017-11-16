@@ -34,6 +34,11 @@ class ContenuStaticEmplacement
      */
     private $url;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStatic", mappedBy="emplacement")
+     */
+    private $contenuStatic;
+
     public function __toString()
     {
         return (string)$this->getName();
@@ -96,5 +101,29 @@ class ContenuStaticEmplacement
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set contenuStatic
+     *
+     * @param \AppBundle\Entity\ContenuStatic $contenuStatic
+     *
+     * @return ContenuStaticEmplacement
+     */
+    public function setContenuStatic(\AppBundle\Entity\ContenuStatic $contenuStatic = null)
+    {
+        $this->contenuStatic = $contenuStatic;
+
+        return $this;
+    }
+
+    /**
+     * Get contenuStatic
+     *
+     * @return \AppBundle\Entity\ContenuStatic
+     */
+    public function getContenuStatic()
+    {
+        return $this->contenuStatic;
     }
 }

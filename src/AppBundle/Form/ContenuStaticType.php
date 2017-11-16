@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +17,12 @@ class ContenuStaticType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('emplacement')
+        $builder->add('emplacement', EntityType::class, array(
+            'class' => 'AppBundle:ContenuStaticEmplacement',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('e')->where('e.contenuStatic is empty')->orderBy('e.name', 'ASC');
+            },
+        ))
             ->add('titre')
             ->add('contenu',CKEditorType::class, array(
                 'config_name' => 'default',
