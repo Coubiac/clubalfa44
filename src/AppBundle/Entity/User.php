@@ -91,6 +91,12 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $isEnabled;
 
+
+    /**
+     * @var bool
+     */
+    private $god;
+
     /**
      * @ORM\Column(name="authorisation_photo", type="boolean")
      */

@@ -14,13 +14,19 @@ class AdminController extends EasyAdminController
     {
         $editForm = parent::createEditForm($entity, $entityProperties);
         if ($entity instanceof ContenuStatic) {
-
-
-
-
-
             $editForm->remove('emplacement');
-            $editForm->add('emplacement', EntityType::class, array(
+        }
+
+        return $editForm;
+    }
+
+    public function createNewForm($entity, array $entityProperties)
+    {
+        $newForm = parent::createNewForm($entity, $entityProperties);
+        if ($entity instanceof ContenuStatic) {
+
+            $newForm->remove('emplacement');
+            $newForm->add('emplacement', EntityType::class, array(
                 'class' => 'AppBundle:ContenuStaticEmplacement',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->getUnassignedEmplacement();
@@ -32,6 +38,6 @@ class AdminController extends EasyAdminController
             ));
         }
 
-        return $editForm;
+        return $newForm;
     }
 }

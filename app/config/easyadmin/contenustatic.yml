@@ -4,6 +4,9 @@ easy_admin:
             class: AppBundle\Entity\ContenuStatic
             list:
                 title: 'Liste des contenus statiques'
+                fields:
+                    - 'titre'
+                    - 'description'
             form:
                 fields:
                     - 'emplacement'

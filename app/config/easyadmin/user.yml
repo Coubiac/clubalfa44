@@ -24,7 +24,7 @@ easy_admin:
                     - 'codePostal'
                     - 'ville'
                     - { property: 'birthdate', format: 'd/m/Y', label: 'date de naissance' }
-                    - 'plainPassword'
+                    - { property: 'plainPassword', type: 'password', label: 'mot de passe' }
             show:
                 title: 'Visualiser un utilisateur'
                 fields:

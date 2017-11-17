@@ -1,0 +1,7 @@
+
+.emplacements, .utilisateurs, .categories, .activites{
+    display: none;
+}
+.role_super_admin{
+    display: block;
+}

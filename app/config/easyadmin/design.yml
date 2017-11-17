@@ -12,3 +12,8 @@ easy_admin:
             - { entity: 'Activite', label: 'Activites'}
             - { entity: 'Categorie', label: 'Categories'}
             - { entity: 'ContenuStaticEmplacement', label: 'Emplacements'}
+        templates:
+            menu: 'easy_admin/menu.html.twig'
+        assets:
+            css:
+                - 'admin/admin.css'
