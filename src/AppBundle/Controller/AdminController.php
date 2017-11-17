@@ -10,9 +10,9 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdmin
 class AdminController extends EasyAdminController
 {
 
-    public function createNewForm($entity, array $entityProperties)
+    public function createEditForm($entity, array $entityProperties)
     {
-        $editForm = parent::createNewForm($entity, $entityProperties);
+        $editForm = parent::createEditForm($entity, $entityProperties);
         if ($entity instanceof ContenuStatic) {
 
 
@@ -23,9 +23,7 @@ class AdminController extends EasyAdminController
             $editForm->add('emplacement', EntityType::class, array(
                 'class' => 'AppBundle:ContenuStaticEmplacement',
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('emplacement')
-                        ->where("emplacement.contenuStatic IS NULL")
-                        ->orderBy('emplacement.name', 'ASC');
+                    return $er->getUnassignedEmplacement();
 
                 },
                 'choice_label' => 'name',

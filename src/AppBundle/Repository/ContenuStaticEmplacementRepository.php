@@ -10,4 +10,9 @@ namespace AppBundle\Repository;
  */
 class ContenuStaticEmplacementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUnassignedEmplacement(){
+
+        return $this->createQueryBuilder('e')->leftJoin('e.contenuStatic', 'c')->where('c.emplacement IS NULL');
+
+    }
 }
