@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ContenuStatic;
@@ -10,6 +11,11 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdmin
 class AdminController extends EasyAdminController
 {
 
+    /**
+     * @param object $entity
+     * @param array  $entityProperties
+     * @return \Symfony\Component\Form\Form
+     */
     public function createEditForm($entity, array $entityProperties)
     {
         $editForm = parent::createEditForm($entity, $entityProperties);
@@ -20,6 +26,11 @@ class AdminController extends EasyAdminController
         return $editForm;
     }
 
+    /**
+     * @param object $entity
+     * @param array  $entityProperties
+     * @return \Symfony\Component\Form\Form
+     */
     public function createNewForm($entity, array $entityProperties)
     {
         $newForm = parent::createNewForm($entity, $entityProperties);
@@ -30,14 +41,10 @@ class AdminController extends EasyAdminController
                 'class' => 'AppBundle:ContenuStaticEmplacement',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->getUnassignedEmplacement();
-
                 },
                 'choice_label' => 'name',
-
-
             ));
         }
-
         return $newForm;
     }
 }
