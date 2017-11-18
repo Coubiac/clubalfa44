@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ContenuStatic;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
 
 
 class AdminController extends EasyAdminController
