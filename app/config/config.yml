@@ -104,7 +104,7 @@ ivory_ck_editor:
     default_config: default
     plugins:
         youtube:
-            path: '/bundles/ivoryckeditor/plugins/youtube/'
+            path: '/ckeditor/plugins/youtube/'
             filename: 'plugin.js'
     configs:
         default:
