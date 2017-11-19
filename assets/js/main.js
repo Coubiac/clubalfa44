@@ -11,6 +11,7 @@ $(document).ready(function(){
     autoplay();
     $('.button-collapse').sideNav({'edge': 'left'});
     $('select').not('.disabled').material_select();
+    $('.materialboxed').materialbox();
 
 });
 

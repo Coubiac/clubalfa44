@@ -96,14 +96,25 @@ fm_elfinder:
                         show_hidden: false # defaults to false
                         driver: LocalFileSystem
                         path: uploads/images
-                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp']
                         upload_deny: ['all']
                         upload_max_size: 2M
 
 ivory_ck_editor:
     default_config: default
+    plugins:
+        youtube:
+            path: '/bundles/ivoryckeditor/plugins/youtube/'
+            filename: 'plugin.js'
     configs:
         default:
-            toolbar: "standard"
+            toolbar: "full"
+            height: '900px'
+            extraPlugins: 'youtube'
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
+    toolbars:
+        items:
+            full.styles: ['Styles', 'Format', 'FontSize', 'TextColor', 'BGColor']
+            full.forms: []
+            full.insert: ['Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar', 'Smiley', 'PageBreak', 'Iframe']
