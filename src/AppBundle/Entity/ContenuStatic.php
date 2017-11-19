@@ -60,6 +60,7 @@ class ContenuStatic
      * @var string
      *
      * @ORM\Column(name="contenu", type="text")
+     * @Assert\NotBlank(message = "Cette page ne peut pas être vide")
      *
      */
     private $contenu;
