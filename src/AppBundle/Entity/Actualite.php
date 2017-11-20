@@ -272,7 +272,7 @@ class Actualite
     }
 
     /**
-     * Set updatedAt
+     * Set updateAt
      *
      * @param \DateTime $updateAt
      *
@@ -280,13 +280,13 @@ class Actualite
      */
     public function setUpdateAt($updateAt)
     {
-        $this->updatedAt = $updateAt;
+        $this->$updateAt = $updateAt;
 
         return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get updateAt
      *
      * @return \DateTime
      */
