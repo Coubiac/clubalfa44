@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -42,7 +43,7 @@ class Actualite
     private $id;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="date", type="datetime")
      * @Assert\NotBlank(message = "Veuillez indiquer la date de publication")
@@ -99,17 +100,17 @@ class Actualite
 
     /**
      * @ORM\Column(type="datetime")
-     * @var \DateTime
+     * @var DateTime
      */
     private $updateAt;
 
-    // ...
+
 
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
         if ($image) {
-            $this->updatedAt = new \DateTime('now');
+            $this->updatedAt = new DateTime('now');
         }
     }
 
@@ -131,8 +132,8 @@ class Actualite
     public function __construct()
     {
         // Par défaut, la date de l'actualite est la date d'aujourd'hui
-        $this->date = new \Datetime();
-        $this->updatedAt = new \DateTime();
+        $this->date = new Datetime();
+        $this->updatedAt = new DateTime();
     }
 
     public function __toString()
@@ -154,7 +155,7 @@ class Actualite
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDate()
     {
@@ -164,7 +165,7 @@ class Actualite
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      *
      * @return Actualite
      */
@@ -274,7 +275,7 @@ class Actualite
     /**
      * Set updateAt
      *
-     * @param \DateTime $updateAt
+     * @param DateTime $updateAt
      *
      * @return Actualite
      */
@@ -288,10 +289,10 @@ class Actualite
     /**
      * Get updateAt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 }
