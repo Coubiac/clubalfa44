@@ -280,7 +280,7 @@ class Actualite
      */
     public function setUpdateAt($updateAt)
     {
-        $this->$updateAt = $updateAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }

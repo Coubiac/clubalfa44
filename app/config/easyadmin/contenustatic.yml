@@ -1,6 +1,7 @@
 easy_admin:
     entities:
         ContenuStatic:
+            disabled_actions: ['delete', 'show']
             class: AppBundle\Entity\ContenuStatic
             list:
                 title: 'Liste des contenus statiques'
