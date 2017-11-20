@@ -5,13 +5,18 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User as User;
-use Doctrine\ORM\Mapping\JoinTable;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
 class Evenement
 {
@@ -35,15 +40,48 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     * @Assert\Length(max=100, maxMessage="Votre titre ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="Votre titre doit comporter au moins 2 caractères.")
+     * @Assert\NotBlank(message = "Veuillez compléter  ce champ")
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="string")
+     * @Assert\NotBlank(message = "Veuillez compléter  ce champ")
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="text")
+     * @Assert\NotBlank(message = "Veuillez compléter  ce champ")
+     *
+     */
+    private $contenu;
+    /**
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="actualite_image", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
 
     /**
      * @var \DateTime
@@ -82,6 +120,29 @@ class Evenement
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -284,5 +345,52 @@ class Evenement
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Evenement
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get contenu
+     *
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * Set contenu
+     *
+     * @param string $contenu
+     *
+     * @return Evenement
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+
+        return $this;
     }
 }

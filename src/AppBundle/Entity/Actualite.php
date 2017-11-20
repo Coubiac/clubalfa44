@@ -101,7 +101,7 @@ class Actualite
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
-    private $updatedAt;
+    private $updateAt;
 
     // ...
 
@@ -274,13 +274,13 @@ class Actualite
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTime $updateAt
      *
      * @return Actualite
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdateAt($updateAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updateAt;
 
         return $this;
     }

@@ -9,7 +9,7 @@ easy_admin_bundle:
     resource: "@AppBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /admin
-    methods:  [GET, POST]
+    methods:  [GET, POST, PUT, DELETE]
 elfinder:
      resource: "@FMElfinderBundle/Resources/config/routing.yml"
 _liip_imagine:

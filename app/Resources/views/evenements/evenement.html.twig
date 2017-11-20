@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ evenement.titre }}{% endblock %}
+{% block description %}{{ evenement.description }}{% endblock %}
+{% block titre %}{{ evenement.titre }}{% endblock %}
+
+{% block main %}
+<div class="container">
+    {{ evenement.contenu|raw }}
+
+</div>
+
+
+
+
+{% endblock %}
