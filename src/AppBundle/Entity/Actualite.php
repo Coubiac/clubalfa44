@@ -25,7 +25,7 @@ class Actualite
     /**
      * Nombres d'actualites par pages
      */
-    const NUM_ITEMS = 5;
+    const NUM_ITEMS = 4;
     /**
      * Nombre de Mots pour le résumé
      */

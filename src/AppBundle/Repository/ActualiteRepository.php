@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Actualite;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ActualiteRepository
@@ -10,4 +12,16 @@ namespace AppBundle\Repository;
  */
 class ActualiteRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getActualitesPaginated($page)
+    {
+        $qb = $this->createQueryBuilder('a')->orderBy('a.date', 'DESC');
+        $query = $qb->getQuery();
+        $query
+            // On définit l'Actualite à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Actualite::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Actualite::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);
+    }
 }
