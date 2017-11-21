@@ -40,7 +40,7 @@ class ContactMail extends \Twig_Extension
             ->setReplyTo($reply)
             ->setTo([$recipient])
             ->setBody($this->twig->render(
-                ':Emails:contactMail.html.twig',
+                'emails/contactMail.html.twig',
                 array(
                     'name' => $data['name'],
                     'firstName' => $data['firstName'],
@@ -63,7 +63,7 @@ class ContactMail extends \Twig_Extension
             ->setReplyTo($recipient)
             ->setTo($reply)
             ->setBody($this->twig->render(
-                ':Emails:contactMailForSender.html.twig',
+                'emails/contactMailForSender.html.twig',
                 array(
                     'name' => $data['name'],
                     'firstName' => $data['firstName'],
