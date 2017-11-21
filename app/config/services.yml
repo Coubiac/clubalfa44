@@ -33,6 +33,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\Services\ContactMail:
+        arguments:
+            $contacts: '%contactform.contacts%'
+            $sender: '%contactform.sender%'
 
     my.listener:
         class: AppBundle\EventListener\EntityListener
