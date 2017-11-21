@@ -24,6 +24,6 @@ class ContactController extends Controller
             $this->addFlash('success', 'Votre message à bien été envoyé. Nous vous répondrons au plus vite.');
             return $this->redirectToRoute('nous_contacter');
         }
-        return $this->render(':Contact:contact.html.twig', array('form' => $form->createView()));
+        return $this->render('contact/contact.html.twig', array('form' => $form->createView()));
     }
 }
