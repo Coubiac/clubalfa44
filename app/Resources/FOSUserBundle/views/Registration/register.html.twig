@@ -1,6 +1,6 @@
+{% trans_default_domain 'FOSUserBundle' %}
 {% extends 'base.html.twig' %}
-
-    {% block main %}
+{% block fos_user_content %}
         <div class="section"></div>
 
 
@@ -10,10 +10,11 @@
         <div class="container" style="display: block;">
             <div class="z-depth-1 grey lighten-4 row"
                  style="display: block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
-                {{ form_start(form) }}
+                {{ form_start(form, { 'action': path('fos_user_registration_register'), 'attr': { 'class': 'fos_user_registration_register' } }) }}
+                {{ form_row(form.username) }}
                 {{ form_row(form.email) }}
-                {{ form_row(form.password.first) }}
-                {{ form_row(form.password.second) }}
+                {{ form_row(form.plainPassword.first) }}
+                {{ form_row(form.plainPassword.second) }}
 
             </div>
             <div class="z-depth-1 grey lighten-4 row"
@@ -42,7 +43,7 @@
 
         </div>
 
-        <a style="display:block;text-align:center;" href="{{ path("login") }}">Vous avez déja un compte ?</a>
+        <a style="display:block;text-align:center;" href="{{ path("fos_user_security_login") }}">Vous avez déja un compte ?</a>
 
 
 

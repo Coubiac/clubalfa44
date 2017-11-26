@@ -31,18 +31,5 @@ class EntityListener
             $entity->setUpdateAt(new DateTime());
         }
 
-        if (method_exists($entity, 'getPlainPassword')){
-            $plainPassword = $entity->getPlainPassword();
-            if (0 !== strlen($plainPassword)) {
-                $encoded = $this->encoder->encodePassword($entity, $plainPassword);
-                $entity->setPassword($encoded);
-            }
-
-        }
-        if (method_exists($entity, 'setUsername')) {
-            $entity->setUsername();
-        }
-
-
     }
 }

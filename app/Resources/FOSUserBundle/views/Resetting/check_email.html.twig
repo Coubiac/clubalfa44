@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+{% block fos_user_content %}
+
+    <div class="container center-align center-block">
+        <div class="row">
+            <div class="col s12 flow-text">
+                <p>{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+            </div>
+        </div>
+        <div class="col S12">
+            <a href="#" class="btn btn-large">Accueil</a>
+
+        </div>
+
+
+    </div>
+
+
+
+{% endblock %}

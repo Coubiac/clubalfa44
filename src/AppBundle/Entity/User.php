@@ -11,14 +11,33 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\AttributeOverrides({
+ *     @ORM\AttributeOverride(name="email",
+ *         column=@ORM\Column(
+ *             name="email",
+ *             type="string",
+ *             length=255,
+ *             nullable=true
+ *         )
+ *     ),
+ *     @ORM\AttributeOverride(name="emailCanonical",
+ *         column=@ORM\Column(
+ *             name="email_canonical",
+ *             type="string",
+ *             length=255,
+ *             nullable=true
+ *         )
+ *     ),
+ * })
  */
-class User implements AdvancedUserInterface, \Serializable
+class User extends BaseUser
 {
     const ROLE_DEFAULT = 'ROLE_USER';
     const ROLE_ADMIN = 'ROLE_ADMIN';
@@ -28,12 +47,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=25, unique=true)
-     */
-    private $username;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=false)
@@ -44,17 +58,6 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(type="string", length=25, unique=false)
      */
     private $prenom;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     *
-     */
-    private $email;
 
     /**
      * @ORM\Column(type="integer", length=5)
@@ -98,19 +101,6 @@ class User implements AdvancedUserInterface, \Serializable
     private $authorisationPhoto;
 
     /**
-     * @var string
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    /**
-     * @var array
-     * @ORM\Column(name="roles", type="array")
-     */
-    private $roles;
-
-
-    /**
      * @ORM\OneToMany(targetEntity="Actualite", mappedBy="author")
      */
     private $actualites;
@@ -137,7 +127,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function __construct()
     {
-        $this->isEnabled = true;
+        parent::__construct();
         $this->authorisationPhoto = true;
         $this->roles = [];
         $this->inscriptionsEvenements = new ArrayCollection();
@@ -197,31 +187,11 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @return User
      */
-    public function setUsername()
+    public function setUsername($username)
     {
-        $this->username = strtolower($this->nom . $this->prenom);
+        $this->username = $username;
 
         return $this;
-    }
-
-    public function isAccountNonExpired()
-    {
-        return true;
-    }
-
-    public function isAccountNonLocked()
-    {
-        return true;
-    }
-
-    public function isCredentialsNonExpired()
-    {
-        return true;
-    }
-
-    public function isEnabled()
-    {
-        return $this->isEnabled;
     }
 
     public function isAdmin()
@@ -302,31 +272,6 @@ class User implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-            ) = unserialize($serialized);
-    }
-
     /**
      * Get id
      *
@@ -704,6 +649,14 @@ class User implements AdvancedUserInterface, \Serializable
         $this->prenom = ucfirst(strtolower($prenom));
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setUsernameForced()
+    {
+        $this->username = $this->prenom.$this->nom;
     }
 
 }

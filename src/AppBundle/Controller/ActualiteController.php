@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ben
- * Date: 08/11/2017
- * Time: 14:53
- */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;

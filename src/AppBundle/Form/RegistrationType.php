@@ -13,15 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class UserType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('username', TextType::class, array(
+                'label' => 'Nom d\'utilisateur/Pseudo'))
+            ->add('email', EmailType::class, array(
+                'required'=> false,))
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('password', RepeatedType::class, array(
+            ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Confirmer le mot de passe'),
@@ -44,11 +47,16 @@ class UserType extends AbstractType
             ));
         ;
     }
-
-    public function configureOptions(OptionsResolver $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults(array(
-            'data_class' => User::class,
-        ));
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+
+        // Or for Symfony < 2.8
+        // return 'fos_user_registration';
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'app_user_registration';
     }
 }
