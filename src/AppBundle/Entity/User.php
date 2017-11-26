@@ -90,12 +90,6 @@ class User extends BaseUser
     private $telephoneFixe;
 
     /**
-     * @ORM\Column(name="is_enabled", type="boolean")
-     */
-    private $isEnabled;
-
-
-    /**
      * @ORM\Column(name="authorisation_photo", type="boolean")
      */
     private $authorisationPhoto;

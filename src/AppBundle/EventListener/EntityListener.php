@@ -11,12 +11,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class EntityListener
 {
     private $tokenStorage;
-    private $encoder;
 
-    public function __construct(TokenStorageInterface $tokenStorage, UserPasswordEncoderInterface $encoder)
+
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->encoder = $encoder;
+
     }
 
     public function prePersist(LifeCycleEventArgs $args)
