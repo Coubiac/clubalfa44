@@ -238,12 +238,6 @@ class User extends BaseUser
         return $this;
     }
 
-    public function setEnabled($boolean)
-    {
-        $this->isEnabled = (bool)$boolean;
-        return $this;
-    }
-
     public function eraseCredentials()
     {
     }
