@@ -80,6 +80,11 @@ class User extends BaseUser
     private $birthdate;
 
     /**
+     * @ORM\Column(type="datetime", length=255)
+     */
+    private $lastVisit;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $telephonePortable;
@@ -105,8 +110,7 @@ class User extends BaseUser
     private $licences;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="inscrits", cascade={"persist"})
-     * @JoinTable(name="users_evenements")
+     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="inscrits", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $evenements;
@@ -455,6 +459,32 @@ class User extends BaseUser
     }
 
     /**
+     * Get lastVisit
+     *
+     * @return \DateTime
+     */
+    public function getLastVisit()
+    {
+        return $this->lastVisit;
+    }
+
+    /**
+     * Set lastVisit
+     *
+     * @param \DateTime $date
+     *
+     * @return User
+     */
+    public function setLastVisit($date)
+    {
+        $this->lastVisit = $date;
+
+        return $this;
+    }
+
+
+
+    /**
      * Add actualite
      *
      * @param \AppBundle\Entity\Actualite $actualite
@@ -637,14 +667,6 @@ class User extends BaseUser
         $this->prenom = ucfirst(strtolower($prenom));
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setUsernameForced()
-    {
-        $this->username = $this->prenom.$this->nom;
     }
 
 }

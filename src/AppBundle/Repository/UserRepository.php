@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    function findByEvenement($evenement){
+
+        $query = $this->createQueryBuilder('u')
+            ->select('u')
+            ->leftJoin('u.evenements', 'e')
+            ->addSelect('e');
+
+        $query = $query->add('where', $query->expr()->in('e', ':e'))
+            ->setParameter('e', $evenement)
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }

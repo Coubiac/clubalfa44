@@ -2,10 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User as User;
+use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -77,7 +80,7 @@ class Evenement
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="actualite_image", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="evenement_image", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
@@ -103,8 +106,10 @@ class Evenement
     private $photos;
 
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="evenements", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="evenements", cascade={"persist"})
+     * @JoinTable(name="evenements_users")
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;
@@ -126,7 +131,7 @@ class Evenement
     {
         $this->imageFile = $image;
         if ($image) {
-            $this->updatedAt = new \DateTime('now');
+            $this->setUpdateAt(new DateTime());
         }
     }
 
@@ -138,6 +143,9 @@ class Evenement
     public function setImage($image)
     {
         $this->image = $image;
+        if ($image) {
+            $this->setUpdateAt(new DateTime());
+        }
     }
 
     public function getImage()

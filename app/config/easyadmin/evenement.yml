@@ -5,6 +5,7 @@ easy_admin:
             list:
                 title: 'Liste des evenements'
                 fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.evenement_images%' }
                     - date
                     - titre
                     - description
@@ -15,7 +16,9 @@ easy_admin:
                 fields:
                     - date
                     - titre
+                    - { property: 'image', type: 'image', base_path: '%app.path.evenement_images%' }
                     - description
+                    - contenu
                     - inscrits
                     - { property: 'photos', template: 'easy_admin/Evenements/show_evenement.html.twig' }
 
@@ -23,7 +26,9 @@ easy_admin:
             form:
                 fields:
                     - date
+                    - { property: 'imageFile', type: 'vich_image' }
                     - titre
                     - description
+                    - contenu
                     - { property: 'inscrits', label: 'Inscrits', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\User', by_reference: true } }
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

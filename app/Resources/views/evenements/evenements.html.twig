@@ -5,27 +5,46 @@
 
 {% block main %}
     <div class="container">
-        <div class="row">
 
-            {% for evenement in evenements %}
-                <div class="card horizontal alfa-fonce">
-                    <div class="card-image hide-on-med-and-down">
-                        <img height="200" width="200" src="{{ asset('images/logoalfacarre.png') }}">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content white-text">
-                            <span class="card-title">{{ evenement.titre }}</span>
-                            {{ evenement.date|date('d/m/Y') }}
-                            <p>{{ evenement.description }}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">Plus d'infos</a>
-                        </div>
-                    </div>
+
+    {% for evenement in evenements %}
+        <div class="row">
+            <div class="evenement col s12">
+                <div class="photo-evenement valign-wrapper col s12 m4">
+                    <img class="responsive-img center-block"
+                         src="{% if vich_uploader_asset(evenement, 'imageFile') %}
+                            {{ vich_uploader_asset(evenement, 'imageFile')| imagine_filter('evenements') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}">
+
+
                 </div>
-            {% endfor %}
+
+            <div class="content-evenement col s12 m8">
+                <div class="titre-block-evenement col s12">
+                    <div class="titre-evenement col s12 m8">
+                        <h5>{{ evenement.titre }}</h5>
+
+                    </div>
+                    <div class="inscription-evenement col s12 m4">
+                        <a href="#" class="btn right-align">s'inscrire</a>
+                    </div>
+
+                </div>
+                <div class="divider blue"></div>
+                <div class="contenu-evenement col s12">
+                    {{ evenement.contenu }}
+
+
+                </div>
+            </div>
 
 
         </div>
+        </div>
+
+    {% endfor %}
+
+
     </div>
 {% endblock %}

@@ -47,4 +47,28 @@ class AdminController extends EasyAdminController
         }
         return $newForm;
     }
+
+    /**
+     * @return mixed
+     */
+    public function createNewUserEntity()
+    {
+        return $this->get('fos_user.user_manager')->createUser();
+    }
+
+    /**
+     * @param $user
+     */
+    public function prePersistUserEntity($user)
+    {
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+    }
+
+    /**
+     * @param $user
+     */
+    public function preUpdateUserEntity($user)
+    {
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+    }
 }

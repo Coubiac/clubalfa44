@@ -88,7 +88,6 @@ fos_user:
             enabled: true
         form:
             type: AppBundle\Form\RegistrationType
-
     resetting:
         email:
             from_email:
