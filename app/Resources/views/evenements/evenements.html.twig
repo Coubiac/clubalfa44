@@ -15,7 +15,7 @@
                          src="{% if vich_uploader_asset(evenement, 'imageFile') %}
                             {{ vich_uploader_asset(evenement, 'imageFile')| imagine_filter('evenements') }}
                         {% else %}{{ asset("images/default-placeholder-300x200.png") }}
-                        {% endif %}">
+                        {% endif %}" alt="{{ evenement.titre }}">
 
 
                 </div>
@@ -24,6 +24,7 @@
                 <div class="titre-block-evenement col s12">
                     <div class="titre-evenement col s12 m8">
                         <h5>{{ evenement.titre }}</h5>
+                        {{ evenement.date|date('d/m/Y') }}
 
                     </div>
                     <div class="inscription-evenement col s12 m4">
