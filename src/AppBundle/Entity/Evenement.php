@@ -105,6 +105,12 @@ class Evenement
      */
     private $photos;
 
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $weezeventLink;
+
 
 
     /**
@@ -209,6 +215,28 @@ class Evenement
     public function getTitre()
     {
         return $this->titre;
+    }
+
+    /**
+     * Set weezeventLink
+     * @param string $weezeventLink
+     *
+     * @return Evenement
+     */
+    public function setWeezeventLink($weezeventLink)
+    {
+        $this->weezeventLink = $weezeventLink;
+        return $this;
+    }
+
+    /**
+     * Get weezeventLink
+     *
+     * @return string
+     */
+    public function getWeezeventLink()
+    {
+        return $this->weezeventLink;
     }
 
     /**

@@ -29,6 +29,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - titre
                     - description
+                    - weezeventLink
                     - contenu
                     - { property: 'inscrits', label: 'Inscrits', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\User', by_reference: true } }
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

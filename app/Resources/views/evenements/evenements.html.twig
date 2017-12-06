@@ -28,7 +28,18 @@
 
                     </div>
                     <div class="inscription-evenement col s12 m4">
-                        <a href="#" class="btn right-align">s'inscrire</a>
+                        {% if "now"|date('Ymd')  > evenement.date|date('Ymd') %}
+                            <a href="{{ path('evenementPhotos', {'slug': evenement.slug}) }}" class="btn right-align">Voir les Photos</a>
+                        {% else %}
+                            {% if evenement.weezeventLink is null %}
+                                <a href="#" class="btn right-align">s'inscrire</a>
+                            {% else %}
+                                {{ evenement.weezeventLink|raw }}
+                            {% endif %}
+                        {% endif %}
+
+
+
                     </div>
 
                 </div>

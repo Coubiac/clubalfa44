@@ -8,11 +8,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Evenement;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 
 class EvenementController extends Controller
@@ -63,6 +65,25 @@ class EvenementController extends Controller
         return $this->redirectToRoute("evenements");
 
 
+    }
+
+    /**
+     * Display Evenement content
+     * @Route("/evenements/{slug}/photos", name="evenementPhotos")
+     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewEvenementPhotosAction(Evenement $evenement)
+    {
+        $photos = $this->getDoctrine()->getRepository("AppBundle:Photo")->findBy(
+            array('evenement' => $evenement)
+        );
+        return $this->render('evenements/evenement.html.twig', array(
+
+                'photos' => $photos,
+                'evenement' => $evenement
+            )
+        );
     }
 
 }
