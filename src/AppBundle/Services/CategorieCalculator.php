@@ -40,7 +40,7 @@ class CategorieCalculator
             }
             else{
                 $categorie = $this->em->getRepository(CategorieAge::class)->find('15');
-                dump($categorie);
+
                 $licence->setCategorieAge($categorie);
             }
 

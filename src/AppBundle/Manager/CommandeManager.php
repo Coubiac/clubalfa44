@@ -98,7 +98,6 @@ class CommandeManager extends Controller
     {
 
         $this->session->set('commande', $commande) ;
-        dump($this ->session->get('commande'));
         
         return $commande;
     }
