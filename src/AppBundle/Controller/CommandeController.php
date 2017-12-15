@@ -17,15 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 class CommandeController extends Controller
 {
     private $cm;
-    private $em;
+
     /**
      * CommandeController constructor.
      */
-    public function __construct(CommandeManager $cm, EntityManagerInterface $em)
+    public function __construct(CommandeManager $cm)
     {
         
         $this->cm = $cm;
-        $this->em =$em;
     }
 
     /**

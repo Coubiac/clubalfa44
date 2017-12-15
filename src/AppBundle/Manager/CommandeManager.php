@@ -65,11 +65,18 @@ class CommandeManager extends Controller
         {
 
             $commande = $this ->session->get('commande');
+
             foreach ($commande->getLicences() as $licence){
                 $licence->setUser($this->tokenStorage->getToken()->getUser());
-                $licence->setCategorieAge($this->em->getRepository(CategorieAge::class)->find($licence->getCategorieAge()->getId()));
-                $licence->setSaison($this->em->getRepository(Saison::class)->find($licence->getSaison()->getId()));
-                $licence->setActivite($this->em->getRepository(Activite::class)->find($licence->getActivite()->getId()));
+                if($licence->getCategorieAge()){
+                    $licence->setCategorieAge($this->em->getRepository(CategorieAge::class)->find($licence->getCategorieAge()->getId()));
+                }
+                if($licence->getSaison()){
+                    $licence->setSaison($this->em->getRepository(Saison::class)->find($licence->getSaison()->getId()));
+                }
+                if($licence->getActivite()){
+                    $licence->setActivite($this->em->getRepository(Activite::class)->find($licence->getActivite()->getId()));
+                }
 
             }
 
@@ -91,10 +98,8 @@ class CommandeManager extends Controller
     {
 
         $this->session->set('commande', $commande) ;
-        //$this->em->detach($commande);
-
         dump($this ->session->get('commande'));
-        dump($commande);
+        
         return $commande;
     }
 
@@ -127,15 +132,6 @@ class CommandeManager extends Controller
      */
     public function flushAndRemoveSession(Commande $commande)
     {
-
-        $commande->setUser($this->tokenStorage->getToken()->getUser());
-        foreach ($commande->getLicences() as $licence){
-            $licence->setUser($this->tokenStorage->getToken()->getUser());
-            $licence->setCategorieAge($this->em->getRepository(CategorieAge::class)->find($licence->getCategorieAge()->getId()));
-            $licence->setSaison($this->em->getRepository(Saison::class)->find($licence->getSaison()->getId()));
-            $licence->setActivite($this->em->getRepository(Activite::class)->find($licence->getActivite()->getId()));
-
-        }
         $this->em->persist($commande);
         $this->em->flush();
         $this->session->remove('commande');
