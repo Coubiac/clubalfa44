@@ -47,6 +47,12 @@ class Saison
      */
     private $licences;
 
+    public function __toString()
+    {
+        return (string)$this->nom;
+    }
+
+
 
     /**
      * Get id
@@ -147,6 +153,7 @@ class Saison
     public function addLicence(\AppBundle\Entity\Licence $licence)
     {
         $this->licences[] = $licence;
+        $licence->setSaison($this);
 
         return $this;
     }

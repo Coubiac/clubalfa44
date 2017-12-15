@@ -14,6 +14,8 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
+    stripePublishableKey: key
+    stripesecretkey: key
 
     # A secret key that's used to generate certain security-related tokens
     secret: a0df7a50aa92e5867106a4fd858890f7bfb12835

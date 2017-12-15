@@ -80,7 +80,7 @@ class User extends BaseUser
     private $birthdate;
 
     /**
-     * @ORM\Column(type="datetime", length=255)
+     * @ORM\Column(type="datetime", length=255, nullable=true)
      */
     private $lastVisit;
 
@@ -105,9 +105,14 @@ class User extends BaseUser
     private $actualites;
 
     /**
-     * @ORM\OneToMany(targetEntity="Licence", mappedBy="proprietaire", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Licence", mappedBy="user", cascade={"persist", "remove"})
      */
     private $licences;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $commandes;
 
     /**
      * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="inscrits", cascade={"persist"})
@@ -130,6 +135,7 @@ class User extends BaseUser
         $this->roles = [];
         $this->inscriptionsEvenements = new ArrayCollection();
         $this->inscriptionsCompetitions = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
 
 
     }
@@ -551,6 +557,41 @@ class User extends BaseUser
     {
         return $this->licences;
     }
+
+    /**
+     * Add Commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     *
+     * @return User
+     */
+    public function addCommande(\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove Commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes->removeElement($commande);
+    }
+
+    /**
+     * Get Commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
 
 
     /**

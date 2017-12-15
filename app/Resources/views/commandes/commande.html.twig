@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Commande de licences en ligne{% endblock %}
+{% block description %}Commandez vos licences en ligne !{% endblock %}
+{% block titre %}Commande de licence(s){% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    <p>Merci de contacter le club pour une commande de plus de 3 licences</p>
+
+                        {{ form_label(form.licenceCount, "Nombre de licence(s)") }}
+                        {{ form_widget(form.licenceCount) }}
+                        {{ form_errors(form.licenceCount) }}
+
+                </div>
+                <div class="form-group">
+
+
+                        {{ form_widget(form.Poursuivre, {'attr': {'class': 'btn btn-primary pull-right'}})  }}
+
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

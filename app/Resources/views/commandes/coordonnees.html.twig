@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block title %}Commande de licences en ligne{% endblock %}
+{% block description %}Commandez vos licences en ligne !{% endblock %}
+{% block titre %}Commande de licence(s){% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <p>La fédération demande un certain nombre de renseignements pour la création des licences.</p>
+                <p>Merci de bien vouloir remplir tous les champs.</p>
+            </div>
+        </div>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+
+            {% for formLicence in form.licences %}
+                <div class="col s12"><h5>Licence n°{{ loop.index }}</h5></div>
+                <div class="z-depth-1 grey lighten-4 row">
+                    <div class="col s12 m6">
+                        {{ form_row(formLicence.activite) }}
+                    </div>
+                    <div class="col s12 m6">
+                        {{ form_row(formLicence.saison) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.nom) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.prenom) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.birthdate) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.adresse) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.codePostal) }}
+                    </div>
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.ville) }}
+                    </div>
+
+                </div>
+            {% endfor %}
+        <div class="row">
+            <div class="col s6 left-align">
+                <a class="btn btn-primary left-align" id="Retour" href="{{ path('commande') }}" role="button">Retour</a>
+            </div>
+            <div class="col s6 right-align">
+                <input type="submit" id="submit" value="Poursuivre" class="btn btn-primary"/>
+            </div>
+
+        </div>
+
+
+
+
+
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+
+
+
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: thiba
- * Date: 02/06/2017
- * Time: 19:16
- */
 
 namespace AppBundle\Services;
 

@@ -65,10 +65,10 @@ class Competition
     private $inscrits;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="competitions")
+     * @ORM\ManyToMany(targetEntity="CategorieAge", inversedBy="competitions")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $categories;
+    private $categorieAges;
 
     /**
      * @ORM\ManyToOne(targetEntity="Activite", inversedBy="competitions")
@@ -194,7 +194,7 @@ class Competition
     {
         $this->inscrits = new ArrayCollection();
         $this->photos = new ArrayCollection();
-        $this->categories = new ArrayCollection();
+        $this->categorieAges = new ArrayCollection();
 
 
     }
@@ -292,36 +292,37 @@ class Competition
     }
 
     /**
-     * Add category
+     * Add categorieAge
      *
-     * @param \AppBundle\Entity\Categorie $category
+     * @param \AppBundle\Entity\CategorieAge $categorieAge
+     *
      *
      * @return Competition
      */
-    public function addCategory(\AppBundle\Entity\Categorie $category)
+    public function addCategorieAges(\AppBundle\Entity\CategorieAge $categorieAge)
     {
-        $this->categories[] = $category;
+        $this->categorieAges[] = $categorieAge;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Remove categorieAge
      *
-     * @param \AppBundle\Entity\Categorie $category
+     * @param \AppBundle\Entity\CategorieAge $category
      */
-    public function removeCategory(\AppBundle\Entity\Categorie $category)
+    public function removeCategoryAge(\AppBundle\Entity\CategorieAge $categorieAge)
     {
-        $this->categories->removeElement($category);
+        $this->categorieAges->removeElement($categorieAge);
     }
 
     /**
-     * Get categories
+     * Get categorieAges
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategories()
+    public function getCategorieAges()
     {
-        return $this->categories;
+        return $this->categorieAges;
     }
 }

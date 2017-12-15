@@ -43,7 +43,8 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
       - 'assets/materialize_form_theme.html.twig'
-
+    globals:
+        stripePublishableKey: '%stripePublishableKey%'
 # Doctrine Configuration
 doctrine:
     dbal:

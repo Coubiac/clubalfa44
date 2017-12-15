@@ -4,3 +4,15 @@ easy_admin:
             class: AppBundle\Entity\Licence
             list:
                 title: 'Liste des Licences'
+                fields:
+                    - numero
+                    - nom
+                    - prenom
+                    - birthdate
+                    - adresse
+                    - codePostal
+                    - Ville
+                    - user
+                    - activite
+                    - saison
+                    - categorieAge

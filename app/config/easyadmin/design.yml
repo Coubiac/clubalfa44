@@ -3,14 +3,15 @@ easy_admin:
         brand_color: '#000000'
         color_scheme: 'light'
         menu:
-            - { entity: 'Actualite', label: 'Actualités' }
+            - { entity: 'Licence', label: 'Licences' }
             - { entity: 'Photo', label: 'Photos' }
             - { entity: 'Evenement', label: 'Evenements'}
             - { entity: 'Competition', label: 'Competitions'}
             - { entity: 'User', label: 'Utilisateurs' }
+            - { entity: 'Saison', label: 'Saisons'}
             - { entity: 'ContenuStatic', label: 'Contenus Statiques'}
             - { entity: 'Activite', label: 'Activites'}
-            - { entity: 'Categorie', label: 'Categories'}
+            - { entity: 'CategorieAge', label: 'Categories Age'}
             - { entity: 'ContenuStaticEmplacement', label: 'Emplacements'}
         templates:
             menu: 'easy_admin/menu.html.twig'

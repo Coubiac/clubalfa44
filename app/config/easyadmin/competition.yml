@@ -25,7 +25,7 @@ easy_admin:
                     - date
                     - titre
                     - description
-                    - categories
+                    - categorieAges
                     - activite
                     - { property: 'inscrits', label: 'Inscrits', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\User', by_reference: true } }
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title %}Commande de licences en ligne{% endblock %}
+{% block description %}Commandez vos licences en ligne !{% endblock %}
+{% block titre %}Commande de licence(s){% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Récapitulatif de votre commande</h4>
+
+                <div class="responsive-table" id="recap">
+                    <table class="table recap">
+                        <thead>
+
+                        <tr>
+                            <th>Activité</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissance</th>
+                            <th>Catégorie</th>
+                            <th>Prix</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for licence in commande.licences %}
+                        <tr>
+
+                            <td>{{ licence.activite }}</td>
+                            <td>{{ licence.nom }}</td>
+                            <td>{{ licence.prenom }}</td>
+                            <td>{{ licence.birthdate|date('d/m/Y') }}</td>
+                            <td>{{ licence.categorieAge.nom }} - {{ licence.categorieAge.description }}</td>
+                            <td>{{ licence.prix }} €</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <p>En validant votre commande, vous acceptez implicitement <a href="{{ path("page-statique", {"parent": "club", "enfant": "reglement"}) }}" target="_blank">le règlement intérieur</a></p>
+            </div>
+
+        </div>
+            <div class="row">
+                <div class="col s6 left-align">
+                    <a class="btn btn-primary left-align" id="Retour" href="{{ path('coordonnees') }}" role="button">Retour</a>
+                </div>
+                <div class="col s6 right-align">
+                    <form action="{{ path('paiement') }}" method="POST">
+                        <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="{{ stripePublishableKey }}"
+                                data-amount="{{ commande.total * 100 }}"
+                                data-image="{{ asset('images/logo.png') }}"
+                                data-label="Paiement"
+                                data-name="Club Alfa 44"
+                                data-description="Commande de licences"
+                                data-locale="auto"
+                                data-customer="true"
+                                data-allow-remember-me="false"
+                                data-email="{{ app.user.email }}"
+                                data-currency="eur">
+                        </script>
+                    </form>
+                </div>
+
+            </div>
+
+    </div>
+
+
+
+
+{% endblock %}

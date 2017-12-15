@@ -1,6 +1,13 @@
 easy_admin:
     entities:
-        Categorie:
-            class: AppBundle\Entity\Categorie
+        CategorieAge:
+            class: AppBundle\Entity\CategorieAge
             list:
-                title: 'Liste des Categories'
+                title: "categories"
+                fields:
+                    - nom
+                    - ageMin
+                    - ageMax
+                    - description
+                    - prixBase
+

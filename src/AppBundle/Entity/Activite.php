@@ -49,7 +49,7 @@ class Activite
     private $prix;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="activite")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="activite", cascade={"persist", "merge"})
      */
     private $licences;
 
@@ -105,7 +105,7 @@ class Activite
 
     public function __toString()
     {
-        return $this->nom;
+        return (string)$this->nom;
     }
 
 
@@ -197,8 +197,8 @@ class Activite
     public function __construct()
     {
 
-        $this->licences = new ArrayCollection();
-        $this->competitions = new ArrayCollection();
+        //$this->licences = new ArrayCollection();
+        //$this->competitions = new ArrayCollection();
 
     }
 
@@ -212,6 +212,7 @@ class Activite
     public function addLicence(\AppBundle\Entity\Licence $licence)
     {
         $this->licences[] = $licence;
+        $licence->setActivite($this);
 
         return $this;
     }
@@ -246,6 +247,7 @@ class Activite
     public function addCompetition(\AppBundle\Entity\Competition $competition)
     {
         $this->competitions[] = $competition;
+        $competition->setActivite($this);
 
         return $this;
     }

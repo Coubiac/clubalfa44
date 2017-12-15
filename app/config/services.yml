@@ -33,6 +33,14 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    app.commande.manager:
+        class: AppBundle\Manager\CommandeManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@session'
+            - '@security.token_storage'
+            - '@fos_user.user_manager'
+
     AppBundle\Services\ContactMail:
         arguments:
             $contacts: '%contactform.contacts%'
@@ -44,3 +52,20 @@ services:
             - "@security.token_storage"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+
+    CategorieCalculator:
+        public: true
+        class: 'AppBundle\Services\CategorieCalculator'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    PriceCalculator:
+        public: true
+        class: 'AppBundle\Services\PriceCalculator'
+        arguments:
+            - '@CategorieCalculator'
+
+    PaymentManager:
+            public: true
+            class: 'AppBundle\Services\PaymentManager'
+            arguments: ["%stripeSecretKey%"]

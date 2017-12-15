@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 
@@ -26,14 +28,14 @@ class Licence
     /**
      * @var int
      *
-     * @ORM\Column(name="numero", type="integer", nullable=true)
+     * @ORM\Column(name="numero", type="string", length=255, unique=true)
      */
     private $numero;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="isActive", type="boolean")
+     * @ORM\Column(name="isActive", type="boolean", options={"default":0})
      */
     private $isActive;
 
@@ -48,25 +50,84 @@ class Licence
      * @ORM\ManyToOne(targetEntity="User", inversedBy="licences")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $proprietaire;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Saison", inversedBy="licences")
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="integer", length=5)
+     */
+    private $codePostal;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="datetime", length=255)
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Saison", inversedBy="licences", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $saison;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Activite", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="Activite", inversedBy="licences", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $activite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="licences")
+     * @ORM\ManyToOne(targetEntity="CategorieAge", inversedBy="licences", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $categorie;
+    private $categorieAge;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande", inversedBy="licences", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $commande;
+
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
+
+    /**
+     * Licence constructor.
+     */
+    public function __construct()
+    {
+        $this->setNumero(strtoupper(uniqid("LIC")));
+        $this->setDateInscription(new DateTime());
+        $this->setActive(false);
+    }
+
+    public function __toString()
+    {
+        return (string)$this->numero;
+    }
 
 
     /**
@@ -152,27 +213,27 @@ class Licence
     }
 
     /**
-     * Set proprietaire
+     * Set user
      *
-     * @param \AppBundle\Entity\User $proprietaire
+     * @param \AppBundle\Entity\User $user
      *
      * @return Licence
      */
-    public function setProprietaire(User $proprietaire)
+    public function setUser(User $user)
     {
-        $this->proprietaire = $proprietaire;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get proprietaire
+     * Get user
      *
      * @return \AppBundle\Entity\User
      */
-    public function getProprietaire()
+    public function getUser()
     {
-        return $this->proprietaire;
+        return $this->user;
     }
 
     /**
@@ -224,15 +285,15 @@ class Licence
     }
 
     /**
-     * Set categorie
+     * Set categorieAge
      *
-     * @param \AppBundle\Entity\Categorie $categorie
+     * @param \AppBundle\Entity\CategorieAge $categorieAge
      *
      * @return Licence
      */
-    public function setCategorie(Categorie $categorie)
+    public function setCategorieAge(CategorieAge $categorieAge)
     {
-        $this->categorie = $categorie;
+        $this->categorieAge = $categorieAge;
 
         return $this;
     }
@@ -240,10 +301,228 @@ class Licence
     /**
      * Get categorie
      *
-     * @return \AppBundle\Entity\Categorie
+     * @return \AppBundle\Entity\CategorieAge
      */
-    public function getCategorie()
+    public function getCategorieAge()
     {
-        return $this->categorie;
+        return $this->categorieAge;
     }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Licence
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Licence
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Licence
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set codePostal
+     *
+     * @param integer $codePostal
+     *
+     * @return Licence
+     */
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codePostal
+     *
+     * @return integer
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Licence
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Licence
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return Licence
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+
+    /**
+     * Set commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     *
+     * @return Licence
+     */
+    public function setCommande(\AppBundle\Entity\Commande $commande)
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \AppBundle\Entity\Commande
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     *
+     * @return Licence
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return int
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
 }
