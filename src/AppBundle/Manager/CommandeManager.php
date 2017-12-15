@@ -66,6 +66,8 @@ class CommandeManager extends Controller
 
             $commande = $this ->session->get('commande');
 
+            $commande->setUser($this->tokenStorage->getToken()->getUser());
+
             foreach ($commande->getLicences() as $licence){
                 $licence->setUser($this->tokenStorage->getToken()->getUser());
                 if($licence->getCategorieAge()){
@@ -131,6 +133,7 @@ class CommandeManager extends Controller
      */
     public function flushAndRemoveSession(Commande $commande)
     {
+
         $this->em->persist($commande);
         $this->em->flush();
         $this->session->remove('commande');

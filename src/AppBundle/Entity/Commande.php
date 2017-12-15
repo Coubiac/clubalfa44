@@ -60,7 +60,7 @@ class Commande
     private $licences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commandes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commandes", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
