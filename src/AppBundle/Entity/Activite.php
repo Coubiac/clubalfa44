@@ -49,6 +49,14 @@ class Activite
     private $prix;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="age_mini", type="integer")
+     */
+    private $ageMini;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Licence", mappedBy="activite", cascade={"persist", "merge"})
      */
     private $licences;
@@ -295,4 +303,29 @@ class Activite
     {
         return $this->updateAt;
     }
+
+    /**
+     * Set ageMini
+     *
+     * @param integer $ageMini
+     *
+     * @return Activite
+     */
+    public function setAgeMini($ageMini)
+    {
+        $this->ageMini = $ageMini;
+
+        return $this;
+    }
+
+    /**
+     * Get ageMini
+     *
+     * @return int
+     */
+    public function getAgeMini()
+    {
+        return $this->ageMini;
+    }
+
 }

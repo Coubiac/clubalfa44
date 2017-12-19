@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 use AppBundle\Entity\Commande;
+use AppBundle\Entity\Licence;
+use AppBundle\Form\CommandeAddGrapplingType;
 use AppBundle\Form\CommandeType;
 use AppBundle\Form\CommandeLicenceType;
+use AppBundle\Form\LicenceAddGrapplingType;
 use AppBundle\Manager\CommandeManager;
 use AppBundle\Services\Notification;
 use Doctrine\ORM\EntityManagerInterface;
@@ -57,25 +60,25 @@ class CommandeController extends Controller
     public function coordonneesAction(Request $request)
     {
         $commande = $this->cm->getCommande();
+        $this->cm->adaptlicences($commande);
 
         if ($commande === false)
         {
             return $this->redirectToRoute('commande');
         }
-
-
-
-
-
-
         $form = $this->createForm(CommandeLicenceType::class, $commande);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid())
         {
+
             $this->get('priceCalculator')->setPrices($commande);
 
+
+
+
             $this->cm->saveCommande($commande);
+
             return $this->redirectToRoute('recapCommande', array('commande' => $commande));
         }
         return $this->render('commandes/coordonnees.html.twig', array(

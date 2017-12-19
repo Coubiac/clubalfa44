@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as AlfaAssert;
 
 
 
@@ -13,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="licence")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LicenceRepository")
+ * @AlfaAssert\CheckAgeMini()
  */
 class Licence
 {
@@ -38,6 +40,22 @@ class Licence
      * @ORM\Column(name="isActive", type="boolean", options={"default":0})
      */
     private $isActive;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="has_add_grappling", type="boolean", options={"default":0})
+     */
+    private $hasAddGrappling;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_grappling_option", type="boolean", options={"default":0})
+     */
+    private $isGrapplingOption;
+
+
 
     /**
      * @var \DateTime
@@ -179,6 +197,30 @@ class Licence
     }
 
     /**
+     * Get isGrapplingOption
+     *
+     * @return bool
+     */
+    public function isGrapplingOption()
+    {
+        return $this->isGrapplingOption;
+    }
+
+    /**
+     * Set isGrapplingOption
+     *
+     * @param boolean $grapplingOption
+     *
+     * @return Licence
+     */
+    public function setGrapplingOption($grapplingOption)
+    {
+        $this->isGrapplingOption = $grapplingOption;
+
+        return $this;
+    }
+
+    /**
      * Get isActive
      *
      * @return bool
@@ -187,6 +229,31 @@ class Licence
     {
         return $this->isActive;
     }
+
+    /**
+     * Set hasAddGrappling
+     *
+     * @param boolean $hasAddGrappling
+     *
+     * @return Licence
+     */
+    public function setHasAddGrappling($hasAddGrappling)
+    {
+        $this->hasAddGrappling = $hasAddGrappling;
+
+        return $this;
+    }
+
+    /**
+     * Get hasAddGrappling
+     *
+     * @return bool
+     */
+    public function hasAddGrappling()
+    {
+        return $this->hasAddGrappling;
+    }
+
 
     /**
      * Set dateInscription

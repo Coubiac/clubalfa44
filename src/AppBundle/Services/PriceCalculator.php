@@ -2,23 +2,35 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\Activite;
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\Licence;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 
+/**
+ * Class PriceCalculator
+ * @package AppBundle\Services
+ */
 class PriceCalculator
 {
 
+    /**
+     *
+     */
     const REDUC_LUTTE_2EME_LICENCE = 7;
     const REDUC_LUTTE_3EME_LICENCE = 20;
     const REDUC_FITNESS_2EME_LICENCE = 20;
+    const OPTION_GRAPPLING_FIGHT = 42;
 
 
     private $categorieCalculator;
+    private $em;
 
-    public function __construct(CategorieCalculator $categorieCalculator)
+    public function __construct(CategorieCalculator $categorieCalculator, EntityManager $em)
     {
         $this->categorieCalculator = $categorieCalculator;
+        $this->em = $em;
     }
 
 
@@ -28,6 +40,7 @@ class PriceCalculator
         $this->setLutteLicencesPrice($commande);
         $this->setFitnessLicencesPrice($commande);
         $this->setGrapplingLicencePrice($commande);
+        $this->createGrapplingLicences($commande);
 
         return $commande;
     }
@@ -109,6 +122,30 @@ class PriceCalculator
             $grapplingLicence->setPrix($grapplingLicence->getActivite()->getPrix());
         }
         return $commande;
+    }
+
+    /**
+     * @param Commande $commande
+     * @return Commande
+     */
+    public function createGrapplingLicences(Commande $commande){
+
+        /** @var Activite $activite */
+        $activite = $this->em->getRepository(Activite::class)->findOneBy(array('nom' => 'GRAPPLING-FIGHT'));
+
+        /** @var Licence $licence */
+        foreach ($commande->getLicences() as $licence){
+            if($licence->getActivite() == 'FITNESS' || $licence->getActivite() == 'MUSCULATION' && $licence->hasAddGrappling()){
+                $newLicence = clone $licence;
+                $newLicence->setActivite($activite);
+                $newLicence->setGrapplingOption(true);
+                $newLicence->setPrix(self::OPTION_GRAPPLING_FIGHT);
+                $commande->addLicence($newLicence);
+            }
+        }
+        $this->categorieCalculator->setCategoriesAge($commande);
+        return $commande;
+
     }
 
 

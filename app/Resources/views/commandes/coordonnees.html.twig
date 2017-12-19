@@ -18,10 +18,13 @@
             {% for formLicence in form.licences %}
                 <div class="col s12"><h5>Licence n°{{ loop.index }}</h5></div>
                 <div class="z-depth-1 grey lighten-4 row">
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
                         {{ form_row(formLicence.activite) }}
                     </div>
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
+                        {{ form_row(formLicence.hasAddGrappling) }}
+                    </div>
+                    <div class="col s12 m4">
                         {{ form_row(formLicence.saison) }}
                     </div>
                     <div class="col s12 m4">

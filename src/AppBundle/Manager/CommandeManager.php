@@ -5,6 +5,8 @@ use AppBundle\Entity\CategorieAge;
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\Licence;
 use AppBundle\Entity\Saison;
+use AppBundle\Services\PriceCalculator;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -124,6 +126,12 @@ class CommandeManager extends Controller
                 $commande->removelicence($commande->getLicences()->last());
             }
         }
+        /** @var Licence $licence */
+        foreach ($commande->getLicences() as $licence){
+            if($licence->isGrapplingOption()){
+                $commande->removelicence($licence);
+            }
+        }
         return $commande;
     }
 
@@ -138,4 +146,5 @@ class CommandeManager extends Controller
         $this->em->flush();
         $this->session->remove('commande');
     }
+
 }

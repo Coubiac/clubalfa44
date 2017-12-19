@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
+ * Permet de s'assurer que deux catégories d'age ne se chevauchent pas (pour que l'attribution automatique fonctionne correctement)
  */
 class IsNotOverlapInterval extends Constraint
 {

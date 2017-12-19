@@ -15,4 +15,5 @@ easy_admin:
                     - 'nom'
                     - 'prix'
                     - 'placesDisponibles'
+                    - 'ageMini'
                     - { property: 'imageFile', type: 'vich_image' }
