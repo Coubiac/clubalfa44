@@ -76,24 +76,14 @@ if(is_array($pagefeed)) {
 			$idArray = explode('_', $id);
 			$link = $pageLink . '/posts/' . $idArray[1];
 		}
-		
-		if($link_url == $link){
-		//	continue;
-		}
-		
+
 		$link_url = $link;
-		
-		if($message == '' || $link == '') {
-		//	continue;
-		}
+
 		
 		if($type == 'status' && isset($data->story)) {
 			continue;
 		}
-		
-	//	if($type == 'event') {
-	//		$link = 'https://facebook.com' . $link;
-	//	}
+
 
 		if(!isset($data->object_id) && $type != 'video') {
 			$pic_id = explode("_", $image);	

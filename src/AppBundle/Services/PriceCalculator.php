@@ -45,12 +45,25 @@ class PriceCalculator
         return $commande;
     }
 
+    /**
+     * @param Commande $commande
+     * @return Commande
+     */
     private function sortLicencesCommandeByBirthdate(Commande $commande)
     {
         $licences = $commande->getLicences();
 
+
+        /** @var \ArrayIterator $iterator */
         $iterator = $licences->getIterator();
-        $iterator->uasort(function ($a, $b) {
+
+        $iterator->uasort(
+            /**
+             * @var Licence $a
+             * @var Licence $b
+             * 
+             */
+            function ($a, $b) {
             return ($a->getBirthdate() < $b->getBirthdate()) ? -1 : 1;
         });
         $licences = new ArrayCollection(array_values(iterator_to_array($iterator)));
