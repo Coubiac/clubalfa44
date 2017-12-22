@@ -7,7 +7,6 @@ easy_admin:
                 fields:
                     - 'nom'
                     - 'prix'
-                    - 'isActive'
                     - { property: 'image', type: 'image', base_path: '%app.path.activite_images%' }
             form:
                 title: "Ajout/Modification d'une activité"

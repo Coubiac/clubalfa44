@@ -38,7 +38,7 @@ class EvenementController extends Controller
     }
 
     /**
-     * @Method("GET")
+     * @Method("POST")
      * @Security("has_role('ROLE_USER')")
      * @Route("/evenement/{id}/inscription", name="evenement-inscription")
      */
