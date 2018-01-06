@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\ContenuStatic;
 use AppBundle\Entity\User;
 
-class fixtures extends Fixture
+class contenuStaticFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -78,15 +78,6 @@ class fixtures extends Fixture
 
 
         $manager->persist($contenuGrappling);
-        $manager->flush();
-
-        $admin = new User;
-        $admin->setEmail("admin@mail.com")->setUsername('admin');
-        $admin->setNom("name")->setPrenom("firstname")->setPlainPassword("123456");
-        $admin->setAdresse("123 rue AAAA")->setCodePostal(12345)->setVille("VILLE")->setBirthdate(new \DateTime());
-        $admin->setAdmin(true)->setSuperAdmin(true);
-
-        $manager->persist($admin);
         $manager->flush();
 
     }
