@@ -62,7 +62,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
-            '/contenu page Grappling a completer/',
+            '/contenu page grappling a completer/',
             $this->client->getResponse()->getContent());
 
     }
