@@ -6,9 +6,9 @@ use AppBundle\Entity\ContenuStaticEmplacement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\ContenuStatic;
-use AppBundle\Entity\User;
 
-class contenuStaticFixture extends Fixture
+
+class ContenuStaticFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {

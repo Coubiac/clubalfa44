@@ -6,7 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
-class userFixture extends Fixture{
+class UserFixture extends Fixture{
 
     public function load(ObjectManager $manager)
     {
