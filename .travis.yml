@@ -19,7 +19,7 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
-    - php: hhvm
+#    - php: hhvm
 #  allow_failures:
 #    - php: hhvm
 
