@@ -34,7 +34,7 @@ class fixtures extends Fixture
             ->setEmplacement($lutteEmplacement)
             ->setTitre("Lutte")
             ->setDescription('l\'activité LUTTE au club Alfa')
-            ->setContenu("Lorem ipsum dolor sit amet, consectetur adipiscing elit.ros tortor");
+            ->setContenu("contenu page lutte a completer");
 
 
         $manager->persist($contenuLutte);
@@ -47,7 +47,7 @@ class fixtures extends Fixture
             ->setEmplacement($fitnessEmplacement)
             ->setTitre("Lutte")
             ->setDescription('l\'activité Fitness au club Alfa')
-            ->setContenu("Lorem ipsum dolor sit amet, consectetur adipiscing elit.ros tortor");
+            ->setContenu("contenu page fitness a completer");
 
 
         $manager->persist($contenuFitness);
@@ -60,7 +60,7 @@ class fixtures extends Fixture
             ->setEmplacement($muscuEmplacement)
             ->setTitre("Musculation")
             ->setDescription('l\'activité Musculation au club Alfa')
-            ->setContenu("Lorem ipsum dolor sit amet, consectetur adipiscing elit.ros tortor");
+            ->setContenu("contenu page musculation a completer");
 
 
         $manager->persist($contenuMusculation);
@@ -74,7 +74,7 @@ class fixtures extends Fixture
             ->setEmplacement($grapplingEmplacement)
             ->setTitre("Grappling Fight")
             ->setDescription('l\'activité Grappling Fight au club Alfa')
-            ->setContenu("Lorem ipsum dolor sit amet, consectetur adipiscing elit.ros tortor");
+            ->setContenu("contenu page grappling a completer");
 
 
         $manager->persist($contenuGrappling);

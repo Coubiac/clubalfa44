@@ -6,16 +6,71 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ContenuStaticControllerTest extends WebTestCase
 {
-    public function testIndex()
+    private $client = null;
+
+    public function testIndexPage()
     {
-        $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $this->client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page accueil a completer/',
-            $client->getResponse()->getContent());
+            $this->client->getResponse()->getContent());
 
     }
+
+    public function testLuttePage()
+    {
+
+        $this->client->request('GET', '/lutte/presentation');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertRegexp(
+            '/contenu page lutte a completer/',
+            $this->client->getResponse()->getContent());
+
+    }
+    public function testFitnessPage()
+    {
+
+        $this->client->request('GET', '/fitness/presentation');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertRegexp(
+            '/contenu page fitness a completer/',
+            $this->client->getResponse()->getContent());
+
+    }
+
+    public function testMusculationPage()
+    {
+
+        $this->client->request('GET', '/musculation/presentation');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertRegexp(
+            '/contenu page musculation a completer/',
+            $this->client->getResponse()->getContent());
+
+    }
+
+    public function testGrapplingPage()
+    {
+
+        $this->client->request('GET', '/grappling/presentation');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertRegexp(
+            '/contenu page Grappling a completer/',
+            $this->client->getResponse()->getContent());
+
+    }
+
+    public function setUp()
+    {
+        $this->client = static::createClient();
+
+    }
+
 }
