@@ -6,7 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\CategorieAge;
 
-class categorieAgeFixture extends Fixture{
+class CategorieAgeFixture extends Fixture{
 
     public function load(ObjectManager $manager)
     {
