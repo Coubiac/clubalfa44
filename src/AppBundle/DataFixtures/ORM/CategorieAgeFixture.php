@@ -28,7 +28,7 @@ class CategorieAgeFixture extends Fixture{
         );
 
         $u11 = array(
-            'nom' => 'U9',
+            'nom' => 'U11',
             'description' => 'POUSSIN C',
             'ageMin' => 9,
             'ageMax' => 10,
@@ -60,7 +60,7 @@ class CategorieAgeFixture extends Fixture{
         );
 
         $u20 = array(
-            'nom' => 'U18',
+            'nom' => 'U20',
             'description' => 'JUNIOR',
             'ageMin' => 17,
             'ageMax' => 19,
