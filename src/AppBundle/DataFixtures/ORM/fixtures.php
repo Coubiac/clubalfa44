@@ -20,7 +20,7 @@ class fixtures extends Fixture
             ->setEmplacement($indexEmplacement)
             ->setTitre("club Alfa 44")
             ->setDescription('Club de Lutte, Fitness, Musculation, Grappling Fight')
-            ->setContenu("Lorem ipsum dolor sit amet, consectetur adipiscing elit.ros tortor");
+            ->setContenu("contenu page accueil a completer");
 
 
         $manager->persist($contenuIndex);
