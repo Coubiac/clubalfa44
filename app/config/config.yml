@@ -11,6 +11,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    container.autowiring.strict_mode: true
 
 framework:
     #esi: ~
@@ -81,9 +82,6 @@ fos_user:
         token_generator: fos_user.util.token_generator.default
         username_canonicalizer: fos_user.util.canonicalizer.default
         user_manager: fos_user.user_manager.default
-    from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
     registration:
         confirmation:
             enabled: true

@@ -127,7 +127,6 @@ class CategorieAgeFixture extends Fixture{
         $categoriesAges = [$u7,$u9,$u11,$u13,$u15,$u17,$u20,$u35,$u40,$u45,$u55,$u65,$u100,$u1000];
 
         foreach ($categoriesAges as $categorieArray){
-
             $categorieAge = new CategorieAge();
             $categorieAge->setNom($categorieArray["nom"]);
             $categorieAge->setDescription($categorieArray["description"]);

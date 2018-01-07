@@ -140,6 +140,7 @@ class Licence
         $this->setNumero(strtoupper(uniqid("LIC")));
         $this->setDateInscription(new DateTime());
         $this->setActive(false);
+        $this->setGrapplingOption(false);
     }
 
     public function __toString()

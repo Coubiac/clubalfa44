@@ -6,7 +6,7 @@ use AppBundle\Entity\Activite;
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\Licence;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class PriceCalculator
@@ -27,7 +27,7 @@ class PriceCalculator
     private $categorieCalculator;
     private $em;
 
-    public function __construct(CategorieCalculator $categorieCalculator, EntityManager $em)
+    public function __construct(CategorieCalculator $categorieCalculator, EntityManagerInterface $em)
     {
         $this->categorieCalculator = $categorieCalculator;
         $this->em = $em;
