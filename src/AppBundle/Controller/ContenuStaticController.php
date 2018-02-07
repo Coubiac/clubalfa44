@@ -36,6 +36,15 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
+     * @Route("/club/staff", name="staff")
+     */
+    public function staffAction()
+    {
+        return $this->render('contenuStatic/staff.html.twig');
+    }
+
+    /**
+     * @Method("GET")
      * @Route("/{parent}/{enfant}", name="page-statique")
      */
     public function pageStatiqueAction($parent, $enfant)
