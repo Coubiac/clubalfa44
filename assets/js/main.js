@@ -2,13 +2,22 @@
 var $ = require('jquery');
 require('../materialize-src/js/bin/materialize.min');
 $(document).ready(function(){
+    var screenWidth = $(window).width();
+    // if window width is smaller than 800 remove the autoplay attribute
+    // from the video
+    if (screenWidth < 800){
+        $('video').removeAttr('autoplay');
+    } else {
+        $('video').attr('autoplay');
+    }
+
+git
     $('.preloader-background').delay(1700).fadeOut('slow');
 
     $('.preloader-wrapper')
         .delay(1700)
         .fadeOut();
-    $('.carousel.carousel-slider').carousel({fullWidth: true});
-    autoplay();
+
     $('.button-collapse').sideNav({'edge': 'left'});
     $('select').material_select();
 
@@ -38,7 +47,3 @@ $(document).ready(function(){
 
 });
 
-function autoplay() {
-    $('.carousel').carousel('next');
-    setTimeout(autoplay, 4500);
-}

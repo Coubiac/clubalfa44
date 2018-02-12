@@ -3,27 +3,17 @@
 {% block description %}{{ contenu.description }}{% endblock %}
 
 {% block main %}
-    <div class="carousel carousel-slider hide-on-med-and-down" data-indicators="true" >
-
-        <a class="carousel-item" href="#one!"><img src="{{ asset('images/caroussel/lutte.jpg') }}"></a>
-
-
-        <div class="carousel-fixed-item center">
-            <h1 class="titre white-text">alfa</h1>
-            <p class="sous-titre white-text">Lutte, Fitness, Musculation, Grappling Fight</p>
-            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a class="btn waves-effect indigo white-text-text darken-4" href="{{ path('fos_user_registration_register') }}">s'inscrire</a>
-                {% else %}
-                    <a class="btn waves-effect indigo white-text-text darken-4" href="{{ path('commande') }}">Acheter une licence</a>
-            {% endif %}
-        </div>
+        <video class="hide-on-med-and-down" id="video1" autoplay style="width: 100%">
+            <source src="{{ asset('videos/alfa.webm') }}" type="video/webm" />
+            <source src="{{ asset('videos/alfa.mp4') }}" type="video/mp4">
+            <source src="{{ asset('videos/alfa.ogv') }}" type="video/ogv" />
 
 
-        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/grappling.jpg') }}"></a>
-        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/fitness.jpg') }}"></a>
-        <a class="carousel-item" href="#two!"><img src="{{ asset('images/caroussel/musculation.jpg') }}"></a>
+            <p>Your browser does not support the video tag.</p>
+        </video>
+        {#////////////////////////////////////////////////////////////////#}
 
-    </div>
+
     <div class="logo-small black hide-on-large-only">
         <img class="center-block" src="{{ asset("images/logo-banner.jpg") }}" alt="club alfa 44">
     </div>
