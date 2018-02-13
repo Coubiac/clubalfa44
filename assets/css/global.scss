@@ -53,10 +53,14 @@ body {
   background: #fff;
 }
 header, main, footer, .preloader-background {
-  padding-left: 300px;
+  padding-left: 240px;
 
 }
 
+.side-nav {
+  position: fixed;
+  width: 240px;
+}
 nav .brand-logo{
   position: relative !important;
 }
