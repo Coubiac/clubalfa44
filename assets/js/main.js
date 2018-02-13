@@ -6,18 +6,22 @@ $(document).ready(function(){
     // if window width is smaller than 800 remove the autoplay attribute
     // from the video
     if (screenWidth < 800){
-        $('video').remove();
-    } else {
-        $('video').attr('autoplay');
+        $('.preloader-background').remove();
     }
+    if (screenWidth > 800){
+        $("#video").html('<video class="hide-on-med-and-down" id="video1" autoplay loop style="width: 100%"><source src="videos/alfa.webm" type="video/webm" /><source src="videos/alfa.mp4" type="video/mp4"><source src="videos/alfa.ogv" type="video/ogv" /><p>Your browser does not support the video tag.</p></video>');
 
 
+        $('.preloader-background').delay(1700).fadeOut('slow');
 
-    $('.preloader-background').delay(1700).fadeOut('slow');
+        $('.preloader-wrapper')
+            .delay(1700)
+            .fadeOut();
 
-    $('.preloader-wrapper')
-        .delay(1700)
-        .fadeOut();
+    }
+    $('#video1').get(0).play();
+
+
 
     $('.button-collapse').sideNav({'edge': 'left'});
     $('select').material_select();
