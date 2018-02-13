@@ -6,12 +6,13 @@ $(document).ready(function(){
     // if window width is smaller than 800 remove the autoplay attribute
     // from the video
     if (screenWidth < 800){
-        $('video').removeAttr('autoplay');
+        $('video').remove();
     } else {
         $('video').attr('autoplay');
     }
 
-git
+
+
     $('.preloader-background').delay(1700).fadeOut('slow');
 
     $('.preloader-wrapper')
