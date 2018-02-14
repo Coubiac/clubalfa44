@@ -2,7 +2,13 @@ $(document).ready(function() {
     var screenWidth = $(window).width();
 
     if (screenWidth > 800) {
-        $("#video").html('<video class="hide-on-med-and-down" id="video1" autoplay loop style="width: 100%">' +
+        $("#video").html('<video ' +
+            'class="hide-on-med-and-down" ' +
+            'id="video1" ' +
+            'autoplay ' +
+            'loop ' +
+            'poster="images/videoplaceholder.png"' +
+            'style="width: 100%">' +
             '<source src="videos/alfa.mp4" type="video/mp4" />' +
             '<source src="videos/alfa.webm" type="video/webm">' +
             '<source src="videos/alfa.ogv" type="video/ogg" />' +
