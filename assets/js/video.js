@@ -7,7 +7,7 @@ $(document).ready(function() {
             'id="video1" ' +
             'autoplay ' +
             'loop ' +
-            'poster="images/videoplaceholder.png"' +
+            'poster="images/videoplaceholder.jpg"' +
             'style="width: 100%">' +
             '<source src="videos/alfa.mp4" type="video/mp4" />' +
             '<source src="videos/alfa.webm" type="video/webm">' +
