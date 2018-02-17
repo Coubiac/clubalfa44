@@ -136,6 +136,9 @@ ivory_ck_editor:
         default:
             toolbar: "full"
             height: '900px'
+            allowedContent: true #Permet de ne pas casser le code HTML
+            entities: false
+            entities_latin: false
             extraPlugins: 'youtube'
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
