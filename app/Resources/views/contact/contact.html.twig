@@ -6,55 +6,74 @@
 
 
 {% block main %}
+
+        <div class="google-maps" style="margin-top: -20px">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4585.477832657023!2d-1.4102820364761282!3d47.077336025068746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4805dc477cadd35d%3A0x4d939b262304e4f4!2sComplexe+sportif+des+Richardi%C3%A8res!5e0!3m2!1sfr!2sfr!4v1518953255321"
+                    width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
     <div class="container">
         <div class="z-depth-1 grey lighten-4 row"
+             style="display: block; padding: 32px 48px 32px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;margin-top: 20px;">
+            <div class="col s12 m6">
+                <img class="responsive-img" alt="complèxe sportif des richardières" src="{{ asset('images/photo-richardieres.jpg') }}">
+            </div>
+            <div class="col s12 m6">
+                <p class="flow-text">Salle des Richardières<br>67 rue de la chapelle<br>44140 Aigrefeuille sur Maine<br>Tel: 09.54.03.85.11</p>
+            </div>
+
+        </div>
+
+
+        <div class="z-depth-1 grey lighten-4 row"
              style="display: block; padding: 32px 48px 32px 48px; border: 1px solid #EEE;margin-left: auto;margin-right: auto;">
+            <p class="flow-text">Une question ? Un message ? remplissez ce formulaire, nous vous répondrons rapidement</p>
 
-        {{ form_start(form) }}
+            {{ form_start(form) }}
 
-        {{ form_errors(form) }}
-        <div class="input-field">
-            {{ form_label(form.name, "Votre nom") }}
-            {{ form_errors(form.name) }}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {{ form_widget(form.name, {'attr': {'class': 'validate', 'value': app.user.nom}}) }}
-            {% else %}
-                {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
-            {% endif %}
-        </div>
-        <div class="input-field">
-            {{ form_label(form.firstName, "Votre prénom") }}
-            {{ form_errors(form.firstName) }}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {{ form_widget(form.firstName, {'attr': {'class': 'validate', 'value': app.user.prenom}}) }}
-            {% else %}
-                {{ form_widget(form.firstName, {'attr': {'class': 'validate'}}) }}
-            {% endif %}
-        </div>
+            {{ form_errors(form) }}
+            <div class="input-field">
+                {{ form_label(form.name, "Votre nom") }}
+                {{ form_errors(form.name) }}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ form_widget(form.name, {'attr': {'class': 'validate', 'value': app.user.nom}}) }}
+                {% else %}
+                    {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
+                {% endif %}
+            </div>
+            <div class="input-field">
+                {{ form_label(form.firstName, "Votre prénom") }}
+                {{ form_errors(form.firstName) }}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'validate', 'value': app.user.prenom}}) }}
+                {% else %}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'validate'}}) }}
+                {% endif %}
+            </div>
 
-        <div class="input-field">
-            {{ form_label(form.mail, "Votre E-mail") }}
-            {{ form_errors(form.mail) }}
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {{ form_widget(form.mail, {'attr': {'class': 'validate', 'value': app.user.email}}) }}
-            {% else %}
-                {{ form_widget(form.mail, {'attr': {'class': 'validate'}}) }}
-            {% endif %}
-        </div>
+            <div class="input-field">
+                {{ form_label(form.mail, "Votre E-mail") }}
+                {{ form_errors(form.mail) }}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ form_widget(form.mail, {'attr': {'class': 'validate', 'value': app.user.email}}) }}
+                {% else %}
+                    {{ form_widget(form.mail, {'attr': {'class': 'validate'}}) }}
+                {% endif %}
+            </div>
             <div class="input-field">
                 {{ form_row(form.categorie) }}
             </div>
-        <div class="input-field">
-            {{ form_label(form.message, "Votre message") }}
-            {{ form_errors(form.message) }}
-            {{ form_widget(form.message, {'attr': {'class': 'textarea-contact validate '}}) }}
-            <div class="block-count-chars" >
-                <p class="right-align"><span class="count-chars">0</span> / 1200 </p>
+            <div class="input-field">
+                {{ form_label(form.message, "Votre message") }}
+                {{ form_errors(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'textarea-contact validate '}}) }}
+                <div class="block-count-chars">
+                    <p class="right-align"><span class="count-chars">0</span> / 1200 </p>
+                </div>
             </div>
-        </div>
 
-        {{ form_widget(form.envoyer, {'attr': {'class': 'col s12 btn btn-large waves-effect alfa-fonce'}})}}
-        {{ form_end(form) }}
+            {{ form_widget(form.envoyer, {'attr': {'class': 'col s12 btn btn-large waves-effect alfa-fonce'}}) }}
+            {{ form_end(form) }}
 
         </div>
 
