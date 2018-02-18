@@ -129,11 +129,11 @@ fm_elfinder:
 ivory_ck_editor:
     default_config: default
     plugins:
-        youtube:
-            path: 'ckeditor/plugins/youtube/'
-            filename: 'plugin.js'
         codemirror:
             path: 'ckeditor/plugins/codemirror/'
+            filename: 'plugin.js'
+        image2:
+            path: 'ckeditor/plugins/image2/'
             filename: 'plugin.js'
     configs:
         default:
@@ -142,7 +142,7 @@ ivory_ck_editor:
             allowedContent: true #Permet de ne pas casser le code HTML
             entities: false
             entities_latin: false
-            extraPlugins: 'codemirror'
+            extraPlugins: 'codemirror,image2'
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
     toolbars:
