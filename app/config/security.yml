@@ -34,7 +34,7 @@ security:
                 use_referer: true
                 csrf_token_generator: security.csrf.token_manager
             logout: true
-            # logout_on_user_change: true
+            logout_on_user_change: true
 
 
 
