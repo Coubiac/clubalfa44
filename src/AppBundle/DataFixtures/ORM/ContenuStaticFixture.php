@@ -14,7 +14,7 @@ class ContenuStaticFixture extends Fixture
     {
 
         $indexEmplacement = new ContenuStaticEmplacement();
-        $indexEmplacement->setName("index")->setUrl("/");
+        $indexEmplacement->setName("index")->setUrl("/")->setPriority(0.8);
         $contenuIndex = new ContenuStatic();
         $contenuIndex
             ->setEmplacement($indexEmplacement)
@@ -28,7 +28,7 @@ class ContenuStaticFixture extends Fixture
 
 
         $lutteEmplacement = new ContenuStaticEmplacement();
-        $lutteEmplacement->setName("lutte-presentation")->setUrl("/lutte/presentation");
+        $lutteEmplacement->setName("lutte-presentation")->setUrl("/lutte/presentation")->setPriority(0.8);
         $contenuLutte = new ContenuStatic();
         $contenuLutte
             ->setEmplacement($lutteEmplacement)
@@ -41,7 +41,7 @@ class ContenuStaticFixture extends Fixture
         $manager->flush();
 
         $fitnessEmplacement = new ContenuStaticEmplacement();
-        $fitnessEmplacement->setName("fitness-presentation")->setUrl("/fitness/presentation");
+        $fitnessEmplacement->setName("fitness-presentation")->setUrl("/fitness/presentation")->setPriority(0.8);
         $contenuFitness = new ContenuStatic();
         $contenuFitness
             ->setEmplacement($fitnessEmplacement)
@@ -54,7 +54,7 @@ class ContenuStaticFixture extends Fixture
         $manager->flush();
 
         $muscuEmplacement = new ContenuStaticEmplacement();
-        $muscuEmplacement->setName("muscu-presentation")->setUrl("/musculation/presentation");
+        $muscuEmplacement->setName("muscu-presentation")->setUrl("/musculation/presentation")->setPriority(0.8);
         $contenuMusculation = new ContenuStatic();
         $contenuMusculation
             ->setEmplacement($muscuEmplacement)
@@ -68,7 +68,7 @@ class ContenuStaticFixture extends Fixture
 
 
         $grapplingEmplacement = new ContenuStaticEmplacement();
-        $grapplingEmplacement->setName("grappling-presentation")->setUrl("/grappling/presentation");
+        $grapplingEmplacement->setName("grappling-presentation")->setUrl("/grappling/presentation")->setPriority(0.8);
         $contenuGrappling = new ContenuStatic();
         $contenuGrappling
             ->setEmplacement($grapplingEmplacement)

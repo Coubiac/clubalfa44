@@ -40,6 +40,22 @@ class ContenuStaticEmplacement
      */
     private $priority;
 
+    /**
+     * @return mixed
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param mixed $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
 
 
 
