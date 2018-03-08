@@ -98,7 +98,8 @@ class ContenuStaticController extends Controller
 
             $urls[] = array(
                 'loc' => $absoluteUrl,
-                'lastmod' => $lastmod
+                'lastmod' => $lastmod,
+                'priority' => $emplacement->getPriority()
             );
         }
 

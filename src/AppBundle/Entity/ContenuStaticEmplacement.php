@@ -36,7 +36,7 @@ class ContenuStaticEmplacement
 
     /**
      * @var float
-     * @ORM\Column(name="priority", type="decimal", nullable=true)
+     * @ORM\Column(name="priority", type="decimal", precision=2, scale=1, nullable=true)
      */
     private $priority;
 

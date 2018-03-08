@@ -19,7 +19,11 @@
             {% endif %}
 
             {% if url.priority is defined %}
+                {% if url.priority != 0 %}
                 <priority>{{ url.priority }}</priority>
+                {% else %}
+                    <priority>0.6</priority>
+                {% endif %}
             {% else %}
                 <priority>0.8</priority>
             {% endif %}
