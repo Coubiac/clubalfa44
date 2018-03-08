@@ -69,7 +69,7 @@ class ContenuStatic
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="lastmod", type="datetime")
+     * @ORM\Column(name="lastmod", type="datetime", nullable=true)
      */
     private $lastmod;
 
