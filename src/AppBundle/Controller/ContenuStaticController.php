@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class ContenuStaticController extends Controller
@@ -30,8 +32,8 @@ class ContenuStaticController extends Controller
             ->findOneBy(array('emplacement' => $emplacement));
 
         return $this->render('contenuStatic/index.html.twig', array(
-        'contenu' => $contenu,
-    ));
+            'contenu' => $contenu,
+        ));
     }
 
     /**
@@ -50,13 +52,12 @@ class ContenuStaticController extends Controller
     public function pageStatiqueAction($parent, $enfant)
     {
         $url = '/' . $parent . '/' . $enfant;
-        if(
+        if (
         $emplacement = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:ContenuStaticEmplacement')
-            ->findOneBy(array('url' => $url)))
-        {
+            ->findOneBy(array('url' => $url))) {
             $contenu = $this
                 ->getDoctrine()
                 ->getManager()
@@ -66,12 +67,45 @@ class ContenuStaticController extends Controller
             return $this->render('contenuStatic/page-statique.html.twig', array(
                 'contenu' => $contenu,
             ));
-    }
-    else{
-        return $this->redirectToRoute('homepage');
-    }
+        } else {
+            return $this->redirectToRoute('homepage');
+        }
 
 
+    }
+
+    /**
+     * Génère le sitemap du site.
+     *
+     * @Route("/sitemap.{_format}", name="front_sitemap", Requirements={"_format" = "xml"})
+     */
+    public function siteMapAction()
+    {
+        $emplacements = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:ContenuStaticEmplacement')
+            ->findAll();
+        $urls = [];
+
+        foreach ($emplacements as $emplacement) {
+            $url = $emplacement->getUrl();
+            $contenu = $emplacement->getContenuStatic();
+            $absoluteUrl = 'https://www.clubalfa44.com' . $url;
+            if($contenu){
+                    $lastmod = $contenu->getLastMod();
+            }
+
+            $urls[] = array(
+                'loc' => $absoluteUrl,
+                'lastmod' => $lastmod
+            );
+        }
+
+        return $this->render(
+            'sitemap.xml.twig',
+            ['urls' => $urls]
+        );
     }
 
 }

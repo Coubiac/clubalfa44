@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -64,6 +65,14 @@ class ContenuStatic
      *
      */
     private $contenu;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="lastmod", type="datetime")
+     */
+    private $lastmod;
+
 
     public function __toString()
     {
@@ -199,5 +208,29 @@ class ContenuStatic
     public function getEmplacement()
     {
         return $this->emplacement;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastmod()
+    {
+        return $this->lastmod;
+    }
+
+    /**
+     * @param \DateTime $lastmod
+     */
+    public function setLastmod($lastmod)
+    {
+        $this->lastmod = $lastmod;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateLastMod()
+    {
+        $this->lastmod = new DateTime();
     }
 }

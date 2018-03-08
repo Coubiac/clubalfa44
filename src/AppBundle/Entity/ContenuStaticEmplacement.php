@@ -35,6 +35,16 @@ class ContenuStaticEmplacement
     private $url;
 
     /**
+     * @var float
+     * @ORM\Column(name="priority", type="decimal")
+     */
+    private $priority;
+
+
+
+
+
+    /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStatic", mappedBy="emplacement")
      */
     private $contenuStatic;
