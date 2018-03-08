@@ -76,7 +76,7 @@ class ContenuStaticController extends Controller
 
     /**
      * Génère le sitemap du site.
-     *
+     * @Method("GET")
      * @Route("/sitemap.{_format}", name="front_sitemap", Requirements={"_format" = "xml"})
      */
     public function siteMapAction()
