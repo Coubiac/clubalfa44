@@ -4,6 +4,7 @@ easy_admin:
             controller: AppBundle\Controller\SecurityController
             class: AppBundle\Entity\User
             list:
+                dql_filter: "entity.roles LIKE '%%env(ROLE_ADMIN)%%'"
                 title: 'liste des utilisateurs'
                 fields:
                     - { property: 'enabled', type: 'toggle', label: 'Actif'}
