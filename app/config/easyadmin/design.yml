@@ -3,6 +3,7 @@ easy_admin:
         brand_color: '#000000'
         color_scheme: 'light'
         menu:
+            - { entity: 'Actualite', label: 'Actualites' }
             - { entity: 'Licence', label: 'Licences' }
             - { entity: 'Photo', label: 'Photos' }
             - { entity: 'Evenement', label: 'Evenements'}

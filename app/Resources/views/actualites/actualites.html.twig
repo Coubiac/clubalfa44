@@ -2,67 +2,62 @@
 {% block title %}Les Actualités du club{% endblock %}
 {% block description %}Toutes les actualités du Club Alfa 44 {% endblock %}
 {% block titre %}Les actualités{% endblock %}
-{% block head %}
-    <!-- Compiled and minified JavaScript Materialize -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/dcsns_wall.css') }}" media="all" />
-    <script type="text/javascript" src="{{ asset('js/jquery.social.stream.wall.1.8.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.social.stream.1.6.2.min.js') }}"></script>
-
-
-
-
-{% endblock head %}
 
 {% block main %}
-
-    <div class="container container_actu">
-
-
+    <div class="container">
         <div class="row">
-            <div id="social-stream"></div>
-            <script type="text/javascript">
-                $(document).ready(function($) {
-                    $('#social-stream').dcSocialStream({
-                        feeds: {
-                            facebook: {
-                                id: '1010678582328667',
-                                url: 'socialStream/facebook.php'
-                            },
-                            youtube: {
-                                id: 'UC8xoHxBtb07zia7jHi1g4Hw'
-                            },
-                            instagram: {
-                                id: '!6654283549',
-                                accessToken: '6654283549.10008c8.fdf0ba9b477b45d695f51db7ea3cf507',
-                                clientId: '10008c862b0f49cdbe50f5073de13e1a',
-                                comments: 3,
-                                likes: 10
-                            }
-                        },
-                        rotate: {
-                            delay: 0
-                        },
-                        style: {
-                            layout: 'modern',
-                            colour: 'light'
-                        },
-                        control: false,
-                        filter: true,
-                        wall: true,
-                        cache: false,
-                        max: 'limit',
-                        limit: 10,
-                        iconPath: 'images/dcsns-dark/',
-                        imagePath: 'images/dcsns-dark/'
-                    });
-                });
-            </script>
+            {% for actualite in actualites %}
+
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image activator">
+                            <img class="activator" src="
+{% if vich_uploader_asset(actualite, 'imageFile') %}
+{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('actualites') }}
+{% else %}{{ asset("images/default-placeholder-300x200.png") }}
+{% endif %}">
+
+                            <a class="btn-floating btn-large activator halfway-fab waves-effect waves-light alfa-electrique"><i
+                                        class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title truncate">{{ actualite.titre }}</span>
+                            <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite)) }}</p></div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ actualite.titre }}<i
+                                        class="material-icons right">close</i></span>
+                            <p>{{ actualite.contenu|raw }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
         {#pagination#}
+        <div class="row">
+            <ul class="col m11 pagination center-align">
+                {% if nbPages > 1 %}
+                    {% if page > 1 %}
+                        <li>
+                            <a class="chevron-gauche" href="{{ path('actualites_paginated', {'page': page - 1}) }}"> &lang; </a>
+                        </li>
+                    {% endif %}
+
+                    {% for p in range(1, nbPages) %}
+                        <li{% if p == page %} class="active"{% endif %}>
+                            <a href="{{ path('actualites_paginated', {'page': p}) }}" class="current-page">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page < nbPages %}
+                        <li>
+                            <a href="{{ path('actualites_paginated', {'page': page + 1}) }}">
+                                &rang; </a>
+                        </li>
+                    {% endif %}
+
+                {% endif %}
+            </ul>
+        </div>
     </div>
 
 
-
 {% endblock %}
-
