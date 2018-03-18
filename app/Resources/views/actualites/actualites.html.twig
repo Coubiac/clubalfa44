@@ -12,10 +12,11 @@
                     <div class="card">
                         <div class="card-image activator">
                             <img class="activator" src="
-{% if vich_uploader_asset(actualite, 'imageFile') %}
-{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('actualites') }}
-{% else %}{{ asset("images/default-placeholder-300x200.png") }}
-{% endif %}">
+                            {% if vich_uploader_asset(actualite, 'imageFile') %}
+                                {{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('actualites') }}
+                            {% else %}
+                                {{ asset("images/default-placeholder-300x200.png") }}
+                            {% endif %}">
 
                             <a class="btn-floating btn-large activator halfway-fab waves-effect waves-light alfa-electrique"><i
                                         class="material-icons">add</i></a>
@@ -38,7 +39,8 @@
                 {% if nbPages > 1 %}
                     {% if page > 1 %}
                         <li>
-                            <a class="chevron-gauche" href="{{ path('actualites_paginated', {'page': page - 1}) }}"> &lang; </a>
+                            <a class="chevron-gauche" href="{{ path('actualites_paginated', {'page': page - 1}) }}">
+                                &lang; </a>
                         </li>
                     {% endif %}
 

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ competition.titre }}{% endblock %}
+{% block description %}{{ competition.description }}{% endblock %}
+{% block titre %}{{ competition.titre }}{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+    {{ competition.description|raw }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        {% for photo in photos %}
+            <div class="col s12 m4">
+                <img class="materialboxed responsive-img" data-caption='{{ competition.titre }} - {{ competition.date|date('d/m/Y') }}' src="{{ vich_uploader_asset(photo, 'imageFile')|imagine_filter('photos') }}">
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
