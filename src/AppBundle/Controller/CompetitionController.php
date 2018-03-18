@@ -15,7 +15,7 @@ class CompetitionController extends Controller
 {
 
     /**
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      * @Route("/competition", name="competitions")
      */
     public function competitionsAction()
