@@ -13,6 +13,8 @@ easy_admin:
                     - photos
             show:
                 title: "Détail de l'évènement"
+                actions:
+                    - { name: 'exportInscriptions', icon: 'download', label: 'Export Excel', css_class: 'btn btn-info'}
                 fields:
                     - { property: 'image', type: 'image', base_path: '%app.path.competition_images%' }
                     - date

@@ -71,6 +71,13 @@ class CategorieAge
     private $licences;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Inscrit", mappedBy="categorieAge", cascade={"persist"})
+     */
+    private $inscrits;
+
+
+
+    /**
      * @ORM\ManyToMany(targetEntity="Competition", mappedBy="categorieAges")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -121,6 +128,7 @@ class CategorieAge
     {
         $this->licences = new \Doctrine\Common\Collections\ArrayCollection();
         $this->competitions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscrits = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
 
@@ -290,4 +298,49 @@ class CategorieAge
     {
         return $this->prixBase;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
+    }
+
+    /**
+     * @param mixed $inscrits
+     * @return CategorieAge
+     */
+    public function setInscrits($inscrits)
+    {
+        $this->inscrits = $inscrits;
+        return $this;
+    }
+
+    /**
+     * Add Inscrit
+     *
+     * @param \AppBundle\Entity\Inscrit $Inscrit
+     *
+     * @return CategorieAge
+     */
+    public function addInscrit(Inscrit $Inscrit)
+    {
+        $this->inscrits[] = $Inscrit;
+        $Inscrit->setCategorieAge($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove Inscrit
+     *
+     * @param \AppBundle\Entity\Inscrit $Inscrit
+     */
+    public function removeInscrit(Inscrit $Inscrit)
+    {
+        $this->inscrits->removeElement($Inscrit);
+    }
+
+
 }

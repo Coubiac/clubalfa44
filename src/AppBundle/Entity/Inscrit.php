@@ -64,6 +64,12 @@ class Inscrit
      */
     private $competition;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="CategorieAge", inversedBy="inscrits", cascade={"persist"})
+     * @ORM\JoinColumn(name="categorieage_id", referencedColumnName="id")
+     */
+    private $categorieAge;
+
     public function __toString()
     {
         return $this->prenom . ' ' . $this->nom . ' ' . $this->dateNaissance->format('d/m/Y');
@@ -76,16 +82,6 @@ class Inscrit
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return Inscrit
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -175,6 +171,24 @@ class Inscrit
     public function setCompetition($competition)
     {
         $this->competition = $competition;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorieAge()
+    {
+        return $this->categorieAge;
+    }
+
+    /**
+     * @param mixed $categorieAge
+     * @return Inscrit
+     */
+    public function setCategorieAge($categorieAge)
+    {
+        $this->categorieAge = $categorieAge;
         return $this;
     }
 

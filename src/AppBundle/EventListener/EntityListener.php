@@ -2,7 +2,9 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\Inscrit;
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -21,6 +23,8 @@ class EntityListener
     public function prePersist(LifeCycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        $em = $args->getEntityManager();
+
 
         if (method_exists($entity, 'setAuthor')) {
             $user = $this->tokenStorage->getToken()->getUser();
@@ -30,5 +34,22 @@ class EntityListener
             $entity->setUpdateAt(new DateTime());
         }
 
+        if ($entity instanceof Inscrit){
+            $repository = $em->getRepository('AppBundle:CategorieAge');
+            $competition = $entity->getCompetition();
+            $today = new DateTime();
+            $yearToday = $today->format('Y');
+           if($competition->getDate()->format('%Y') < 9) {
+               $yearDebutSaison = $yearToday - 1;
+           }
+           else{
+               $yearDebutSaison = $yearToday;
+           }
+            $dateDebutSaison = new DateTime($yearDebutSaison.'-09-01');
+            $age = $entity->getDateNaissance()->diff($dateDebutSaison);
+            $age = $age->format('%Y');
+            $categorieAge = $repository->selectAgeCategory($age);
+            $entity->setCategorieAge($categorieAge);
+        }
     }
 }
