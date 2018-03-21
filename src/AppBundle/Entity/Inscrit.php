@@ -53,6 +53,7 @@ class Inscrit
      *
      * @ORM\Column(name="date_naissance", type="datetime")
      * @Assert\NotBlank(message = "Veuillez indiquer votre date de naissance")
+     * @Assert\LessThan("-4 years")
      */
     private $dateNaissance;
 

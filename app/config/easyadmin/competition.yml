@@ -27,7 +27,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - date
                     - titre
-                    - description
+                    - { property: 'description', type: 'ckeditor' }
                     - categorieAges
                     - activite
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

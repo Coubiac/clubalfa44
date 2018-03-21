@@ -56,7 +56,7 @@ class Competition
     private $resultat;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition", cascade={"persist"}))
      */
     private $photos;
 
