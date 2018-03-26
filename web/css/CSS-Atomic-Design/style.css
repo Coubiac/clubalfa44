@@ -37,6 +37,12 @@ nav .nav-title{
 header, main, footer, .preloader-background{
   padding-left: 0;
 }
+.nav-content .container{
+  z-index: 8;
+}
+.mh{
+  z-index: 99;
+}
 body {
   overflow-x: hidden; }
 
@@ -266,3 +272,7 @@ body:before {
 /* Fin de @media (max-width: 64.063em) /* = min-width 1025px */
 
 /*# sourceMappingURL=style.css.map */
+
+@media only screen and (min-width: 993px){
+nav a.button-collapse { display: inline;}
+}
