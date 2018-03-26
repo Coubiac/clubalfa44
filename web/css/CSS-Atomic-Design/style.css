@@ -21,7 +21,7 @@ html {
 .alfa-electrique{
     background-color: #0C2975;
   }
-.side-nav.fixed{
+.side-nav{
   padding-top: 3%;
 }
 .side-nav .collapsible-header, .side-nav.fixed .collapsible-header{
@@ -33,6 +33,9 @@ html {
 nav .nav-title{
   display: flex;
   justify-content: center;
+}
+header, main, footer, .preloader-background{
+  padding-left: 0;
 }
 body {
   overflow-x: hidden; }
