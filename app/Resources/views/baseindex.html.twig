@@ -13,9 +13,10 @@
 <body>
 
 <header>
-    {% include 'default/menu.html.twig' %}
+    
 </header>
 <main>
+    {% include 'default/menu.html.twig' %}    
     {% include 'default/flash-messages.html.twig' %}
     {% block main %}{% endblock %}
     {% block fos_user_content %}

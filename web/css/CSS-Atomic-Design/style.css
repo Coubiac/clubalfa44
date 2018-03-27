@@ -43,6 +43,21 @@ header, main, footer, .preloader-background{
 .mh{
   z-index: 99;
 }
+.btn-flat{
+  position: absolute;
+  
+}
+.btn, .btn-large, .btn-flat{
+  padding: 0 3rem;
+}
+.waves-effect{
+  font-size: 18px;
+  padding-top: 15px;  
+  font-weight: bold;
+}
+.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i{
+  font-size: 2.8rem;
+}
 body {
   overflow-x: hidden; }
 

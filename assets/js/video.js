@@ -30,7 +30,7 @@ $(document).ready(function() {
     }
     else{
         $('.preloader-background').remove();
-        $('#video').html('<img src='')
+        $('#video').html('<img src="">')
     }
 
 });
