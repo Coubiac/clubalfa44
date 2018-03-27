@@ -58,6 +58,17 @@ header, main, footer, .preloader-background{
 .btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i{
   font-size: 2.8rem;
 }
+#video1{
+  -webkit-filter: brightness(87%);
+}
+.vid-info a{
+  margin-top: 10px;
+  font-size: 15px;
+}
+.vid-info{
+  padding: 2rem;
+  margin-bottom: 15%;
+}
 body {
   overflow-x: hidden; }
 
