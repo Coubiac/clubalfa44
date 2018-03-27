@@ -72,6 +72,13 @@ margin-right: 0px;
 .card .card-action:last-child{
   text-align: center;
 }
+.dcsns-toolbar .filter li a{
+  width: 70px !important;
+}
+.dcsns-toolbar .filter .link-all{
+  height: 28px !important;
+  padding: 4px !important;
+}
 body {
   overflow-x: hidden; }
 
