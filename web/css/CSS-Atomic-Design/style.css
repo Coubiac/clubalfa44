@@ -47,9 +47,6 @@ header, main, footer, .preloader-background{
   position: absolute;
   
 }
-.btn, .btn-large, .btn-flat{
-  padding: 0 3rem;
-}
 .waves-effect{
   font-size: 18px;
   padding-top: 15px;  
@@ -68,6 +65,12 @@ header, main, footer, .preloader-background{
 .vid-info{
   padding: 2rem;
   margin-bottom: 15%;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
+margin-right: 0px;
+}
+.card .card-action:last-child{
+  text-align: center;
 }
 body {
   overflow-x: hidden; }
