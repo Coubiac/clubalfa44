@@ -79,6 +79,9 @@ margin-right: 0px;
   height: 28px !important;
   padding: 4px !important;
 }
+.c .d.iv{
+  padding-bottom: 60px;
+}
 body {
   overflow-x: hidden; }
 
@@ -311,4 +314,9 @@ body:before {
 
 @media only screen and (min-width: 993px){
 nav a.button-collapse { display: inline;}
+.c .d.ki{ width: 100%; padding-left: 60px; }
+.c .d.km{ width: 100%;}
+
 }
+
+
