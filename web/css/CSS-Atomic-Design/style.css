@@ -82,6 +82,12 @@ margin-right: 0px;
 .c .d.iv{
   padding-bottom: 60px;
 }
+.cy .eh{
+  margin: 0;
+}
+.c{
+  padding-top: 4%;
+}
 body {
   overflow-x: hidden; }
 
@@ -318,5 +324,13 @@ nav a.button-collapse { display: inline;}
 .c .d.km{ width: 100%;}
 
 }
-
-
+@media only screen and (min-width: 960px){
+.flow-text {
+    line-height: 2;
+}
+}
+@media only screen and (min-width: 930px){
+  .flow-text {
+    line-height: 2;
+}
+}
