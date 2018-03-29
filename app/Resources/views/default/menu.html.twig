@@ -1,11 +1,18 @@
-<ul id="slide-out" class="side-nav alfa-electrique">  
-    <li class="bold"><a href="{{ path("homepage") }}" class="waves-effect waves-teal waves-bluealfa white-text">Accueil</a>
+<ul id="slide-out" class="side-nav alfa-electrique">
+
+
+
+<li class="bold"><a href="{{ path("homepage") }}" class="waves-effect waves-teal waves-bluealfa white-text">Accueil</a>
     </li>
+    {#<li class="bold"><a href="{{ path("socialNetwork") }}" class="waves-effect waves-teal waves-bluealfa white-text">Réseaux sociaux</a>
+    </li>#}
     <li class="bold"><a href="{{ path("actualites") }}" class="waves-effect waves-teal waves-bluealfa white-text">Actualités</a>
     </li>
-    <li class="bold"><a href="{{ path("evenements") }}" class="waves-effect waves-teal waves-bluealfa white-text">Evenements</a>
-    </li>
-    <li class="bold"><a href="#" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a></li>
+    {#<li class="bold"><a href="{{ path("competitions") }}" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a>
+    </li>#}
+    {# <li class="bold"><a href="{{ path("evenements") }}" class="waves-effect waves-teal waves-bluealfa white-text">Evenements</a>
+    </li> #}
+    {# <li class="bold"><a href="#" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a></li> #}
     <li class="bold"><a href="{{ path("photos") }}" class="waves-effect waves-teal waves-bluealfa white-text">Photos</a>
     </li>
     <li class="no-padding">
@@ -14,6 +21,7 @@
 
 
             <ul class="collapsible collapsible-accordion">
+                {#
                 <li class="bold"><a class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Mon
                         compte</a>
                     <div class="collapsible-body">
@@ -37,7 +45,7 @@
                             {% endif %}
                         </ul>
                     </div>
-                </li>
+                </li> #}
                 <li class="bold"><a
                             class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Lutte</a>
                     <div class="collapsible-body"><ul>
@@ -45,7 +53,7 @@
                             </li>
                             <li><a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'horaires'}) }}">Horaires
                                     / Tarifs</a></li>
-                            <li><a href="{{ path('commande') }}">Inscription</a></li>
+                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
                         </ul>
                     </div>
                 </li>
@@ -59,7 +67,7 @@
                             <li>
                                 <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'horaires'}) }}">Horaires
                                     / Tarifs</a></li>
-                            <li><a href="{{ path('commande') }}">Inscription</a></li>
+                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
                         </ul>
                     </div>
                 </li>
@@ -72,7 +80,7 @@
                             </li>
                             <li><a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'horaires'}) }}">Horaires
                                     / Tarifs</a></li>
-                            <li><a href="{{ path('commande') }}">Inscription</a></li>
+                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
                         </ul>
                     </div>
                 </li>
@@ -84,7 +92,7 @@
                             </li>
                             <li><a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'horaires'}) }}">Horaires
                                     / Tarifs</a></li>
-                            <li><a href="{{ path('commande') }}">Inscription</a></li>
+                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
                         </ul>
                     </div>
                 </li>
@@ -117,6 +125,7 @@
 </ul>
 
 <a id="menu" href="#" class="waves-effect waves-teal btn-flat btn-large button-collapse mh transparent hide-on-med-and-down white-text" data-activates="slide-out" class="sidenav-trigger"><i class="large material-icons left">dehaze</i>menu</a>
+
 <div class="fixed-action-btn hide-on-large-only" style="bottom: 15px; right: 15px;">
     <a id="menu" href="#" data-activates="slide-out"
        class="btn btn-floating btn-large pulse indigo darken-4 blue-grey-text text-lighten-5 button-collapse"><i

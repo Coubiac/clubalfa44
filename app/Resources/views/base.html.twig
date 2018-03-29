@@ -22,12 +22,12 @@
     </nav>
 </header>
 <main>
-
     {% include 'default/flash-messages.html.twig' %}
     {% block fos_user_content %}
     {% endblock fos_user_content %}
     {% block main %}{% endblock %}
 </main>
+{% include 'default/footer.html.twig' %}
 
 
 {% include 'assets/javascript.html.twig' %}
