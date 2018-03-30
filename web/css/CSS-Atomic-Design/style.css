@@ -85,8 +85,41 @@ margin-right: 0px;
 .cy .eh{
   margin: 0;
 }
+.cy h3{
+  width: 322px;
+}
+.c .d.ki{
+  display: flex;
+}
 .c{
   padding-top: 4%;
+}
+.container_actu{
+  width: 76%;
+}
+.t-coachs{
+  width: 180px !important;
+}
+.t-c-Administration{
+  width:390px !important; 
+}
+.t-cm{
+  width: 420px !important;
+}
+.t-c-c{
+  width: 500px !important;
+}
+.t-c-m-s{
+  width: 700px !important;
+}
+.s-t-l-g-f{
+  width: 500px !important;
+}
+.ligne{
+  margin-top: 25px;
+  border-top: solid 1.5px #0C2975;
+  width: 100%;
+  margin-right: 7%;
 }
 body {
   overflow-x: hidden; }
