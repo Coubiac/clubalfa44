@@ -5,6 +5,7 @@ easy_admin:
             list:
                 title: 'Liste des competitions'
                 fields:
+                    - { property: 'image', type: 'image', label: 'Photo principale', base_path: '%app.path.competition_images%' }
                     - date
                     - titre
                     - description
@@ -12,20 +13,21 @@ easy_admin:
                     - photos
             show:
                 title: "Détail de l'évènement"
+                actions:
+                    - { name: 'exportInscriptions', icon: 'download', label: 'Export Excel', css_class: 'btn btn-info'}
                 fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.competition_images%' }
                     - date
                     - titre
                     - description
                     - inscrits
-                    - { property: 'photos', template: 'easy_admin/Evenements/show_evenement.html.twig' }
-
-
+                    - { property: 'photos' }
             form:
                 fields:
+                    - { property: 'imageFile', type: 'vich_image' }
                     - date
                     - titre
-                    - description
+                    - { property: 'description', type: 'ckeditor' }
                     - categorieAges
                     - activite
-                    - { property: 'inscrits', label: 'Inscrits', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\User', by_reference: true } }
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}

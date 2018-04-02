@@ -4,7 +4,13 @@ easy_admin:
             class: AppBundle\Entity\ContenuStaticEmplacement
             list:
                 title: 'Liste des emplacements'
+                fields:
+                    - 'name'
+                    - 'url'
+                    - { property: 'priority', label: 'priorité', type: 'decimal', format: '%01.1f'}
+                    - 'contenuStatic'
             form:
                 fields:
                     - 'name'
                     - 'url'
+                    - 'priority'

@@ -35,6 +35,32 @@ class ContenuStaticEmplacement
     private $url;
 
     /**
+     * @var float
+     * @ORM\Column(name="priority", type="decimal", precision=2, scale=1, nullable=true)
+     */
+    private $priority;
+
+    /**
+     * @return mixed
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param mixed $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
+
+
+
+
+    /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStatic", mappedBy="emplacement")
      */
     private $contenuStatic;

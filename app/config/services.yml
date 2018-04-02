@@ -69,3 +69,5 @@ services:
             public: true
             class: 'AppBundle\Services\PaymentManager'
             arguments: ["%stripeSecretKey%"]
+    app.export_inscription:
+        class: 'AppBundle\Services\ExportInscrits'

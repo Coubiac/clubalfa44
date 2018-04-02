@@ -2,16 +2,19 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\User as User;
-use Doctrine\ORM\Mapping\JoinTable;
+use AppBundle\Entity\Inscrit as Inscrit;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Competition
  *
  * @ORM\Table(name="competition")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CompetitionRepository")
+ * @Vich\Uploadable
  */
 class Competition
 {
@@ -53,13 +56,13 @@ class Competition
     private $resultat;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition", cascade={"persist"}))
      */
     private $photos;
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="competitions")
+     * @ORM\OneToMany(targetEntity="Inscrit", mappedBy="competition", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;
@@ -76,9 +79,72 @@ class Competition
      */
     private $activite;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="competition_image", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="update_at", type="datetime")
+     */
+    private $updateAt;
+
+
+
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->setUpdateAt(new DateTime());
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+        if ($image) {
+            $this->setUpdateAt(new DateTime());
+        }
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param \DateTime $updateAt
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
     }
 
 
@@ -202,11 +268,11 @@ class Competition
     /**
      * Add inscrit
      *
-     * @param User $inscrit
+     * @param Inscrit $inscrit
      *
      * @return Competition
      */
-    public function addInscrit(User $inscrit)
+    public function addInscrit(Inscrit $inscrit)
     {
         $this->inscrits[] = $inscrit;
 
@@ -216,9 +282,9 @@ class Competition
     /**
      * Remove inscrit
      *
-     * @param User $inscrit
+     * @param Inscrit $inscrit
      */
-    public function removeInscrit(User $inscrit)
+    public function removeInscrit(Inscrit $inscrit)
     {
         $this->inscrits->removeElement($inscrit);
     }

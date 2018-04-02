@@ -120,12 +120,6 @@ class User extends BaseUser
      */
     private $evenements;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Competition", inversedBy="inscrits", cascade={"persist"})
-     * @JoinTable(name="users_competitions")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $competitions;
 
 
     public function __construct()
@@ -626,40 +620,6 @@ class User extends BaseUser
     public function getEvenements()
     {
         return $this->evenements;
-    }
-
-    /**
-     * Add competition
-     *
-     * @param \AppBundle\Entity\Competition $competition
-     *
-     * @return User
-     */
-    public function addCompetition(\AppBundle\Entity\Competition $competition)
-    {
-        $this->competitions[] = $competition;
-
-        return $this;
-    }
-
-    /**
-     * Remove competition
-     *
-     * @param \AppBundle\Entity\Competition $competition
-     */
-    public function removeCompetition(\AppBundle\Entity\Competition $competition)
-    {
-        $this->competitions->removeElement($competition);
-    }
-
-    /**
-     * Get competitions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCompetitions()
-    {
-        return $this->competitions;
     }
 
     /**

@@ -26,3 +26,4 @@
 !/web/media
 /web/media/cache/*
 /node_modules
+composer.phar

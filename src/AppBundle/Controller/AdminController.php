@@ -6,6 +6,7 @@ use AppBundle\Entity\ContenuStatic;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 
 class AdminController extends EasyAdminController
@@ -70,5 +71,33 @@ class AdminController extends EasyAdminController
     public function preUpdateUserEntity($user)
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
+    }
+
+    /**
+     * Fonction d'export Excel des inscriptions competition
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function exportInscriptionsAction()
+    {
+        $id = $this->request->query->get('id');
+        $competition = $this->em->getRepository('AppBundle:Competition')->find($id);
+        $inscrits = $competition->getInscrits();
+        // On appel de service de création de fichier Excel
+        $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
+        $this->get('app.export_inscription')->export($phpExcelObject, $inscrits);
+        // create the writer
+        $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+        // create the response
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        // adding headers
+        $dispositionHeader = $response->headers->makeDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            'liste-inscrits.xls'
+        );
+        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
+        $response->headers->set('Content-Disposition', $dispositionHeader);
+        return $response;
     }
 }
