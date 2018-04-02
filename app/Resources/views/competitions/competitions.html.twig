@@ -24,7 +24,7 @@
                             </div>
                             <div class="inscription-evenement col s12 m4">
                                 {% if "now"|date('Ymd')  > competition.date|date('Ymd') %}
-                                    <a href="{{ path('competitionPhotos', {'slug': competition.slug}) }}"
+                                    <a href="{{ path('competitionPhotos', {'id': competition.id}) }}"
                                        class="btn right-align">Photos</a>
                                 {% else %}
 
