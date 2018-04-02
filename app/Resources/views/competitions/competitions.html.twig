@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %}Les compétitions du club{% endblock %}
+{% block description %}le détail des compétitions du Club Alfa 44 {% endblock %}
+{% block titre %}Les compétitions{% endblock %}
+
+{% block main %}
+    <div class="container">
+        {% for competition in competitions %}
+            <div class="row">
+                <div class="evenement col s12">
+                    <div class="photo-evenement valign-wrapper col s12 m4">
+                        <img class="responsive-img center-block"
+                             src="{% if vich_uploader_asset(competition, 'imageFile') %}
+                            {{ vich_uploader_asset(competition, 'imageFile')| imagine_filter('evenements') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}" alt="{{ competition.titre }}">
+                    </div>
+
+                    <div class="content-evenement col s12 m8">
+                        <div class="titre-block-evenement col s12">
+                            <div class="titre-evenement col s12 m8">
+                                <h5>{{ competition.titre }}</h5>
+                                {{ competition.date|date('d/m/Y') }}
+                            </div>
+                            <div class="inscription-evenement col s12 m4">
+                                {% if "now"|date('Ymd')  > competition.date|date('Ymd') %}
+                                    <a href="{{ path('competitionPhotos', {'slug': competition.slug}) }}"
+                                       class="btn right-align">Photos</a>
+                                {% else %}
+
+                                    <a data-target="{{ path('competition-inscription', {'id': competition.id}) }}" data-tooltip="voir"
+                                       class="tooltipped modal-trigger btn right-align"
+                                       href="#modal1">inscription</a>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="divider blue"></div>
+                        <div class="contenu-evenement col s12">
+                            {{ competition.description|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            {% block modalcontent %}
+            {% endblock %}
+
+
+        </div>
+        <div class="modal-footer">
+            {% block modalfooter %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

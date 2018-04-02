@@ -1,0 +1,14 @@
+
+{% block modalcontent %}
+    <h4>{{ competition.titre }}</h4>
+    {{ form_start(form, {'action': path('competition-inscription', { 'id': competition.id })}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block modalfooter %}
+{% endblock %}
+
+
+
+
+

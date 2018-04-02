@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for url in urls %}
+        <url>
+            <loc>{{ url.loc }}</loc>
+
+            {% if url.lastmod is defined %}
+                {% if url.lastmod|date('Y-m-d') == '-0001-11-30' %}
+                    <lastmod>2018-03-08</lastmod>
+                {% else %}
+                    <lastmod>{{ url.lastmod|date('Y-m-d') }}</lastmod>
+                {% endif %}
+            {% endif %}
+
+            {% if url.changefreq is defined %}
+                <changefreq>{{ url.changefreq }}</changefreq>
+            {% else %}
+                <changefreq>monthly</changefreq>
+            {% endif %}
+
+            {% if url.priority is defined %}
+                {% if url.priority != 0 %}
+                <priority>{{ url.priority }}</priority>
+                {% else %}
+                    <priority>0.6</priority>
+                {% endif %}
+            {% else %}
+                <priority>0.8</priority>
+            {% endif %}
+        </url>
+    {% endfor %}
+</urlset>
