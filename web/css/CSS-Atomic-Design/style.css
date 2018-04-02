@@ -115,6 +115,11 @@ margin-right: 0px;
 .s-t-l-g-f{
   width: 500px !important;
 }
+.image-fond
+{
+  padding-left: 100px;
+  padding-right: 100px;
+}
 .ligne{
   margin-top: 25px;
   border-top: solid 1.5px #0C2975;
