@@ -66,6 +66,7 @@ class ContenuStaticController extends Controller
 
             return $this->render('contenuStatic/page-statique.html.twig', array(
                 'contenu' => $contenu,
+                'emplacement' => $emplacement,
             ));
         } else {
             return $this->redirectToRoute('homepage');
