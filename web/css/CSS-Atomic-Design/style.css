@@ -198,7 +198,31 @@ margin-right: 0px;
 .flow-text{
   font-size: 1.80rem;
 }
-
+.saison{
+  font-size: 1.1em;
+}
+.t-generalites{
+  font-size: 1.8em;
+  padding-right: 10px;
+}
+.R-I{
+  padding-bottom: 80px;
+}
+.t-di{
+  display: flex;
+}
+.R-I p{
+  font-size: 1.2em;
+  color: black;
+}
+.h4-R{
+  font-size: 1.7em !important;
+  padding: 10px 0px 20px 0px;
+}
+.h5-R{
+  font-size: 1.5em !important;
+  padding: 10px 0px 20px 0px;
+}
 .image-fond blockquote{
   border-left: 4px solid #0C2975 !important;  
 }
@@ -207,6 +231,11 @@ margin-right: 0px;
   border-top: solid 1.5px #0C2975;
   width: 100%;
   margin-right: 7%;
+}
+.ligne-2{
+  margin-top: 40px;
+  border-top: solid 1.5px #0C2975;
+  width: 100%;
 }
 body {
   overflow-x: hidden; }
