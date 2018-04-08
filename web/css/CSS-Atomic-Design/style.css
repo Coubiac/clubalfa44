@@ -246,6 +246,42 @@ margin-right: 0px;
   border-top: solid 1.5px #0C2975;
   width: 100%;
 }
+.t-db{
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.b-t-d{
+  padding-top: 0px;
+}
+.t-db p{
+font-size: 1.2em;
+padding-top: 5px;
+padding-bottom: 10px;
+color: black;
+}
+blockquote{
+  border-left: 4px solid #0C2975;
+  color: black;
+}
+.collection-header h4{
+  font-size: 1.7em;
+  margin-top:0;
+  padding: 10px;
+}
+.collection.with-header .collection-item{
+  font-size: 1.1em;
+  line-height: 2.5rem;
+  color: black;
+}
+.collection.with-header{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  
+}
+.container .row{
+    border: 1px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 body {
   overflow-x: hidden; }
 
