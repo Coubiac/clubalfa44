@@ -4,6 +4,7 @@ parameters:
     app.path.activite_images: /uploads/images/activites
     app.path.evenement_images: /uploads/images/evenements
     app.path.competition_images: /uploads/images/competitions
+    app.path.champion_images: /uploads/images/champions
 
 vich_uploader:
     db_driver: orm
@@ -43,6 +44,14 @@ vich_uploader:
         competition_image:
             uri_prefix: '%app.path.competition_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/competitions'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
+        champion_image:
+            uri_prefix: '%app.path.champion_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/champions'
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true

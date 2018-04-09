@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}Le palmares{% endblock %}
+{% block description %}les champions du club{% endblock %}
+{% block titre %}Le palmares{% endblock %}
+
+{% block main %}
+    <div class="container">
+        {% for champion in champions %}
+            <div class="row">
+                <div class="champion col s12">
+                    <div class="photo-champion valign-wrapper col s12 m4">
+                        <img class="responsive-img center-block"
+                             src="{% if vich_uploader_asset(champion, 'imageFile') %}
+                            {{ vich_uploader_asset(champion, 'imageFile')| imagine_filter('champions') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}" alt="{{ champion.prenom }} {{ champion.nom }}">
+                    </div>
+
+                    <div class="content-champion col s12 m8">
+                        <div class="titre-block-champion col s12">
+                            <div class="titre-champion col s12 m8">
+                                <h5>{{ champion.prenom }} {{ champion.nom }}</h5>
+                            </div>
+                        </div>
+                        <div class="divider blue"></div>
+                        <div class="titres-champion col s12">
+                            {{ champion.titres|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+    </div>
+{% endblock %}

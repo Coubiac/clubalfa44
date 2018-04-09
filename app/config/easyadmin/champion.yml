@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Champion:
+            class: AppBundle\Entity\Champion
+            list:
+                title: 'Liste des champions'
+                fields:
+                    - { property: 'image', type: 'image', label: 'Photo', base_path: '%app.path.champion_images%' }
+                    - prenom
+                    - nom
+                    - updateAt
+            show:
+                title: "Informations sur le champion"
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.champion_images%' }
+                    - prenom
+                    - nom
+                    - titres
+                    - updateAt
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - prenom
+                    - nom
+                    - { property: 'titres', type: 'ckeditor' }
