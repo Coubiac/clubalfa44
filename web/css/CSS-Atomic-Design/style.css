@@ -279,9 +279,50 @@ blockquote{
   
 }
 .container .row{
-    border: 1px solid white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }
+.p-r{
+  border: 1px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+footer .container .row{
+  border:0px solid white;
+  box-shadow:none  !important;
+}
+.content-evenement{
+  padding-left: 50px !important;
+  padding-right: 30px !important;
+}
+.titre-evenement{
+  padding-bottom: 20px !important;
+  width: 100% !important;
+
+}
+.titre-evenement h5{
+  font-weight: bold;
+
+}
+.inscription-evenement a{
+  font-size: 1.6rem;
+}
+.inscription-evenement{
+  margin-left: 30% !important;
+}
+.photo-evenement img{
+  width: 100% !important;
+  margin-left: 0px;
+}
+.inscription-evenement{
+  padding-bottom: 20px !important;
+}
+.contenu-evenement p{
+  color: black;
+}
+.p-r .col{
+  padding: 0;
+}
+
+
 body {
   overflow-x: hidden; }
 
