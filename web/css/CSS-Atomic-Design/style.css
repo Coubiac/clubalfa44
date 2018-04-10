@@ -47,9 +47,12 @@ header, main, footer, .preloader-background{
   position: absolute;
   
 }
+#menu{
+  margin-top: 15px;
+}
 .waves-effect{
   font-size: 18px;
-  padding-top: 15px;  
+   
   font-weight: bold;
 }
 .btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i{
@@ -259,7 +262,7 @@ padding-top: 5px;
 padding-bottom: 10px;
 color: black;
 }
-blockquote{
+.bq-c{
   border-left: 4px solid #0C2975;
   color: black;
 }
@@ -278,9 +281,7 @@ blockquote{
   margin-bottom: 30px;
   
 }
-.container .row{
-    
-}
+
 .p-r{
   border: 1px solid white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
