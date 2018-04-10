@@ -47,6 +47,24 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
+     * @Route("/club/palmares", name="palmares")
+     */
+    public function palmaresAction()
+    {
+        $champions = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Champion')
+            ->findAll();
+
+        return $this->render('palmares/champions.html.twig', array(
+            'champions' => $champions,
+        ));
+    }
+
+
+    /**
+     * @Method("GET")
      * @Route("/{parent}/{enfant}", name="page-statique")
      */
     public function pageStatiqueAction($parent, $enfant)
