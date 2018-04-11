@@ -275,6 +275,11 @@ margin-right: 0px;
     border: 1px solid white;
     border-radius: 50%;
 }
+
+.i-b{
+  font-size: 72px !important;
+    margin-left: -16px;
+}
 .c-b{
   display: flex;
   justify-content: center;
