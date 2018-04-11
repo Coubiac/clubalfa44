@@ -252,10 +252,42 @@ margin-right: 0px;
   border-top: solid 1.5px #0C2975;
   width: 100%;
 }
+.n-champion{
+  display: flex;
+  align-items: center;
+}
+.n-champion h5{
+  margin:0;
+}
+.c-h{
+  height: 80px;
+    overflow: hidden;
+    padding: 0;
+}
+.image-champion{
+  width: 70px;
+    height: 70px !important;
+    margin: 0;
+    object-fit: cover;
+    margin-right: 10%;
+    margin-left: 8%;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.c-b{
+  display: flex;
+  justify-content: center;
+  color:black;
+}
 .t-db{
   padding-bottom: 40px;
   padding-top: 40px;
 }
+img:not([alt]){
+  border: 1px solid white !important;
+}
+
 .b-t-d{
   padding-top: 0px;
 }
