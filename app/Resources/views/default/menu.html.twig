@@ -104,9 +104,10 @@
                         <ul>
                             <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'historique'}) }}">Historique</a>
                             </li>
-                            <li>
+                            {# <li>
                                 <a href="{{ path("palmares") }}">Palmarès</a>
-                            </li>
+                            </li> #}
+                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'palmares'}) }}">Palmarès</a></li>
                             <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'staff'}) }}">Le
                                     Staff</a></li>
                             <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'sponsors'}) }}">Nos sponsors</a></li>
