@@ -62,6 +62,24 @@ class ContenuStaticController extends Controller
         ));
     }
 
+    /**
+     * @Method("GET")
+     * @Route("/club/historique", name="palmares")
+     */
+    public function historiqueAction()
+    {
+        $evenementHistorique = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:EvenementHistorique')
+            ->findAll();
+
+        return $this->render('EvenementHistorique/evenementHistorique.html.twig', array(
+            'EvenementHistoriques' => $evenementHistorique,
+        ));
+    }
+
+
 
     /**
      * @Method("GET")

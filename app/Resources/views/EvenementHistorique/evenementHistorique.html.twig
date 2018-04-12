@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}L'histoire du club{% endblock %}
+{% block description %}Les dates qui ont marqué le club{% endblock %}
+{% block titre %}L'histoire du club{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <ul class="collapsible">
+            {% if evenementHistoriques is defined %}
+            {% for evenementHistorique in evenementHistoriques %}
+                <li>
+                    <div class="collapsible-header">
+                        <h5>{{ evenementHistorique.titre }}</h5>
+                        <p>{{ evenementHistorique.date }}</p>
+                    </div>
+                    <div class="collapsible-body"><span>{{ evenementHistorique.description|raw }}</span></div>
+                </li>
+            {% endfor %}
+            {% else %}
+                <p>Pas encore d'évènement historique, ajoutez-en dans l'interface d'administration</p>
+            {% endif %}
+        </ul>
+
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
+    </script>
+{% endblock %}
