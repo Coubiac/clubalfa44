@@ -47,7 +47,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/club/palmares", name="palmares")
+     * @Route("/palmares", name="palmares")
      */
     public function palmaresAction()
     {
@@ -64,7 +64,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/club/historique", name="palmares")
+     * @Route("/historique", name="historique")
      */
     public function historiqueAction()
     {
@@ -130,7 +130,7 @@ class ContenuStaticController extends Controller
             $contenu = $emplacement->getContenuStatic();
             $absoluteUrl = 'https://www.clubalfa44.com' . $url;
             if($contenu){
-                    $lastmod = $contenu->getLastMod();
+                $lastmod = $contenu->getLastMod();
             }
 
             $urls[] = array(
