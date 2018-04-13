@@ -17,6 +17,9 @@
     {# <li class="bold"><a href="#" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a></li> #}
     <li class="bold"><a href="{{ path("photos") }}" class="waves-effect waves-teal waves-bluealfa white-text">Photos</a>
     </li>
+    <li class="bold">
+        <a href="{{ path("tarifs") }}" class="waves-effect waves-teal waves-bluealfa white-text">Tarifs</a>
+    </li>
     <li class="no-padding">
 
 
@@ -102,12 +105,15 @@
                         Club</a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'historique'}) }}">Historique</a>
+                            <li>
+                                <a href="{{ path("historique") }}">Historique</a>
                             </li>
-                            {# <li>
-                                <a href="{{ path("palmares") }}">Palmarès</a>
+                            {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'historique'}) }}">Historique</a>
                             </li> #}
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'palmares'}) }}">Palmarès</a></li>
+                            <li>
+                                <a href="{{ path("palmares") }}">Palmarès</a>
+                            </li>
+                            {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'palmares'}) }}">Palmarès</a></li> #}
                             <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'staff'}) }}">Le
                                     Staff</a></li>
                             <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'sponsors'}) }}">Nos sponsors</a></li>
