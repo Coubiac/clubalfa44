@@ -75,7 +75,7 @@ class ContenuStaticController extends Controller
             ->findAll();
 
         return $this->render('EvenementHistorique/evenementHistorique.html.twig', array(
-            'EvenementHistoriques' => $evenementHistorique,
+            'evenementHistoriques' => $evenementHistorique,
         ));
     }
 
