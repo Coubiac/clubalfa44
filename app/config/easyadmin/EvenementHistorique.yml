@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        EvenementHistorique:
+            class: AppBundle\Entity\EvenementHistorique
+            list:
+                title: 'Evenement Historique'
+                fields:
+                    - ordre
+                    - titre
+                    - date
+            show:
+                title: "Informations sur l'évènement historique"
+                fields:
+                    - ordre
+                    - titre
+                    - date
+                    - description
+            form:
+                fields:
+                    - { property: 'ordre', label: 'ordre_affichage' }
+                    - titre
+                    - date
+                    - { property: 'description', type: 'ckeditor' }

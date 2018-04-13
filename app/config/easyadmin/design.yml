@@ -9,6 +9,7 @@ easy_admin:
             - { entity: 'Evenement', label: 'Evenements'}
             - { entity: 'Competition', label: 'Competitions'}
             - { entity: 'Champion', label: 'Champions'}
+            - { entity: 'EvenementHistorique', label: 'Evenement Historique'}
             - { entity: 'User', label: 'Utilisateurs' }
             - { entity: 'Saison', label: 'Saisons'}
             - { entity: 'ContenuStatic', label: 'Contenus Statiques'}
