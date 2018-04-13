@@ -321,7 +321,78 @@ color: black;
   margin-bottom: 30px;
   
 }
+.historique{
+  padding-bottom: 30px;
+  position: relative;
+    background: url("https://www.asca-asso.fr/modules/mod_jux_timeline/assets/images/line.png") repeat-y scroll center center transparent;
+  
+}
+.b-histo{
+  background-image: url("https://imageshack.com/a/img923/809/UwhIWv.png");
+  background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;margin-top: -43px;
+    padding-top: 118px;
 
+}
+.arrow-up{
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  
+  border-bottom: 10px solid #5C5C5C;
+}
+.l-arrow{
+  display: flex;
+  justify-content:center;
+}
+.histo-hb{
+ 
+  margin-bottom: 41px !important;
+
+}
+.historique-body p{
+  line-height: 2;
+  font-size: 1.08em;
+}
+.historique-body h3{
+  font-weight: bold;
+}
+.historique-body{
+  background: none repeat scroll 0 0 #5C5C5C;
+    border-radius: 8px 8px 8px 8px;
+    padding: 25px 40px;
+    position: relative;
+    margin-left:30px;
+    padding-bottom: 50px;
+}
+.historique-header h5{
+  font-weight: bold;
+  font-size: 1.860em;
+  padding-bottom: 15px;
+  padding-right: 148px;
+}
+.historique-header{
+  text-align: center;
+  
+}
+.c-si-h{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.si-h{
+  background: url("https://www.asca-asso.fr/modules/mod_jux_timeline/assets/images/minus.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  height: 23px;
+  position: relative;
+  top: -39px;
+  width: 23px;
+  cursor: pointer;
+}
 .p-r{
   border: 1px solid white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
