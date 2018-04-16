@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Les Tarifs{% endblock %}
+{% block description %}Les tarifs des disciplines{% endblock %}
+{% block titre %}Les tarifs{% endblock %}
+
+{% block main %}
+    <div style="height: 750px">
+        <object type="application/pdf" width="100%" height="100%">
+            <param name="src" value="{{ asset('pdf/tarifs.pdf') }}" />
+            <img class="responsive-img materialboxed" src="{{ asset('pdf/tarifs.png') }}">
+
+        </object>
+
+    </div>
+
+
+{% endblock %}
