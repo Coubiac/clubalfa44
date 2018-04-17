@@ -4,23 +4,36 @@
 {% block titre %}L'histoire du club{% endblock %}
 
 {% block main %}
-    <div class="container">
-        <ul class="collapsible">
+<div class="b-histo">
+    <div class="container ">
+        <ul class="historique">
             {% if evenementHistoriques is defined %}
             {% for evenementHistorique in evenementHistoriques %}
+                <div class="histo-hb">
                 <li>
-                    <div class="collapsible-header">
-                        <h5>{{ evenementHistorique.titre }}</h5>
-                        <p>{{ evenementHistorique.date }}</p>
+                    <div class="historique-header">
+                    <div class="e-date">
+                        <h5>{{ evenementHistorique.date }}</h5>  </div>
+                        <div class="c-si-h">
+                    <div class="si-h"></div>
                     </div>
-                    <div class="collapsible-body"><span>{{ evenementHistorique.description|raw }}</span></div>
+                    </div> 
+                </li>        
+                <li> 
+                    <div class="l-arrow">
+                    <div class="arrow-up"></div></div>
+                    <div class="historique-body">
+                    <h3>{{ evenementHistorique.titre }}</h3>
+                    <span>{{ evenementHistorique.description|raw }}</span></div>
                 </li>
+                </div>
             {% endfor %}
             {% else %}
                 <p>Pas encore d'évènement historique, ajoutez-en dans l'interface d'administration</p>
             {% endif %}
         </ul>
 
+    </div>
     </div>
     <script>
         $(document).ready(function(){

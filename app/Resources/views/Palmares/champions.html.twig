@@ -8,13 +8,13 @@
         <ul class="collapsible">
             {% for champion in champions %}
                 <li>
-                    <div class="collapsible-header"><img class="responsive-img center-block"
+                    <div class="collapsible-header c-h "><img class="responsive-img center-block image-champion"
                                                          src="{% if vich_uploader_asset(champion, 'imageFile') %} {{ vich_uploader_asset(champion, 'imageFile')| imagine_filter('champions') }} {% else %}{{ asset("images/default-placeholder-300x200.png") }}
 
                         {% endif %}" alt="{{ champion.prenom }} {{ champion.nom }}">
-                        <h5>{{ champion.prenom }} {{ champion.nom }}</h5>
+                        <div class="n-champion"><h5>{{ champion.prenom }} {{ champion.nom }}</h5></div>
                     </div>
-                    <div class="collapsible-body"><span>{{ champion.titres|raw }}</span></div>
+                    <div class="collapsible-body c-b"><span>{{ champion.titres|raw }}</span></div>
                 </li>
             {% endfor %}
         </ul>

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Les Actualités du club{% endblock %}
 {% block description %}Toutes les actualités du Club Alfa 44 {% endblock %}
-{% block titre %}Les actualités{% endblock %}
+{% block titre %}Flux d'actualités{% endblock %}
 {% block head %}
     <!-- Compiled and minified JavaScript Materialize -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -13,7 +13,7 @@
 
 
 {% endblock head %}
-
+{% block body_class %}socialNetwork{% endblock %}
 {% block main %}
 
     <div class="container container_actu">

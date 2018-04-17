@@ -6,7 +6,7 @@
 {% block main %}
     <div class="container">
         {% for competition in competitions %}
-            <div class="row">
+            <div class="row p-r ">
                 <div class="evenement col s12">
                     <div class="photo-evenement valign-wrapper col s12 m4">
                         <img class="responsive-img center-block"
@@ -22,7 +22,12 @@
                                 <h5>{{ competition.titre }}</h5>
                                 {{ competition.date|date('d/m/Y') }}
                             </div>
-                            <div class="inscription-evenement col s12 m4">
+                        </div>
+                        <div class="divider blue"></div>
+                        <div class="contenu-evenement col s12">
+                            {{ competition.description|raw }}
+                        </div>
+                        <div class="inscription-evenement col s12 m4">
                                 {% if "now"|date('Ymd')  > competition.date|date('Ymd') %}
                                     <a href="{{ path('competitionPhotos', {'id': competition.id}) }}"
                                        class="btn right-align">Photos</a>
@@ -34,11 +39,6 @@
 
                                 {% endif %}
                             </div>
-                        </div>
-                        <div class="divider blue"></div>
-                        <div class="contenu-evenement col s12">
-                            {{ competition.description|raw }}
-                        </div>
                     </div>
                 </div>
             </div>
