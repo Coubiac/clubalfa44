@@ -71,14 +71,6 @@ img:not([alt]) {
 }
 
 
-/* -----MOBILE-----*/
-
-   
-body:before {
-@include bandeau-resolution;
-content: "Version mobile";   
-}
-/* Fin de @media (min-width: 20em) = min-width 320px */
 
 
 

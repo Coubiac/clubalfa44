@@ -631,12 +631,7 @@ img:not([alt]) {
 /* -----BOUTONS-----*/
 /* -----LAYOUT-----*/
 /* -----MOBILE-----*/
-body:before {
-  color: #000000;
-  width: 100%;
-  display: block;
-  text-align: center;
-  content: "Version mobile"; }
+
 
 /* Fin de @media (min-width: 20em) = min-width 320px */
 /* @media query optionnelle (max-width: 640px)*/
@@ -644,24 +639,12 @@ body:before {
 /* ----------------------------------------------------------------- */
 /* == _tablet.scss (des tablettes aux ordinateurs portables/laptops) */
 /* ----------------------------------------------------------------- */
-@media (min-width: 40.063em) {
-  body:before {
-    color: #000000;
-    width: 100%;
-    display: block;
-    text-align: center;
-    content: "Version tablette"; } }
+
 /* Fin de @media (min-width: 40.063em)/* = min-width 641px */
 /* -------------------------------- */
 /* == _desktop.scss (grands écrans) */
 /* -------------------------------- */
-@media (min-width: 64.063em) {
-  body:before {
-    color: #000000;
-    width: 100%;
-    display: block;
-    text-align: center;
-    content: "Version Ordinateur"; } }
+
 /* Fin de @media (max-width: 64.063em) /* = min-width 1025px */
 
 /*# sourceMappingURL=style.css.map */
