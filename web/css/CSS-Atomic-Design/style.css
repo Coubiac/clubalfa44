@@ -124,7 +124,9 @@ margin-right: 0px;
 .t-s-m{
   width: 280px;
 }
-
+.image-fond3 .card .card-reveal{
+  color: black;
+}
 .image-fond
 {
   padding-left: 25%;
