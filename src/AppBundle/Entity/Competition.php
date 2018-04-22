@@ -21,7 +21,7 @@ class Competition
     /**
      * Nombres de compétitions par pages
      */
-    const NUM_ITEMS = 3;
+    const NUM_ITEMS = 4;
     /**
      * @var int
      *

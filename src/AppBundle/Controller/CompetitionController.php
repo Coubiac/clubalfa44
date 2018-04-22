@@ -16,7 +16,7 @@ class CompetitionController extends Controller
 
     /**
      * @Route("/competition", defaults={"page": "1", "_format"="html"}, name="competitions")
-     * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competition_paginated")
+     * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competitions_paginated")
      * @Method("GET")
      */
     public function listCompetitionsAction($page)
