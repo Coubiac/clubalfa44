@@ -19,6 +19,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Competition
 {
     /**
+     * Nombres de compétitions par pages
+     */
+    const NUM_ITEMS = 3;
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

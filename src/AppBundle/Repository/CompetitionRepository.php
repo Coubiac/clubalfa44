@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Competition;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * CompetitionRepository
  *
@@ -10,4 +13,16 @@ namespace AppBundle\Repository;
  */
 class CompetitionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getCompetitionsPaginated($page)
+    {
+        $qb = $this->createQueryBuilder('a')->orderBy('a.date', 'DESC');
+        $query = $qb->getQuery();
+        $query
+            // On définit l'Actualite à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Competition::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Competition::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);
+    }
 }

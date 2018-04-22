@@ -15,21 +15,37 @@ class CompetitionController extends Controller
 {
 
     /**
+     * @Route("/competition", defaults={"page": "1", "_format"="html"}, name="competitions")
+     * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competition_paginated")
      * @Method("GET")
-     * @Route("/competition", name="competitions")
      */
-    public function competitionsAction()
+    public function listCompetitionsAction($page)
     {
-        $competitions = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Competition')
-            ->findAll();
-
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
+        }
+        // On récupère notre objet Paginator
+        $competitions = $this->getDoctrine()->getManager()->getRepository('AppBundle:Competition')->getCompetitionsPaginated($page);
+        // On calcule le nombre total de pages grâce au count($competitions) qui retourne le nombre total de competitions
+        $nbPages = ceil(count($competitions) / Competition::NUM_ITEMS);
+        // Si la page n'existe pas, on retourne une 404
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
+        }
+        // On donne toutes les informations nécessaires à la vue
         return $this->render('competitions/competitions.html.twig', array(
-            'competitions' => $competitions,
-        ));
+                'competitions' => $competitions,
+                'nbPages' => $nbPages,
+                'page' => $page,
+            )
+        );
     }
+
+
+
+
+
+
 
     /**
      * Display Competition content
