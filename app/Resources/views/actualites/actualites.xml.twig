@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+    <channel>
+        <title>Club Alfa 44 - Actualités</title>
+        <link>https://www.clubalfa44.com/</link>
+        <description>Les actualités de votre club</description>
+        <image>
+            <url>{{ absolute_url(asset('images/logoalfarss.jpg')) }}</url>
+            <link>https://www.clubalfa44.com</link>
+        </image>
+        {% for actualite in actualites %}
+            <item>
+                <title>{{ actualite.titre }}</title>
+                <link>https://www.clubalfa44.com/actualites/{{ actualite.slug }}</link>
+                <description><![CDATA[
+                <img src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}" />
+                <p>{{ actualite.contenu| resume(100)|raw }}</p>]]>
+                </description>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

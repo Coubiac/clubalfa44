@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ actualite.titre }}{% endblock %}
+{% block description %}{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}{% endblock %}
+{% block titre %}{{ actualite.titre }}{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <img class="responsive-img" src="
+                {% if vich_uploader_asset(actualite, 'imageFile') %}
+                    {{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}
+                {% else %}
+                    {{ asset("images/default-placeholder-300x200.png") }}
+                {% endif %}">
+            </div>
+            <div class="col s12 m6">
+                {{ actualite.contenu|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -43,5 +43,37 @@ class ActualiteController extends Controller
         );
     }
 
+    /**
+     * Display Evenement content
+     * @Route("/actualites/{slug}", name="actualite")
+     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewActualiteAction(Actualite $actualite)
+    {
+        return $this->render('actualites/actualite.html.twig', array(
+
+                'actualite' => $actualite
+            )
+        );
+    }
+
+
+    /**
+     * Génère le flux rss
+     * @Method("GET")
+     * @Route("/rss-actus.{_format}", name="actu-rss", Requirements={"_format" = "xml"})
+     */
+    public function rssActuAction()
+    {
+        $actualites = $this->getDoctrine()->getRepository(Actualite::class)->findAll();
+
+        return $this->render(
+            'actualites/actualites.xml.twig',
+            ['actualites' => $actualites]
+        );
+    }
+
+
 
 }
