@@ -19,7 +19,7 @@
                 <img src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}" />
                 <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}</p>]]>
                 </description>
-                <guid>https://www.clubalfa44.com/actualites/{{ actualite.id }}</guid>
+                <guid>https://www.clubalfa44.com/actualites/{{ actualite.slug }}</guid>
             </item>
         {% endfor %}
     </channel>
