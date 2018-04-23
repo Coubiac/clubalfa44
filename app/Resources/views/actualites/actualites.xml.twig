@@ -6,7 +6,7 @@
         <description>Les actualités de votre club</description>
         <atom:link href="https://www.clubalfa44.com/rss-actus.xml" rel="self" type="application/rss+xml" />
         <image>
-            <title>logo club alfa 44</title>
+            <title>Club Alfa 44 - Actualités</title>
             <url>{{ absolute_url(asset('images/logoalfarss.jpg')) }}</url>
             <link>https://www.clubalfa44.com</link>
         </image>
@@ -18,7 +18,7 @@
                 <img src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}" />
                 <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}</p>]]>
                 </description>
-                <guid>ttps://www.clubalfa44.com/actualites/{{ actualite.id }}</guid>
+                <guid>https://www.clubalfa44.com/actualites/{{ actualite.id }}</guid>
             </item>
         {% endfor %}
     </channel>
