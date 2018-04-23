@@ -66,7 +66,10 @@ class ActualiteController extends Controller
      */
     public function rssActuAction()
     {
-        $actualites = $this->getDoctrine()->getRepository(Actualite::class)->findAll();
+        $actualites = $this->getDoctrine()->getRepository(Actualite::class)->findBy(
+            array(),
+            array('date' => 'DESC')
+        );
 
         return $this->render(
             'actualites/actualites.xml.twig',

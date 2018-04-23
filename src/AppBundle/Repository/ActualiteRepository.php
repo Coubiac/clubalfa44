@@ -24,4 +24,5 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
         // Enfin, on retourne l'objet Paginator correspondant à la requête construite
         return new Paginator($query, true);
     }
+
 }
