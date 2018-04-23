@@ -1,10 +1,12 @@
 <?xml version="1.0" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Club Alfa 44 - Actualités</title>
-        <link>https://www.clubalfa44.com/</link>
+        <link>https://www.clubalfa44.com</link>
         <description>Les actualités de votre club</description>
+        <atom:link href="https://www.clubalfa44.com/rss-actus.xml" rel="self" type="application/rss+xml" />
         <image>
+            <title>logo club alfa 44</title>
             <url>{{ absolute_url(asset('images/logoalfarss.jpg')) }}</url>
             <link>https://www.clubalfa44.com</link>
         </image>
@@ -14,8 +16,9 @@
                 <link>https://www.clubalfa44.com/actualites/{{ actualite.slug }}</link>
                 <description><![CDATA[
                 <img src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}" />
-                <p>{{ actualite.contenu| resume(100)|raw }}</p>]]>
+                <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}</p>]]>
                 </description>
+                <guid>ttps://www.clubalfa44.com/actualites/{{ actualite.id }}</guid>
             </item>
         {% endfor %}
     </channel>
