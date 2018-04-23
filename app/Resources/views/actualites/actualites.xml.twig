@@ -13,13 +13,13 @@
         {% for actualite in actualites %}
             <item>
                 <title>{{ actualite.titre }}</title>
-                <link>https://www.clubalfa44.com/actualites/{{ actualite.slug }}</link>
+                <link>{{ absolute_url(path('actualite', {'slug': actualite.slug})) }}</link>
                 <pubDate>{{ actualite.date|date('D, d M Y H:i:s O') }}</pubDate>
                 <description><![CDATA[
                 <img src="{{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}" />
                 <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}</p>]]>
                 </description>
-                <guid>https://www.clubalfa44.com/actualites/{{ actualite.slug }}</guid>
+                <guid>{{ absolute_url(path('actualite', {'slug': actualite.slug})) }}</guid>
             </item>
         {% endfor %}
     </channel>

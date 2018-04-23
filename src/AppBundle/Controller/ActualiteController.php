@@ -46,7 +46,6 @@ class ActualiteController extends Controller
     /**
      * Display Evenement content
      * @Route("/actualites/{slug}", name="actualite")
-     * @Route("/actualites/{id}", name="actualiteId")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
