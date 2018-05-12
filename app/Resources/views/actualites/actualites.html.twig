@@ -7,30 +7,30 @@
     <div class="container">
         <div class="row">
             {% for actualite in actualites %}
-
-                <div class="col s12 m6">
-                    <div class="card">
-                        <div class="card-image activator">
-                            <img class="activator" src="
-                            {% if vich_uploader_asset(actualite, 'imageFile') %}
-                                {{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}
-                            {% else %}
-                                {{ asset("images/default-placeholder-300x200.png") }}
-                            {% endif %}">
-
-                            <a class="btn-floating btn-large activator halfway-fab waves-effect waves-light white"><i
-                                        class="i-b large material-icons white" style="color:#0C2975;">info</i></a>
+                <div class="row p-r ">
+                    <div class="evenement col s12">
+                        <div class="photo-evenement valign-wrapper col s12 m4">
+                            <img class="responsive-img center-block"
+                                 src="{% if vich_uploader_asset(actualite, 'imageFile') %}
+                            {{ vich_uploader_asset(actualite, 'imageFile')| imagine_filter('evenements') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}" alt="{{ actualite.titre }}">
                         </div>
-                        <div class="card-content">
-                            <span class="card-title truncate">{{ actualite.titre }}</span>
-                            <p>{{ actualite.contenu | resume(constant('NUM_WORDS', actualite))|raw }}</p></div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">{{ actualite.titre }}<i
-                                        class="material-icons right">close</i></span>
-                            <p>{{ actualite.contenu|raw }}</p>
+
+                        <div class="content-evenement col s12 m8">
+                            <div class="titre-block-evenement col s12">
+                                <div class="titre-evenement col s12 m8">
+                                    <h5>{{ actualite.titre }}</h5>
+                                </div>
+                            </div>
+                            <div class="divider blue"></div>
+                            <div class="contenu-evenement col s12">
+                                {{ actualite.contenu|raw }}
+                            </div>
                         </div>
                     </div>
                 </div>
+
             {% endfor %}
         </div>
         {#pagination#}
