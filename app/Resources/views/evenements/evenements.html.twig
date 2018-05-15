@@ -37,7 +37,7 @@
                                             </button>
                                         </form>
                                     {% else %}
-                                        {{ evenement.weezeventLink|raw }}
+                                        <a href="{{ evenement.weezeventLink|raw }}" class="btn right-align">s'inscrire</a>
                                     {% endif %}
                                 {% endif %}
                             </div>
