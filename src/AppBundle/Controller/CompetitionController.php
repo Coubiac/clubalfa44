@@ -85,7 +85,13 @@ class CompetitionController extends Controller
             $em->persist($inscrit);
             $em->flush();
             $request->getSession()->getFlashbag()->add('success', 'Votre inscription a été enregistré.');
+        }
+        if ($form->isSubmitted() && !$form->isValid()){
+            $message = (string) $form->getErrors(true, false);
+
+            $request->getSession()->getFlashbag()->add('danger', $message );
             return $this->redirectToRoute('competitions');
+
         }
         return $this->render(
             //On affiche  une vue twig simple (pas de head ni rien, donc aucun héritage de template...) qui sera intégrée dans la modale.
