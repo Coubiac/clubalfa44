@@ -13,8 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Competition
  *
  * @ORM\Table(name="inscrits")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CompetitionRepository")
- * @UniqueEntity(fields={"nom", "prenom"}, message="Il semble que vous soyez déja inscrit !")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InscritRepository")
+ * @UniqueEntity(fields={"nom", "prenom", "competition"}, message="Il semble que vous soyez déja inscrit !")
  */
 class Inscrit
 {

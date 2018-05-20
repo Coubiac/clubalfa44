@@ -75,16 +75,17 @@ class CompetitionController extends Controller
     public function inscriptionAction(Competition $competition, Request $request)
     {
         $inscrit = new Inscrit();
+        $inscrit->setCompetition($competition);
         $form = $this->createForm(InscritType::class, $inscrit);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $inscrit->setDateInscription(new \DateTime());
-            $inscrit->setCompetition($competition);
 
             $em->persist($inscrit);
             $em->flush();
             $request->getSession()->getFlashbag()->add('success', 'Votre inscription a été enregistré.');
+            return $this->redirectToRoute('competitions');
         }
         if ($form->isSubmitted() && !$form->isValid()){
             $message = (string) $form->getErrors(true, false);

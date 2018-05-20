@@ -60,13 +60,13 @@ class Competition
     private $resultat;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition", cascade={"persist"}))
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="competition", cascade={"persist", "remove"}))
      */
     private $photos;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Inscrit", mappedBy="competition", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Inscrit", mappedBy="competition", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $inscrits;

@@ -32,7 +32,8 @@ class InscritType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Inscrit'
+            'data_class' => 'AppBundle\Entity\Inscrit',
+            'cascade_validation' => true
         ));
     }
 
