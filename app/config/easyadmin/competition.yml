@@ -30,5 +30,4 @@ easy_admin:
                     - { property: 'description', type: 'ckeditor' }
                     - categorieAges
                     - activite
-                    - { property: 'inscrits', type: 'collection', type_options: { entry_type: 'AppBundle\Form\InscritType', by_reference: false }}
                     - { property: 'photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false }}
