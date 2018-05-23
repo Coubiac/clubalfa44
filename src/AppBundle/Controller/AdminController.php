@@ -19,6 +19,7 @@ class AdminController extends EasyAdminController
 
     protected function updateEntity($entity)
     {
+        $this->em->persist($entity);
         $this->em->flush();
     }
 
