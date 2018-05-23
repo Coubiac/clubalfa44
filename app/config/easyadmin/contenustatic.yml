@@ -14,3 +14,4 @@ easy_admin:
                     - 'titre'
                     - 'description'
                     - { property: 'contenu', type: 'ckeditor' }
+                    - 'emplacement'
