@@ -14,3 +14,4 @@ easy_admin:
                     - 'name'
                     - 'url'
                     - 'priority'
+                    - 'contenuStatic'
