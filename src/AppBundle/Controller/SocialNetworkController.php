@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SocialNetworkController extends Controller
 {
     /**
-     * @Route("/socialNetwork", name="socialNetwork")
+     * @Route("/socialNetwork", name="socialNetwork", schemes={"https"})
      * @Method("GET")
      */
     public function listActualitesAction()

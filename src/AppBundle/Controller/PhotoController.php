@@ -18,7 +18,7 @@ class PhotoController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/photos", name="photos")
+     * @Route("/photos", name="photos", schemes={"https"})
      */
     public function photosAction()
     {
