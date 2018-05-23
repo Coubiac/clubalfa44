@@ -11,6 +11,22 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class AdminController extends EasyAdminController
 {
+    protected function persistEntity($entity)
+    {
+        $this->em->persist($entity);
+        $this->em->flush();
+    }
+
+    protected function updateEntity($entity)
+    {
+        $this->em->flush();
+    }
+
+    protected function removeEntity($entity)
+    {
+        $this->em->remove($entity);
+        $this->em->flush();
+    }
 
     /**
      * @param object $entity
