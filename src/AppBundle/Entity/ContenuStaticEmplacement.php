@@ -61,7 +61,7 @@ class ContenuStaticEmplacement
 
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStatic", mappedBy="emplacement")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ContenuStatic", mappedBy="emplacement", cascade={"persist"})
      */
     private $contenuStatic;
 
