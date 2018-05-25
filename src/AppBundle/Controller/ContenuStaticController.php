@@ -15,7 +15,7 @@ class ContenuStaticController extends Controller
 {
     /**
      * @Method("GET")
-     * @Route("/", name="homepage", schemes={"https"})
+     * @Route("/", name="homepage")
      */
     public function indexAction()
     {
@@ -38,7 +38,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/club/staff", name="staff", schemes={"https"})
+     * @Route("/club/staff", name="staff")
      */
     public function staffAction()
     {
@@ -47,7 +47,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/palmares", name="palmares", schemes={"https"})
+     * @Route("/palmares", name="palmares")
      */
     public function palmaresAction()
     {
@@ -64,7 +64,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/historique", name="historique", schemes={"https"})
+     * @Route("/historique", name="historique")
      */
     public function historiqueAction()
     {
@@ -83,7 +83,7 @@ class ContenuStaticController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/{parent}/{enfant}", name="page-statique", schemes={"https"})
+     * @Route("/{parent}/{enfant}", name="page-statique")
      */
     public function pageStatiqueAction($parent, $enfant)
     {

@@ -18,7 +18,7 @@ class SecurityController extends BaseAdminController
     /**
      * Promote User
      * Méthode pour promouvoir un user
-     * @Route("/admin/users/{username}/promote", name="promoteUser", schemes={"https"})
+     * @Route("/admin/users/{username}/promote", name="promoteUser")
      * @Method("POST")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
@@ -43,7 +43,7 @@ class SecurityController extends BaseAdminController
     /**
      * Demote User
      *
-     * @Route("/admin/users/{username}/demote", name="demoteUser", schemes={"https"})
+     * @Route("/admin/users/{username}/demote", name="demoteUser")
      * @Method("POST")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */

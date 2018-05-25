@@ -136,7 +136,7 @@ margin-right: 0px;
   margin-top: -60px;
   padding-bottom: 100px;
   padding-top: 5%;
-  background-image: url("https://imageshack.com/a/img922/3913/TPrjqo.png");
+  background-image: url("../../images/Lutte-fond.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -151,7 +151,7 @@ margin-right: 0px;
   margin-top: -27px;
   padding-bottom: 100px;
   padding-top: 5%;
-  background-image: url("https://imageshack.com/a/img922/6460/gUlVk4.png");
+  background-image: url("../../images/grappling-fond.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -167,7 +167,7 @@ margin-right: 0px;
   margin-top: -27px;
   padding-bottom: 100px;
   padding-top: 5%;
-  background-image: url("https://imagizer.imageshack.com/v2/1166x710q90/r/923/Db6dwk.jpg");
+  background-image: url("../../images/fitness-fond.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -182,7 +182,7 @@ margin-right: 0px;
   margin-top: -27px;
   padding-bottom: 100px;
   padding-top: 5%;
-  background-image: url("https://imageshack.com/a/img924/4491/xlP78t.jpg");
+  background-image: url("../../images/muscu-fond.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -326,11 +326,11 @@ color: black;
 .historique{
   padding-bottom: 30px;
   position: relative;
-    background: url("https://www.asca-asso.fr/modules/mod_jux_timeline/assets/images/line.png") repeat-y scroll center center transparent;
+    background: url("../../images/line.png") repeat-y scroll center center transparent;
   
 }
 .b-histo{
-  background-image: url("https://imageshack.com/a/img923/809/UwhIWv.png");
+  background-image: url("../../images/histo-fond.jpeg");
   background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -388,7 +388,7 @@ color: black;
   justify-content: center;
 }
 .si-h{
-  background: url("https://www.asca-asso.fr/modules/mod_jux_timeline/assets/images/minus.png") no-repeat scroll 0 0 transparent;
+  background: url("../../images/minus.png") no-repeat scroll 0 0 transparent;
   display: block;
   height: 23px;
   position: relative;

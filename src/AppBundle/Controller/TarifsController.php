@@ -18,7 +18,7 @@ class TarifsController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/tarifs", name="tarifs", schemes={"https"})
+     * @Route("/tarifs", name="tarifs")
      */
     public function tarifsAction()
     {

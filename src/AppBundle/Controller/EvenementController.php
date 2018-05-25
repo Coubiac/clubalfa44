@@ -22,7 +22,7 @@ class EvenementController extends Controller
 
     /**
      * @Method("GET")
-     * @Route("/evenements", name="evenements", schemes={"https"})
+     * @Route("/evenements", name="evenements")
      */
     public function evenementsAction()
     {
@@ -40,7 +40,7 @@ class EvenementController extends Controller
     /**
      * @Method("POST")
      * @Security("has_role('ROLE_USER')")
-     * @Route("/evenement/{id}/inscription", name="evenement-inscription", schemes={"https"})
+     * @Route("/evenement/{id}/inscription", name="evenement-inscription")
      */
     public function inscriptionAction(Request $request, $id){
 
@@ -69,7 +69,7 @@ class EvenementController extends Controller
 
     /**
      * Display Evenement content
-     * @Route("/evenements/{slug}/photos", name="evenementPhotos", schemes={"https"})
+     * @Route("/evenements/{slug}/photos", name="evenementPhotos")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */

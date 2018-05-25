@@ -31,7 +31,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * @Route("/commande/", name="commande", schemes={"https"})
+     * @Route("/commande/", name="commande")
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
      */
@@ -53,7 +53,7 @@ class CommandeController extends Controller
         ));
     }
     /**
-     * @Route("/commande/coordonnees/", name="coordonnees", schemes={"https"})
+     * @Route("/commande/coordonnees/", name="coordonnees")
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
      */
@@ -88,7 +88,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * @Route("/commande/recap/", name="recapCommande", schemes={"https"})
+     * @Route("/commande/recap/", name="recapCommande")
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */
@@ -110,7 +110,7 @@ class CommandeController extends Controller
         return $this->render('commandes/recapCommande.html.twig', array('commande' => $commande));
     }
     /**
-     * @Route("/commande/paiement", name="paiement", schemes={"https"})
+     * @Route("/commande/paiement", name="paiement")
      * @Security("has_role('ROLE_USER')")
      * @Method({"POST"})
      */
@@ -132,7 +132,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * @Route("/commande/validation/{numero}", name="validation", schemes={"https"})
+     * @Route("/commande/validation/{numero}", name="validation")
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */

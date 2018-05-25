@@ -17,8 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ActualiteController extends Controller
 {
     /**
-     * @Route("/actualites", defaults={"page": "1", "_format"="html"}, name="actualites", schemes={"https"})
-     * @Route("/actualites/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="actualites_paginated", schemes={"https"})
+     * @Route("/actualites", defaults={"page": "1", "_format"="html"}, name="actualites")
+     * @Route("/actualites/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="actualites_paginated")
      * @Method("GET")
      */
     public function listActualitesAction($page)
@@ -45,7 +45,7 @@ class ActualiteController extends Controller
 
     /**
      * Display Evenement content
-     * @Route("/actualites/{slug}", name="actualite", schemes={"https"})
+     * @Route("/actualites/{slug}", name="actualite")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -62,7 +62,7 @@ class ActualiteController extends Controller
     /**
      * Génère le flux rss
      * @Method("GET")
-     * @Route("/rss-actus.{_format}", name="actu-rss", Requirements={"_format" = "xml"}, schemes={"https"})
+     * @Route("/rss-actus.{_format}", name="actu-rss", Requirements={"_format" = "xml"})
      */
     public function rssActuAction()
     {
