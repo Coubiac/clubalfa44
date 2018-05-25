@@ -13,7 +13,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->client->request('GET', '/');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page accueil a completer/',
             $this->client->getResponse()->getContent());
@@ -25,7 +25,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->client->request('GET', '/lutte/presentation');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page lutte a completer/',
             $this->client->getResponse()->getContent());
@@ -36,7 +36,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->client->request('GET', '/fitness/presentation');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page fitness a completer/',
             $this->client->getResponse()->getContent());
@@ -48,7 +48,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->client->request('GET', '/musculation/presentation');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page musculation a completer/',
             $this->client->getResponse()->getContent());
@@ -60,7 +60,7 @@ class ContenuStaticControllerTest extends WebTestCase
 
         $this->client->request('GET', '/grappling/presentation');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page grappling a completer/',
             $this->client->getResponse()->getContent());
