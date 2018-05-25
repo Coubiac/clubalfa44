@@ -12,13 +12,37 @@
                 appId: "141096fe-e97d-4850-bb5d-a457c6971633",
                 autoRegister: false,
                 notifyButton: {
-                    enable: false,
-                },
+                    enable: true, /* Required to use the Subscription Bell */
+                    size: 'small', /* One of 'small', 'medium', or 'large' */
+                    theme: 'default', /* One of 'default' (red-white) or 'inverse" (white-red) */
+                    position: 'bottom-left', /* Either 'bottom-left' or 'bottom-right' */
+                    offset: {
+                        bottom: '0px',
+                        left: '0px', /* Only applied if bottom-left */
+                        right: '0px' /* Only applied if bottom-right */
+                    },
+                    prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
+                    showCredit: false, /* Hide the OneSignal logo */
+                    text: {
+                        'tip.state.unsubscribed': 'Vous abonner aux notifications',
+                        'tip.state.subscribed': "Vous êtes abonnés aux notifications",
+                        'tip.state.blocked': "Vous avez bloqué les notifications",
+                        'message.prenotify': 'Cliquez pour vous abonner aux notifications',
+                        'message.action.subscribed': "merci de vous être abonné !",
+                        'message.action.resubscribed': "Vous êtes réabonné aux notifications",
+                        'message.action.unsubscribed': "Vous ne receverez plus de notifications",
+                        'dialog.main.title': 'Configurez les notifications',
+                        'dialog.main.button.subscribe': 'S\'ABONNER',
+                        'dialog.main.button.unsubscribe': 'SE DESABONNER',
+                        'dialog.blocked.title': 'Débloquer les notifications',
+                        'dialog.blocked.message': "Suivez ces instructions pour autoriser les notifications:"
+                    }
                 welcomeNotification: {
                     "title": "ClubAlfa44",
                     "message": "Bienvenue !",
                     // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
-                }
+                },
+
             });
 
         });
