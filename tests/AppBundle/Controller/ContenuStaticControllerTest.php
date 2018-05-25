@@ -11,9 +11,9 @@ class ContenuStaticControllerTest extends WebTestCase
     public function testIndexPage()
     {
 
-        $this->client->request('GET', '/');
+        $this->client->followRedirects()->request('GET', '/');
 
-        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page accueil a completer/',
             $this->client->getResponse()->getContent());
@@ -23,9 +23,9 @@ class ContenuStaticControllerTest extends WebTestCase
     public function testLuttePage()
     {
 
-        $this->client->request('GET', '/lutte/presentation');
+        $this->client->followRedirects()->request('GET', '/lutte/presentation');
 
-        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page lutte a completer/',
             $this->client->getResponse()->getContent());
@@ -34,9 +34,9 @@ class ContenuStaticControllerTest extends WebTestCase
     public function testFitnessPage()
     {
 
-        $this->client->request('GET', '/fitness/presentation');
+        $this->client->followRedirects()->request('GET', '/fitness/presentation');
 
-        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page fitness a completer/',
             $this->client->getResponse()->getContent());
@@ -46,9 +46,9 @@ class ContenuStaticControllerTest extends WebTestCase
     public function testMusculationPage()
     {
 
-        $this->client->request('GET', '/musculation/presentation');
+        $this->client->followRedirects()->request('GET', '/musculation/presentation');
 
-        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page musculation a completer/',
             $this->client->getResponse()->getContent());
@@ -58,9 +58,9 @@ class ContenuStaticControllerTest extends WebTestCase
     public function testGrapplingPage()
     {
 
-        $this->client->request('GET', '/grappling/presentation');
+        $this->client->followRedirects()->request('GET', '/grappling/presentation');
 
-        $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertRegexp(
             '/contenu page grappling a completer/',
             $this->client->getResponse()->getContent());
