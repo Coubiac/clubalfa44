@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
 class AdminController extends EasyAdminController
@@ -116,5 +117,25 @@ class AdminController extends EasyAdminController
         $response->headers->set('Cache-Control', 'maxage=1');
         $response->headers->set('Content-Disposition', $dispositionHeader);
         return $response;
+    }
+
+    /**
+     * Fonction d'envoie de notification  web push pour les actualités
+     * @return string
+     */
+    public function sendActualiteNotificationAction()
+    {
+        $id = $this->request->query->get('id');
+        $actualite = $this->em->getRepository('AppBundle:Actualite')->find($id);
+        $absoluteUrl = $this->generateUrl('actualite', array('slug' => $actualite->getSlug()), UrlGeneratorInterface::ABSOLUTE_URL);
+
+        // On appel de service d'envoie de notification
+        $response = $this->get('app.pushNotification')->sendMessage(array('All'), $actualite->getTitre(), $absoluteUrl);
+        $data = json_decode($response, true);
+        $recipients = $data["recipients"];
+        $message = 'La notification a été envoyée à '. $recipients . ' destinataires';
+        $this->addFlash('info', $message);
+
+        return parent::showAction();
     }
 }

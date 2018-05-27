@@ -66,8 +66,18 @@ services:
             - '@CategorieCalculator'
 
     PaymentManager:
-            public: true
-            class: 'AppBundle\Services\PaymentManager'
-            arguments: ["%stripeSecretKey%"]
+        public: true
+        class: 'AppBundle\Services\PaymentManager'
+        arguments: ["%stripeSecretKey%"]
+
+    AppBundle\Services\PushNotification:
+        arguments:
+            $oneSignalAppId: "%oneSignalAppId%"
+            $oneSignalApiKey: "%oneSignalApiKey%"
+
+    app.pushNotification:
+        alias: AppBundle\Services\PushNotification
+        public: true
+
     app.export_inscription:
         class: 'AppBundle\Services\ExportInscrits'

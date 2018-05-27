@@ -20,6 +20,8 @@ easy_admin:
                 title: 'Modifier une Actualité'
             show:
                 title: 'Actualité'
+                actions:
+                    - { name: 'sendActualiteNotification', icon: 'bell', label: 'Envoyer Notification', css_class: 'btn btn-info'}
                 fields:
                     - date
                     - titre

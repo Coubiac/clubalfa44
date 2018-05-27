@@ -46,6 +46,7 @@ twig:
       - 'assets/materialize_form_theme.html.twig'
     globals:
         stripePublishableKey: '%stripePublishableKey%'
+        oneSignalAppId: '%oneSignalAppId%'
 # Doctrine Configuration
 doctrine:
     dbal:
