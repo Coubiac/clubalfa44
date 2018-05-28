@@ -17,6 +17,7 @@ class PushNotification{
     /**
      * @param array $segments
      * @param string $message
+     * @param string $url
      * @return mixed
      */
     function sendMessage($segments, $message, $url) {
