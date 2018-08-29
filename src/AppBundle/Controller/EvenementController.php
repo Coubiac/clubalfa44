@@ -71,7 +71,7 @@ class EvenementController extends Controller
 
     /**
      * @Route("/evenements-archives", defaults={"page": "1", "_format"="html"}, name="old-evenements")
-     * @Route("/evenement/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="evenements_paginated")
+     * @Route("/old-evenement/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="old-evenements_paginated")
      * @Method("GET")
      */
     public function listArchiveEvenementsAction($page)

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}Les évenements du club{% endblock %}
+{% block description %}les anciens évènements {% endblock %}
+{% block titre %}Les évenements{% endblock %}
+
+{% block main %}
+    <div class="container">
+        {% for evenement in evenements %}
+            <div class="row">
+                <div class="evenement col s12">
+                    <div class="photo-evenement valign-wrapper col s12 m4">
+                        <img class="responsive-img center-block"
+                             src="{% if vich_uploader_asset(evenement, 'imageFile') %}
+                            {{ vich_uploader_asset(evenement, 'imageFile')| imagine_filter('evenements') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}" alt="{{ evenement.titre }}">
+                    </div>
+
+                    <div class="content-evenement col s12 m8">
+                        <div class="titre-block-evenement col s12">
+                            <div class="titre-evenement col s12 m8">
+                                <h5>{{ evenement.titre }}</h5>
+                                {{ evenement.date|date('d/m/Y') }}
+                            </div>
+                            <div class="inscription-evenement col s12 m4">
+                                {% if "now"|date('Ymd')  > evenement.date|date('Ymd') %}
+                                    <a href="{{ path('evenementPhotos', {'slug': evenement.slug}) }}"
+                                       class="btn right-align">Photos</a>
+                                {% else %}
+                                    {% if evenement.weezeventLink is null %}
+                                        <form action="{{ url('evenement-inscription', {'id': evenement.id} )}}"
+                                              method="post">
+                                            <input type="hidden" name="token"
+                                                   value="{{ csrf_token('enable') }}"/>
+                                            <button type="submit" data-tooltip="s'inscrire"
+                                                    class="tooltipped btn right-align">s'inscrire
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <a href="{{ evenement.weezeventLink|raw }}" class="btn right-align">s'inscrire</a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="divider blue"></div>
+                        <div class="contenu-evenement col s12">
+                            {{ evenement.contenu }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -36,7 +36,7 @@ class CompetitionRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getArchivedCompetitionPaginated($page){
         $now = new \DateTime();
-        $qb = $this->createQueryBuilder('a')->where('a.date > :now')->orderBy('a.date', 'DESC');
+        $qb = $this->createQueryBuilder('a')->where('a.date < :now')->orderBy('a.date', 'DESC');
         $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
         $query = $qb->getQuery();
         $query

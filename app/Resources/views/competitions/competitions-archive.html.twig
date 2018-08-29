@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+{% block title %}Les compétitions du club{% endblock %}
+{% block description %}le détail des compétitions du Club Alfa 44 {% endblock %}
+{% block titre %}Les compétitions passées{% endblock %}
+
+{% block main %}
+    <div class="container">
+        {% for competition in competitions %}
+            <div class="row p-r ">
+                <div class="evenement col s12">
+                    <div class="photo-evenement valign-wrapper col s12 m4">
+                        <img class="responsive-img center-block"
+                             src="{% if vich_uploader_asset(competition, 'imageFile') %}
+                            {{ vich_uploader_asset(competition, 'imageFile')| imagine_filter('evenements') }}
+                        {% else %}{{ asset("images/default-placeholder-300x200.png") }}
+                        {% endif %}" alt="{{ competition.titre }}">
+                    </div>
+
+                    <div class="content-evenement col s12 m8">
+                        <div class="titre-block-evenement col s12">
+                            <div class="titre-evenement col s12 m8">
+                                <h5>{{ competition.titre }}</h5>
+                                {{ competition.date|date('d/m/Y') }}
+                            </div>
+                        </div>
+                        <div class="divider blue"></div>
+                        <div class="contenu-evenement col s12">
+                            {{ competition.description|raw }}
+                        </div>
+                        <div class="inscription-evenement col s12 m4">
+                                {% if "now"|date('Ymd')  > competition.date|date('Ymd') %}
+                                    <a href="{{ path('competitionPhotos', {'id': competition.id}) }}"
+                                       class="btn right-align">Photos</a>
+                                {% else %}
+
+                                    <a data-target="{{ path('competition-inscription', {'id': competition.id}) }}" data-tooltip="voir"
+                                       class="tooltipped modal-trigger btn right-align"
+                                       href="#modal1">inscription</a>
+
+                                {% endif %}
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+        {#pagination#}
+        <div class="row">
+            <ul class="col m11 pagination center-align">
+                {% if nbPages > 1 %}
+                    {% if page > 1 %}
+                        <li>
+                            <a class="chevron-gauche" href="{{ path('competitions-archives_paginated', {'page': page - 1}) }}">
+                                &lang; </a>
+                        </li>
+                    {% endif %}
+
+                    {% for p in range(1, nbPages) %}
+                        <li{% if p == page %} class="active"{% endif %}>
+                            <a href="{{ path('competitions-archives_paginated', {'page': p}) }}" class="current-page">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page < nbPages %}
+                        <li>
+                            <a href="{{ path('competitions-archives_paginated', {'page': page + 1}) }}">
+                                &rang; </a>
+                        </li>
+                    {% endif %}
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            {% block modalcontent %}
+            {% endblock %}
+
+
+        </div>
+        <div class="modal-footer">
+            {% block modalfooter %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -44,7 +44,7 @@ class CompetitionController extends Controller
 
     /**
      * @Route("/competitions-archives", defaults={"page": "1", "_format"="html"}, name="old-competitions")
-     * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competitions_paginated")
+     * @Route("/competitions-archives/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competitions-archives_paginated")
      * @Method("GET")
      */
     public function listArchiveCompetitionsAction($page)
@@ -62,7 +62,7 @@ class CompetitionController extends Controller
             throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
         }
         // On donne toutes les informations nécessaires à la vue
-        return $this->render('competitions/competitions.html.twig', array(
+        return $this->render('competitions/competitions-archive.html.twig', array(
                 'competitions' => $competitions,
                 'nbPages' => $nbPages,
                 'page' => $page,
