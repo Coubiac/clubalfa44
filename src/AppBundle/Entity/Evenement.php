@@ -22,6 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Evenement
 {
+
+    const NUM_ITEMS = 4;
+
     /**
      * @var int
      *

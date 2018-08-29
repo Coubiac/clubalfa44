@@ -1,7 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
-
+use AppBundle\Entity\Evenement;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * EvenementRepository
  *
@@ -10,4 +11,43 @@ namespace AppBundle\Repository;
  */
 class EvenementRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $page
+     * @return Paginator
+     */
+    public function getArchivedEvenementPaginated($page){
+        $now = new \DateTime();
+        $qb = $this->createQueryBuilder('a')->where('a.date < :now')->orderBy('a.date', 'DESC');
+        $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
+        $query = $qb->getQuery();
+        dump($query);
+        $query
+            // On définit la compétition à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Evenement::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Evenement::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);
+    }
+
+    /**
+     * @param $page
+     * @return Paginator
+     */
+    public function getFutureEvenementPaginated($page){
+        $now = new \DateTime();
+        $qb = $this->createQueryBuilder('a')->where('a.date > :now')->orderBy('a.date', 'ASC');
+        $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
+        $query = $qb->getQuery ();
+
+        $query
+            // On définit la compétition à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Evenement::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Evenement::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);
+    }
+    
+    
 }

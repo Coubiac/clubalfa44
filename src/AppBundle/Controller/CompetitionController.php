@@ -15,19 +15,48 @@ class CompetitionController extends Controller
 {
 
     /**
-     * @Route("/competition", defaults={"page": "1", "_format"="html"}, name="competitions")
+     * @Route("/prochaines-competition", defaults={"page": "1", "_format"="html"}, name="new-competitions")
      * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competitions_paginated")
      * @Method("GET")
      */
-    public function listCompetitionsAction($page)
+    public function listProchainesCompetitionsAction(Request $request, $page)
     {
         if ($page < 1) {
             throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
         }
         // On récupère notre objet Paginator
-        $competitions = $this->getDoctrine()->getManager()->getRepository('AppBundle:Competition')->getCompetitionsPaginated($page);
+        $competitions = $this->getDoctrine()->getManager()->getRepository('AppBundle:Competition')->getFutureCompetitionPaginated($page);
         // On calcule le nombre total de pages grâce au count($competitions) qui retourne le nombre total de competitions
         $nbPages = ceil(count($competitions) / Competition::NUM_ITEMS);
+        // Si la page n'existe pas, on retourne une 404
+        if ($page > $nbPages) {
+            $request->getSession()->getFlashbag()->add('error', "Il n'y a pas de nouveaux évènements pour le moment");
+            return $this->redirectToRoute ("old-competitions");
+        }
+        // On donne toutes les informations nécessaires à la vue
+        return $this->render('competitions/competitions.html.twig', array(
+                'competitions' => $competitions,
+                'nbPages' => $nbPages,
+                'page' => $page,
+            )
+        );
+    }
+
+    /**
+     * @Route("/competitions-archives", defaults={"page": "1", "_format"="html"}, name="old-competitions")
+     * @Route("/competition/page/{page}", defaults={"_format"="html"}, requirements={"page": "[0-9]\d*"}, name="competitions_paginated")
+     * @Method("GET")
+     */
+    public function listArchiveCompetitionsAction($page)
+    {
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
+        }
+        // On récupère notre objet Paginator
+        $competitions = $this->getDoctrine()->getManager()->getRepository('AppBundle:Competition')->getArchivedCompetitionPaginated($page);
+        // On calcule le nombre total de pages grâce au count($competitions) qui retourne le nombre total de competitions
+        $nbPages = ceil(count($competitions) / Competition::NUM_ITEMS);
+
         // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
             throw $this->createNotFoundException("La page " . $page . " n'existe pas.");

@@ -13,6 +13,10 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class CompetitionRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $page
+     * @return Paginator
+     */
     public function getCompetitionsPaginated($page)
     {
         $qb = $this->createQueryBuilder('a')->orderBy('a.date', 'DESC');
@@ -24,5 +28,41 @@ class CompetitionRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(Competition::NUM_ITEMS);
         // Enfin, on retourne l'objet Paginator correspondant à la requête construite
         return new Paginator($query, true);
+    }
+
+    /**
+     * @param $page
+     * @return Paginator
+     */
+    public function getArchivedCompetitionPaginated($page){
+        $now = new \DateTime();
+        $qb = $this->createQueryBuilder('a')->where('a.date > :now')->orderBy('a.date', 'DESC');
+        $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
+        $query = $qb->getQuery();
+        $query
+            // On définit la compétition à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Competition::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Competition::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);   
+    }
+
+    /**
+     * @param $page
+     * @return Paginator
+     */
+    public function getFutureCompetitionPaginated($page){
+        $now = new \DateTime();
+        $qb = $this->createQueryBuilder('a')->where('a.date > :now')->orderBy('a.date', 'ASC');
+        $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
+        $query = $qb->getQuery ();
+        $query
+            // On définit la compétition à partir duquel commencer la liste
+            ->setFirstResult(($page - 1) * Competition::NUM_ITEMS)
+            // Ainsi que le nombre d'actualités à afficher sur une page
+            ->setMaxResults(Competition::NUM_ITEMS);
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        return new Paginator($query, true);   
     }
 }

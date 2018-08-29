@@ -1,16 +1,48 @@
 <ul id="slide-out" class="side-nav alfa-electrique">
 
 
-<li class="bold"><a href="{{ path("homepage") }}" class="waves-effect waves-teal waves-bluealfa white-text">Accueil</a>
+    <li class="bold"><a href="{{ path("homepage") }}"
+                        class="waves-effect waves-teal waves-bluealfa white-text">Accueil</a>
     </li>
-    <li class="bold"><a href="{{ path("socialNetwork") }}" class="waves-effect waves-teal waves-bluealfa white-text">Réseaux sociaux</a>
+    <li class="bold"><a href="{{ path("socialNetwork") }}" class="waves-effect waves-teal waves-bluealfa white-text">Réseaux
+            sociaux</a>
     </li>
     <li class="bold"><a href="{{ path("actualites") }}" class="waves-effect waves-teal waves-bluealfa white-text">Actualités</a>
     </li>
-    <li class="bold"><a href="{{ path("competitions") }}" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a>
+
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Compétitions</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{{ path("new-competitions") }}">Prochaines compétitions</a>
+                        </li>
+                        <li><a href="{{ path("old-competitions") }}">Archives</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </li>
-    <li class="bold"><a href="{{ path("evenements") }}" class="waves-effect waves-teal waves-bluealfa white-text">Evenements</a>
+
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Evenements</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{{ path("new-evenements") }}">Prochains évènements</a>
+                        </li>
+                        <li><a href="{{ path("old-evenements") }}">Archives</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </li>
+
+
+
+
     {# <li class="bold"><a href="#" class="waves-effect waves-teal waves-bluealfa white-text">Compétitions</a></li> #}
     <li class="bold"><a href="{{ path("photos") }}" class="waves-effect waves-teal waves-bluealfa white-text">Photos</a>
     </li>
@@ -20,123 +52,136 @@
     <li class="no-padding">
 
 
+        <ul class="collapsible collapsible-accordion">
+            {#
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Mon
+                    compte</a>
+                <div class="collapsible-body">
+                    <ul>
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a class="waves-effect waves-rednao police32"
+                                   href="{{ path('fos_user_registration_register') }}"
+                                   data-constrainwidth="false">inscription</a></li>
+                        {% endif %}
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_security_login') }}"
+                                   data-constrainwidth="false">Se connecter</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="compte">mon
+                                    compte</a></li>
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a class="dropdown-button police32" href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </li> #}
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Lutte</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'presentation'}) }}">Présentation</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'horaires'}) }}">Horaires</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'inscription'}) }}">Inscription</a>
+                        </li>
+                        {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
+                    </ul>
+                </div>
+            </li>
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Grappling-Fight</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'presentation'}) }}">Présentation</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'horaires'}) }}">Horaires</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'inscription'}) }}">Inscription</a>
+                        </li>
 
-
-            <ul class="collapsible collapsible-accordion">
-                {#
-                <li class="bold"><a class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Mon
-                        compte</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a class="waves-effect waves-rednao police32"
-                                       href="{{ path('fos_user_registration_register') }}"
-                                       data-constrainwidth="false">inscription</a></li>
-                            {% endif %}
-                            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_security_login') }}"
-                                       data-constrainwidth="false">Se connecter</a></li>
-                            {% endif %}
-                            {% if is_granted('ROLE_USER') %}
-                                <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="compte">mon
-                                        compte</a></li>
-                            {% endif %}
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a class="dropdown-button police32" href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </li> #}
-                <li class="bold"><a
-                            class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Lutte</a>
-                    <div class="collapsible-body"><ul>
-                            <li><a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'presentation'}) }}">Présentation</a>
-                            </li>
-                            <li><a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'horaires'}) }}">Horaires</a></li>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'lutte', 'enfant': 'inscription'}) }}">Inscription</a></li>
-                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
-                        </ul>
-                    </div>
+                        {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
+                    </ul>
+                </div>
+            </li>
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Musculation</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'presentation'}) }}">Présentation</a>
+                        </li>
+                        <li><a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'horaires'}) }}">Horaires</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'inscription'}) }}">Inscription</a>
+                        </li>
+                        {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
+                    </ul>
+                </div>
+            </li>
+            <li class="bold"><a
+                        class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Fitness</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'presentation'}) }}">Présentation</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'horaires'}) }}">Horaires</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'inscription'}) }}">Inscription</a>
+                        </li>
+                        {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
+                    </ul>
+                </div>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal waves-bluealfa white-text">Le
+                    Club</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="{{ path("historique") }}">Historique</a>
+                        </li>
+                        {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'historique'}) }}">Historique</a>
+                        </li> #}
+                        <li>
+                            <a href="{{ path("palmares") }}">Palmarès</a>
+                        </li>
+                        {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'palmares'}) }}">Palmarès</a></li> #}
+                        <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'staff'}) }}">Le
+                                Staff</a></li>
+                        <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'sponsors'}) }}">Nos
+                                sponsors</a></li>
+                        <li><a href="{{ path("nous_contacter") }}">Nous Contacter</a></li>
+                        <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'devenir-benevole'}) }}">Devenir
+                                bénévole</a></li>
+                        <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'reglement'}) }}">Règlement
+                                intérieur</a></li>
+                    </ul>
+                </div>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="bold"><a href="{{ path('admin') }}"
+                                    class="waves-effect waves-teal waves-bluealfa white-text">Administration</a>
                 </li>
-                <li class="bold"><a
-                            class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Grappling-Fight</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'presentation'}) }}">Présentation</a>
-                            </li>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'horaires'}) }}">Horaires</a></li>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'grappling-fight', 'enfant': 'inscription'}) }}">Inscription</a></li>
-
-                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold"><a
-                            class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Musculation</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'presentation'}) }}">Présentation</a>
-                            </li>
-                            <li><a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'horaires'}) }}">Horaires</a></li>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'musculation', 'enfant': 'inscription'}) }}">Inscription</a></li>
-                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold"><a
-                            class="collapsible-header  waves-effect waves-teal waves-bluealfa accent-4 white-text">Fitness</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'presentation'}) }}">Présentation</a>
-                            </li>
-                            <li><a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'horaires'}) }}">Horaires</a></li>
-                            <li>
-                                <a href="{{ path("page-statique", {'parent': 'fitness', 'enfant': 'inscription'}) }}">Inscription</a></li>
-                            {# <li><a href="{{ path('commande') }}">Inscription</a></li> #}
-                        </ul>
-                    </div>
-                </li>
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal waves-bluealfa white-text">Le
-                        Club</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="{{ path("historique") }}">Historique</a>
-                            </li>
-                            {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'historique'}) }}">Historique</a>
-                            </li> #}
-                            <li>
-                                <a href="{{ path("palmares") }}">Palmarès</a>
-                            </li>
-                            {# <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'palmares'}) }}">Palmarès</a></li> #}
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'staff'}) }}">Le
-                                    Staff</a></li>
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'sponsors'}) }}">Nos sponsors</a></li>
-                            <li><a href="{{ path("nous_contacter") }}">Nous Contacter</a></li>
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'devenir-benevole'}) }}">Devenir bénévole</a></li>
-                            <li><a href="{{ path("page-statique", {'parent': 'club', 'enfant': 'reglement'}) }}">Règlement
-                                    intérieur</a></li>
-                        </ul>
-                    </div>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="bold"><a href="{{ path('admin') }}"
-                                        class="waves-effect waves-teal waves-bluealfa white-text">Administration</a>
-                    </li>
-                {% endif %}
-            </ul>
+            {% endif %}
+        </ul>
     </li>
 
 </ul>
 
-<a id="menu" href="#" class="waves-effect waves-teal btn-flat btn-large button-collapse mh transparent hide-on-med-and-down white-text" data-activates="slide-out" class="sidenav-trigger"><i class="large material-icons left">dehaze</i>menu</a>
+<a id="menu" href="#"
+   class="waves-effect waves-teal btn-flat btn-large button-collapse mh transparent hide-on-med-and-down white-text"
+   data-activates="slide-out" class="sidenav-trigger"><i class="large material-icons left">dehaze</i>menu</a>
 
 <div class="fixed-action-btn hide-on-large-only" style="bottom: 15px; right: 15px;">
     <a id="menu" href="#" data-activates="slide-out"
