@@ -20,7 +20,6 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('a')->where('a.date < :now')->orderBy('a.date', 'DESC');
         $qb->setParameter('now', $now, \Doctrine\DBAL\Types\Type::DATETIME);
         $query = $qb->getQuery();
-        dump($query);
         $query
             // On définit la compétition à partir duquel commencer la liste
             ->setFirstResult(($page - 1) * Evenement::NUM_ITEMS)
