@@ -114,13 +114,13 @@ class CompetitionController extends Controller
             $em->persist($inscrit);
             $em->flush();
             $request->getSession()->getFlashbag()->add('success', 'Votre inscription a été enregistré.');
-            return $this->redirectToRoute('competitions');
+            return $this->redirectToRoute('new-competitions');
         }
         if ($form->isSubmitted() && !$form->isValid()){
             $message = (string) $form->getErrors(true, false);
 
             $request->getSession()->getFlashbag()->add('danger', $message );
-            return $this->redirectToRoute('competitions');
+            return $this->redirectToRoute('new-competitions');
 
         }
         return $this->render(
