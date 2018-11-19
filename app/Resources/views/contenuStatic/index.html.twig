@@ -1,24 +1,13 @@
 {% extends 'baseindex.html.twig' %}
 {%  block title %}{{ contenu.titre }}{% endblock %}
 {% block description %}{{ contenu.description }}{% endblock %}
-
 {% block main %}
     <div id="video">
-
     </div>
-
-        {#////////////////////////////////////////////////////////////////#}
-
-
     <div class="logo-small black hide-on-large-only">
         <img class="center-block photo-b" src="{{ asset("images/photo-b-mobile.png") }}" alt="club alfa 44">
     </div>
-
-    {#////////////////////////////////////////////////////////////////#}
-
-
     <div class="center-block container_accueil z-depth-2">
-
         <div id="presentation" class="row activites">
             <div class="col s12 m6 l3">
                 <div class="card cardhome">
@@ -30,7 +19,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
@@ -41,7 +29,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
@@ -52,7 +39,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col s12 m6 l3">
                 <div class="card cardhome">
                     <div class="card-image">
@@ -63,29 +49,17 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <hr id="ancre_other_page" class="scrollspy hr_encart">
         <br>
-
-
         <div class="row">
-
             <div class="col l12">
-
                 <div id="ancre_scroll" class="scrollspy">
-                    {{ contenu.contenu|raw }}
+			{{ contenu.contenu|raw }}
                 </div>
             </div>
-
         </div>
-
-
     </div>
-
-
-    {#///////////////////////#}
     <br/>
-
-
 {% endblock %}
+

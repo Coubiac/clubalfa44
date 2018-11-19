@@ -33,13 +33,13 @@ class EntityListener
         if (method_exists($entity, 'setUpdateAt')) {
             $entity->setUpdateAt(new DateTime());
         }
-
-        if ($entity instanceof Inscrit){
+	 if ($entity instanceof Inscrit){
             $repository = $em->getRepository('AppBundle:CategorieAge');
             $competition = $entity->getCompetition();
             $today = new DateTime();
             $yearToday = $today->format('Y');
-           if($competition->getDate()->format('%Y') < 9) {
+
+           if($competition->getDate()->format('m') < 9) {
                $yearDebutSaison = $yearToday - 1;
            }
            else{
@@ -48,8 +48,13 @@ class EntityListener
             $dateDebutSaison = new DateTime($yearDebutSaison.'-09-01');
             $age = $entity->getDateNaissance()->diff($dateDebutSaison);
             $age = $age->format('%Y');
+	    if($age < 4){
+		$entity->setCategorieAge($repository->find(1));
+		}
+	    else{
             $categorieAge = $repository->selectAgeCategory($age);
             $entity->setCategorieAge($categorieAge);
-        }
+		 }
+     	 }
     }
 }
