@@ -147,4 +147,8 @@ class CommandeManager extends Controller
         $this->session->remove('commande');
     }
 
+    public function removeSession(){
+        $this->session->remove('commande');
+    }
+
 }

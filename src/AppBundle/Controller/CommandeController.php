@@ -37,6 +37,8 @@ class CommandeController extends Controller
      */
     public function commandeAction(Request $request)
     {
+
+        $this->cm->removeSession ();
         $commande = $this->cm->createCommande();
         $form = $this->createForm(CommandeType::class, $commande);
 

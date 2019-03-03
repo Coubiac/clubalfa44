@@ -148,7 +148,7 @@ class PriceCalculator
 
         /** @var Licence $licence */
         foreach ($commande->getLicences() as $licence){
-            if($licence->getActivite() == 'FITNESS' || $licence->getActivite() == 'MUSCULATION' && $licence->hasAddGrappling()){
+            if(($licence->getActivite() == 'FITNESS' || $licence->getActivite() == 'MUSCULATION') && $licence->hasAddGrappling()){
                 $newLicence = clone $licence;
                 $newLicence->setActivite($activite);
                 $newLicence->setGrapplingOption(true);
